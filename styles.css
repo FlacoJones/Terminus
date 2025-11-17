@@ -21,27 +21,10 @@ body {
     justify-content: center;
 }
 
-.image-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    width: auto;
-    height: auto;
-}
-
 .name-image {
     width: 60vw;
-    height: auto;
     max-width: 800px;
-    display: block;
-}
-
-.logo-image {
-    width: auto;
-    height: 15vw;
-    max-height: 200px;
+    height: auto;
     display: block;
 }
 
@@ -50,19 +33,11 @@ body {
     .name-image {
         width: 70vw;
     }
-    
-    .logo-image {
-        height: 20vw;
-    }
 }
 
 @media (max-width: 480px) {
     .name-image {
         width: 80vw;
-    }
-    
-    .logo-image {
-        height: 25vw;
     }
 }
 
