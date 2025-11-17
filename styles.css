@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #000000;
+    background-color: #0a0a0a;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -26,8 +26,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: 90vw;
+    width: 20vw;
     height: auto;
 }
 
@@ -53,19 +52,13 @@ body {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .image-wrapper {
-        max-width: 95vw;
-    }
-    
-    .logo-image {
-        max-width: 60%;
-        max-height: 60%;
+        width: 40vw;
     }
 }
 
 @media (max-width: 480px) {
-    .logo-image {
-        max-width: 70%;
-        max-height: 70%;
+    .image-wrapper {
+        width: 60vw;
     }
 }
 
