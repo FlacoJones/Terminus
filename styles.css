@@ -100,15 +100,15 @@ body {
 
 /* Wordmark */
 .wordmark {
-  width: 55vw;
-  max-width: 700px;
+  width: 75vw;
+  max-width: 1000px;
   height: auto;
 }
 
 /* Subheader */
 .subheader {
-  width: 45vw;
-  max-width: 600px;
+  width: 65vw;
+  max-width: 850px;
   height: auto;
   margin-top: -1rem;
 }
@@ -153,11 +153,13 @@ body {
   }
 
   .wordmark {
-    width: 70vw;
+    width: 85vw;
+    max-width: none;
   }
 
   .subheader {
-    width: 60vw;
+    width: 75vw;
+    max-width: none;
   }
 
   .contact-button {
@@ -177,11 +179,13 @@ body {
   }
 
   .wordmark {
-    width: 85vw;
+    width: 90vw;
+    max-width: none;
   }
 
   .subheader {
-    width: 75vw;
+    width: 80vw;
+    max-width: none;
   }
 
   .contact-button {
