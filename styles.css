@@ -57,18 +57,11 @@ body {
   gap: 1rem;
 }
 
-.logo {
-  width: 200px;
+.logo-wordmark {
+  width: 500px;
+  max-width: 90vw;
   height: auto;
-  margin-bottom: 1rem;
-}
-
-h1 {
-  font-family: "Roboto", sans-serif;
-  color: var(--brand-white);
-  font-size: 3rem;
-  font-weight: 700;
-  margin: 0;
+  margin-bottom: 1.5rem;
 }
 
 h2 {
