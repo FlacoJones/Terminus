@@ -38,58 +38,154 @@
 }
 
 body {
-  background-color: #0a0a0a;
+  background-image: url('public/background.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Top Left Logo */
+.logo-container {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 100;
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+}
+
+/* Hero Container */
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
-.container {
+/* Background Image - Transformer */
+.background-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+/* Overlayed Content */
+.hero-content {
+  position: relative;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  gap: 1rem;
+  gap: 2rem;
+  padding: 2rem;
 }
 
-.logo-wordmark {
-  width: 500px;
-  max-width: 90vw;
+/* Wordmark */
+.wordmark {
+  width: 55vw;
+  max-width: 700px;
   height: auto;
-  margin-bottom: 1.5rem;
 }
 
-h2 {
+/* Subheader */
+.subheader {
+  width: 45vw;
+  max-width: 600px;
+  height: auto;
+  margin-top: -1rem;
+}
+
+/* Contact Button */
+.contact-button {
+  background: transparent;
+  border: 3px solid #00e8dd;
+  color: #00e8dd;
   font-family: "Roboto Mono", monospace;
-  color: var(--brand-light-gray);
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  padding: 8px 28px;
+  border-radius: 12px;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
   text-transform: uppercase;
-  margin: 0;
+  box-shadow: 0 0 10px rgba(0, 232, 221, 0.3);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: normal;
 }
 
-.name-image {
-  width: 60vw;
-  max-width: 800px;
-  height: auto;
-  display: block;
+.contact-button:hover {
+  background: #00e8dd;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 232, 221, 0.6);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .name-image {
+  .logo {
+    width: 60px;
+  }
+
+  .logo-container {
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .wordmark {
     width: 70vw;
+  }
+
+  .subheader {
+    width: 60vw;
+  }
+
+  .contact-button {
+    font-size: 18px;
+    padding: 10px 32px;
   }
 }
 
 @media (max-width: 480px) {
-  .name-image {
-    width: 80vw;
+  .logo {
+    width: 50px;
+  }
+
+  .logo-container {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .wordmark {
+    width: 85vw;
+  }
+
+  .subheader {
+    width: 75vw;
+  }
+
+  .contact-button {
+    font-size: 16px;
+    padding: 8px 24px;
   }
 }
