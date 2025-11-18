@@ -1,43 +1,102 @@
+/* Self-hosted fonts */
+@font-face {
+  font-family: "Roboto";
+  src: url("public/Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("public/Roboto-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto Mono";
+  src: url("public/RobotoMono-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Brand Colors */
+  --brand-gray: #cfd9d6; /* CMYK: 19, 15, 16, 0 */
+  --brand-white: #ffffff; /* CMYK: 0, 0, 0, 0 */
+  --brand-light-gray: #b0c7c7; /* CMYK: 31, 22, 22, 0 */
+  --brand-cyan: #69ffc2; /* CMYK: 59, 0, 24, 0 */
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #0a0a0a;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+  background-color: #0a0a0a;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  color: var(--brand-white);
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+h2 {
+  font-family: "Roboto Mono", monospace;
+  color: var(--brand-light-gray);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .name-image {
-    width: 60vw;
-    max-width: 800px;
-    height: auto;
-    display: block;
+  width: 60vw;
+  max-width: 800px;
+  height: auto;
+  display: block;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .name-image {
-        width: 70vw;
-    }
+  .name-image {
+    width: 70vw;
+  }
 }
 
 @media (max-width: 480px) {
-    .name-image {
-        width: 80vw;
-    }
+  .name-image {
+    width: 80vw;
+  }
 }
-
