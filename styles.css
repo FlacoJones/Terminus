@@ -29,6 +29,7 @@
   --brand-white: #ffffff; /* CMYK: 0, 0, 0, 0 */
   --brand-light-gray: #b0c7c7; /* CMYK: 31, 22, 22, 0 */
   --brand-cyan: #69ffc2; /* CMYK: 59, 0, 24, 0 */
+  --brand-blue: #0c81e8;
 }
 
 * {
@@ -38,7 +39,7 @@
 }
 
 body {
-  background-image: url('/public/background.svg');
+  background-image: url("/public/background.svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
