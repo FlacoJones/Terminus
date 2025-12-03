@@ -94,4 +94,3 @@ To test the site locally:
 - The site will be available at `https://terminusindustrials.com` after DNS propagation
 - GitHub Pages supports Jekyll, but this is a static HTML site
 - Make sure to commit and push changes to see them live (may take a few minutes)
-
