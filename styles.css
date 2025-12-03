@@ -195,6 +195,17 @@ body {
   }
 }
 
+/* Made in USA - Hero Subheader */
+.made-in-usa {
+  font-family: "Roboto", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--brand-gray);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
 /* Footer */
 .footer {
   position: fixed;
@@ -202,19 +213,10 @@ body {
   left: 0;
   right: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 1.5rem 2rem;
   z-index: 100;
-}
-
-.made-in-usa {
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--brand-gray);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
 }
 
 .social-link {
@@ -241,7 +243,7 @@ body {
   }
 
   .made-in-usa {
-    font-size: 12px;
+    font-size: 28px;
   }
 
   .x-logo {
@@ -256,7 +258,7 @@ body {
   }
 
   .made-in-usa {
-    font-size: 11px;
+    font-size: 24px;
   }
 
   .x-logo {
