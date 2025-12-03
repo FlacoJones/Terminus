@@ -1,28 +1,3 @@
-/* Self-hosted fonts */
-@font-face {
-  font-family: "Roboto";
-  src: url("/public/Roboto-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url("/public/Roboto-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Roboto Mono";
-  src: url("/public/RobotoMono-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   /* Brand Colors */
   --brand-gray: #cfd9d6; /* CMYK: 19, 15, 16, 0 */
