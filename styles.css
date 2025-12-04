@@ -231,13 +231,13 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 850px) {
   .footer {
     padding: 1rem;
   }
 
   .made-in-usa {
-    font-size: 24px;
+    white-space: nowrap;
   }
 
   .x-logo {
