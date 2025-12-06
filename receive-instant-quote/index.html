@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Request a Quote - Terminus Industrials" />
-    <title>Request a Quote - Terminus Industrials</title>
+    <meta name="description" content="Receive Instant Quote - Terminus Industrials" />
+    <title>Receive Instant Quote - Terminus Industrials</title>
 
     <!-- Critical CSS to prevent white flash -->
     <style>
@@ -17,7 +17,7 @@
     </style>
 
     <!-- Open Graph Metadata -->
-    <meta property="og:title" content="Request a Quote - Terminus Industrials" />
+    <meta property="og:title" content="Receive Instant Quote - Terminus Industrials" />
     <meta
       property="og:description"
       content="Defense-Grade Advanced Manufacturing"
@@ -27,7 +27,7 @@
 
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Request a Quote - Terminus Industrials" />
+    <meta name="twitter:title" content="Receive Instant Quote - Terminus Industrials" />
     <meta
       name="twitter:description"
       content="Defense-Grade Advanced Manufacturing"
@@ -52,7 +52,7 @@
         </a>
       </div>
       <div class="nav-links">
-        <a href="/request-a-quote" class="nav-link">Request a Quote</a>
+        <a href="/receive-instant-quote" class="nav-link">Receive Instant Quote</a>
       </div>
     </nav>
 
@@ -81,6 +81,22 @@
         <section class="form-section">
           <h2 class="section-title">II. Indicative Technical Requirements</h2>
           <p class="section-note">Note that specifications are indicative and subject to final engineering design at time of formal purchase order.</p>
+          
+          <!-- DEBUG: Remove before deploy -->
+          <button type="button" id="instafillBtn" style="
+            background: #ff6b35;
+            border: 2px solid #ff6b35;
+            color: #fff;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+          ">⚡ Instafill (Debug)</button>
 
           <form id="nbpoForm">
             <!-- 1. Basic Information -->
@@ -209,7 +225,7 @@
                   </label>
                   <label class="radio-label">
                     <input type="radio" name="temperatureRise" value="other"> Other:
-                    <input type="text" name="temperatureRiseOther" class="inline-input" placeholder="Specify">
+                    <input type="text" name="temperatureRiseOther" class="inline-input" placeholder="Specify" disabled>
                   </label>
                 </div>
               </div>
@@ -405,7 +421,7 @@
                   </label>
                   <label class="radio-label">
                     <input type="radio" name="oilType" value="other"> Other:
-                    <input type="text" name="oilTypeOther" class="inline-input" placeholder="Specify">
+                    <input type="text" name="oilTypeOther" class="inline-input" placeholder="Specify" disabled>
                   </label>
                 </div>
               </div>
@@ -429,7 +445,7 @@
                   </label>
                   <label class="radio-label">
                     <input type="radio" name="corrosionClass" value="custom"> Custom:
-                    <input type="text" name="corrosionClassCustom" class="inline-input" placeholder="Specify">
+                    <input type="text" name="corrosionClassCustom" class="inline-input" placeholder="Specify" disabled>
                   </label>
                 </div>
               </div>
@@ -569,7 +585,7 @@
 
             <!-- Submit Button -->
             <div class="form-submit">
-              <button type="submit" class="submit-button">Submit Letter of Intent</button>
+              <button type="submit" class="submit-button">Review and Submit</button>
             </div>
           </form>
         </section>
@@ -577,6 +593,137 @@
     </main>
 
     <script>
+      // DEBUG: Instafill functionality
+      document.getElementById('instafillBtn').addEventListener('click', async function() {
+        try {
+          const response = await fetch('/receive-instant-quote/instafill-defaults.json');
+          const defaults = await response.json();
+          const form = document.getElementById('nbpoForm');
+          
+          Object.keys(defaults).forEach(key => {
+            const value = defaults[key];
+            const elements = form.elements[key];
+            
+            if (!elements) return;
+            
+            if (elements.length && elements[0]?.type === 'radio') {
+              for (let el of elements) {
+                if (el.value === value) el.checked = true;
+              }
+            } else if (elements.length && elements[0]?.type === 'checkbox') {
+              const values = Array.isArray(value) ? value : [value];
+              for (let el of elements) {
+                el.checked = values.includes(el.value);
+              }
+            } else if (elements.type === 'checkbox') {
+              elements.checked = value === elements.value;
+            } else if (elements.nodeName) {
+              elements.value = value;
+            }
+          });
+          
+          // Enable "Other" text inputs if their radio is selected
+          if (defaults.temperatureRise === 'other') {
+            document.querySelector('input[name="temperatureRiseOther"]').disabled = false;
+          }
+          if (defaults.oilType === 'other') {
+            document.querySelector('input[name="oilTypeOther"]').disabled = false;
+          }
+          if (defaults.corrosionClass === 'custom') {
+            document.querySelector('input[name="corrosionClassCustom"]').disabled = false;
+          }
+
+          this.textContent = '✓ Filled!';
+          this.style.background = '#69ffc2';
+          this.style.borderColor = '#69ffc2';
+          this.style.color = '#0a0f0e';
+          setTimeout(() => {
+            this.textContent = '⚡ Instafill (Debug)';
+            this.style.background = '#ff6b35';
+            this.style.borderColor = '#ff6b35';
+            this.style.color = '#fff';
+          }, 1500);
+        } catch (err) {
+          console.error('Instafill failed:', err);
+          alert('Failed to load defaults: ' + err.message);
+        }
+      });
+
+      // Handle "Other" text inputs - enable only when "Other" radio is selected
+      (function setupOtherInputs() {
+        const otherFields = [
+          { radio: 'temperatureRise', value: 'other', input: 'temperatureRiseOther' },
+          { radio: 'oilType', value: 'other', input: 'oilTypeOther' },
+          { radio: 'corrosionClass', value: 'custom', input: 'corrosionClassCustom' }
+        ];
+
+        otherFields.forEach(({ radio, value, input }) => {
+          const radios = document.querySelectorAll(`input[name="${radio}"]`);
+          const textInput = document.querySelector(`input[name="${input}"]`);
+          
+          radios.forEach(r => {
+            r.addEventListener('change', () => {
+              textInput.disabled = r.value !== value || !r.checked;
+              if (!textInput.disabled) textInput.focus();
+            });
+          });
+        });
+      })();
+
+      // Load saved draft if returning from review
+      (function loadDraft() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const editId = urlParams.get('edit');
+        if (editId) {
+          const saved = localStorage.getItem('nbpo_' + editId);
+          if (saved) {
+            const data = JSON.parse(saved);
+            const form = document.getElementById('nbpoForm');
+            
+            // Populate form fields
+            Object.keys(data).forEach(key => {
+              if (key === 'submittedAt' || key === 'id') return;
+              
+              const value = data[key];
+              const elements = form.elements[key];
+              
+              if (!elements) return;
+              
+              if (elements.length && elements[0]?.type === 'radio') {
+                // Radio buttons
+                for (let el of elements) {
+                  if (el.value === value) el.checked = true;
+                }
+              } else if (elements.length && elements[0]?.type === 'checkbox') {
+                // Checkboxes
+                const values = Array.isArray(value) ? value : [value];
+                for (let el of elements) {
+                  el.checked = values.includes(el.value);
+                }
+              } else if (elements.type === 'checkbox') {
+                elements.checked = value === elements.value;
+              } else if (elements.nodeName) {
+                elements.value = value;
+              }
+            });
+            
+            // Store the ID for resubmission
+            form.dataset.editId = editId;
+
+            // Enable "Other" text inputs if their radio is selected
+            if (data.temperatureRise === 'other') {
+              document.querySelector('input[name="temperatureRiseOther"]').disabled = false;
+            }
+            if (data.oilType === 'other') {
+              document.querySelector('input[name="oilTypeOther"]').disabled = false;
+            }
+            if (data.corrosionClass === 'custom') {
+              document.querySelector('input[name="corrosionClassCustom"]').disabled = false;
+            }
+          }
+        }
+      })();
+
       document.getElementById('nbpoForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -586,7 +733,6 @@
         // Handle regular fields
         for (let [key, value] of formData.entries()) {
           if (data[key]) {
-            // If key already exists, convert to array or push to existing array
             if (Array.isArray(data[key])) {
               data[key].push(value);
             } else {
@@ -597,14 +743,16 @@
           }
         }
 
-        // Add timestamp
-        data.submittedAt = new Date().toISOString();
+        // Use existing ID if editing, otherwise generate new one
+        const id = this.dataset.editId || Math.random().toString(36).substring(2, 10);
+        data.id = id;
+        data.savedAt = new Date().toISOString();
 
-        console.log('=== NBPO Form Submission ===');
-        console.log(JSON.stringify(data, null, 2));
-        console.log('============================');
+        // Save to localStorage
+        localStorage.setItem('nbpo_' + id, JSON.stringify(data));
         
-        alert('Form data logged to console. Press F12 or Cmd+Option+J to view.');
+        // Navigate to review page
+        window.location.href = '/receive-instant-quote/review.html?id=' + id;
       });
     </script>
   </body>
