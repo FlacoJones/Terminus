@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Receive Instant Quote - Terminus Industrials" />
+    <title>Receive Instant Quote - Terminus Industrials</title>
+
+    <!-- Critical CSS to prevent white flash -->
+    <style>
+      html,
+      body {
+        background-color: #0a0f0e;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Receive Instant Quote - Terminus Industrials" />
+    <meta
+      property="og:description"
+      content="Defense-Grade Advanced Manufacturing"
+    />
+    <meta property="og:image" content="/public/logo.svg" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Receive Instant Quote - Terminus Industrials" />
+    <meta
+      name="twitter:description"
+      content="Defense-Grade Advanced Manufacturing"
+    />
+    <meta name="twitter:image" content="/public/logo.svg" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="logo-container">
+        <a href="/">
+          <img src="/public/logo.svg" alt="Terminus Logo" class="logo" />
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="/receive-instant-quote" class="nav-link">Receive Instant Quote</a>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main class="form-page-container">
+      <div class="form-wrapper">
+        <!-- Document Header -->
+        <header class="document-header">
+          <h1 class="document-title">Non-Binding Purchase Order / Letter of Intent</h1>
+          <p class="document-subtitle">("NBPO"/"LOI")</p>
+          <p class="document-parties">between<br><strong>TERMINUS INDUSTRIALS, INC</strong><br>&amp; Your Company</p>
+        </header>
+
+        <!-- Intro Text -->
+        <section class="text-section">
+          <p><strong>Non-Binding Purchase Intent for U.S.-Manufactured Power Transformers:</strong> This document serves as a non-binding statement of purchase order, indicating intent between your company ("Customer") and Terminus Industrials, Inc. ("Terminus") for the future supply of domestically manufactured power transformers from Terminus' forthcoming Texas facility.</p>
+        </section>
+
+        <!-- Section I: Purpose -->
+        <section class="text-section">
+          <h2 class="section-title">I. Purpose</h2>
+          <p>Customer and Terminus share an interest in supporting onshore, defense-grade manufacturing of critical grid components and recognize the importance of strengthening U.S. transformer supply resilience. This NBPO expresses Customer's intent to reserve production capacity for future procurement once Terminus' facility becomes operational.</p>
+        </section>
+
+        <!-- Section II: Technical Requirements Form -->
+        <section class="form-section">
+          <h2 class="section-title">II. Indicative Technical Requirements</h2>
+          <p class="section-note">Note that specifications are indicative and subject to final engineering design at time of formal purchase order.</p>
+          
+          <!-- DEBUG: Remove before deploy -->
+          <button type="button" id="instafillBtn" style="
+            background: #ff6b35;
+            border: 2px solid #ff6b35;
+            color: #fff;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+          ">⚡ Instafill (Debug)</button>
+
+          <form id="nbpoForm">
+            <!-- 1. Basic Information -->
+            <fieldset class="form-fieldset">
+              <legend>1. Basic Information</legend>
+              
+              <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input type="text" id="companyName" name="companyName" required>
+              </div>
+
+              <div class="form-group">
+                <label for="projectName">Project / Site Name</label>
+                <input type="text" id="projectName" name="projectName">
+              </div>
+
+              <div class="form-group">
+                <label for="siteAddress">Site Address or GPS Coordinates</label>
+                <input type="text" id="siteAddress" name="siteAddress">
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contactName">Primary Contact Name</label>
+                  <input type="text" id="contactName" name="contactName" required>
+                </div>
+                <div class="form-group">
+                  <label for="contactEmail">Email</label>
+                  <input type="email" id="contactEmail" name="contactEmail" required>
+                </div>
+                <div class="form-group">
+                  <label for="contactPhone">Phone</label>
+                  <input type="tel" id="contactPhone" name="contactPhone">
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- 2. Electrical Ratings -->
+            <fieldset class="form-fieldset">
+              <legend>2. Electrical Ratings</legend>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="hvRating">High-Voltage Rating (kV)</label>
+                  <input type="number" id="hvRating" name="hvRating" step="0.1">
+                </div>
+                <div class="form-group">
+                  <label for="lvRating">Low-Voltage Rating (kV)</label>
+                  <input type="number" id="lvRating" name="lvRating" step="0.1">
+                </div>
+                <div class="form-group">
+                  <label for="mvaRating">MVA Rating (continuous)</label>
+                  <input type="number" id="mvaRating" name="mvaRating" step="0.1">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Frequency</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="frequency" value="60Hz" checked> 60 Hz
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="frequency" value="50Hz"> 50 Hz
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Phase</label>
+                <div class="checkbox-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="phase" value="3-phase" checked> 3-phase (standard)
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Connection / Vector Group</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="vectorGroup" value="Δ-Y"> Δ-Y
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="vectorGroup" value="Y-Δ"> Y-Δ
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="vectorGroup" value="Y-Y"> Y-Y
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="groundingPreference">Grounding Preference</label>
+                <input type="text" id="groundingPreference" name="groundingPreference">
+              </div>
+            </fieldset>
+
+            <!-- 3. Impedance & Performance -->
+            <fieldset class="form-fieldset">
+              <legend>3. Impedance & Performance</legend>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="targetImpedance">Target Impedance (%Z)</label>
+                  <input type="number" id="targetImpedance" name="targetImpedance" step="0.01">
+                </div>
+                <div class="form-group">
+                  <label for="noLoadLoss">No-Load Loss Guarantee (W)</label>
+                  <input type="number" id="noLoadLoss" name="noLoadLoss">
+                </div>
+                <div class="form-group">
+                  <label for="loadLoss">Load Loss Guarantee (W)</label>
+                  <input type="number" id="loadLoss" name="loadLoss">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Temperature Rise</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="temperatureRise" value="55C"> 55°C
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="temperatureRise" value="65C"> 65°C
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="temperatureRise" value="other"> Other:
+                    <input type="text" name="temperatureRiseOther" class="inline-input" placeholder="Specify" disabled>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Sound Level Requirement</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="soundLevel" value="standardIEEE"> Standard IEEE
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="soundLevel" value="lowNoise"> Low-noise
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="soundLevel" value="ultraLowNoise"> Ultra-low-noise
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="soundLimit">Sound Limit (if specified) dB(A)</label>
+                <input type="number" id="soundLimit" name="soundLimit" step="0.1">
+              </div>
+            </fieldset>
+
+            <!-- 4. Tap Changer -->
+            <fieldset class="form-fieldset">
+              <legend>4. Tap Changer</legend>
+              
+              <div class="form-group">
+                <label>Tap Changer Type</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="tapChangerType" value="DETC"> DETC (Off-circuit)
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="tapChangerType" value="OLTC"> OLTC (On-load tap changer)
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="tapRange">Tap Range (e.g., ±10%)</label>
+                  <input type="text" id="tapRange" name="tapRange">
+                </div>
+                <div class="form-group">
+                  <label for="tapSteps">Tap Steps (e.g., 16, 32)</label>
+                  <input type="text" id="tapSteps" name="tapSteps">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Preferred Tap Location</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="tapLocation" value="HV"> HV side
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="tapLocation" value="LV"> LV side
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="tapLocation" value="noPreference"> No preference
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- 5. Dielectric Requirements -->
+            <fieldset class="form-fieldset">
+              <legend>5. Dielectric Requirements</legend>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="hvBil">HV BIL (kV)</label>
+                  <input type="number" id="hvBil" name="hvBil">
+                </div>
+                <div class="form-group">
+                  <label for="lvBil">LV BIL (kV)</label>
+                  <input type="number" id="lvBil" name="lvBil">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Surge / Lightning Requirements</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="surgeRequirements" value="standard"> Standard
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="surgeRequirements" value="enhanced"> Enhanced
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="surgeRequirements" value="provideSurgeProfile"> Provide surge profile (optional upload)
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- 6. Mechanical & Transport Limits -->
+            <fieldset class="form-fieldset">
+              <legend>6. Mechanical & Transport Limits</legend>
+              
+              <div class="form-group">
+                <label for="maxShippingWeight">Max Shipping Weight (lbs or metric tons)</label>
+                <input type="text" id="maxShippingWeight" name="maxShippingWeight">
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="maxHeight">Max Height</label>
+                  <input type="text" id="maxHeight" name="maxHeight">
+                </div>
+                <div class="form-group">
+                  <label for="maxWidth">Max Width</label>
+                  <input type="text" id="maxWidth" name="maxWidth">
+                </div>
+                <div class="form-group">
+                  <label for="maxLength">Max Length</label>
+                  <input type="text" id="maxLength" name="maxLength">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Seismic Rating</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="seismicRating" value="zone2"> Seismic Zone 2
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="seismicRating" value="zone3"> Seismic Zone 3
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="seismicRating" value="zone4"> Seismic Zone 4
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="seismicRating" value="provideSiteSpec"> Provide site seismic spec (optional upload)
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="siteFootprint">Site Footprint Constraints (Max pad area, orientation, obstacles)</label>
+                <textarea id="siteFootprint" name="siteFootprint" rows="3"></textarea>
+              </div>
+            </fieldset>
+
+            <!-- 7. Cooling & Fluid System -->
+            <fieldset class="form-fieldset">
+              <legend>7. Cooling & Fluid System</legend>
+              
+              <div class="form-group">
+                <label>Cooling Class</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="coolingClass" value="ONAN"> ONAN
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="coolingClass" value="ONAF"> ONAF
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="coolingClass" value="OFAF"> OFAF
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="coolingClass" value="ODAF"> ODAF
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Cooling Redundancy</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="coolingRedundancy" value="N+1"> N+1
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="coolingRedundancy" value="N+2"> N+2
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Oil Type</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="oilType" value="mineralOil"> Mineral oil
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="oilType" value="naturalEster"> Natural ester
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="oilType" value="syntheticEster"> Synthetic ester
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="oilType" value="other"> Other:
+                    <input type="text" name="oilTypeOther" class="inline-input" placeholder="Specify" disabled>
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- 8. Environmental & Special Requirements -->
+            <fieldset class="form-fieldset">
+              <legend>8. Environmental & Special Requirements</legend>
+              
+              <div class="form-group">
+                <label>Corrosion / Paint Class</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="corrosionClass" value="standardInland"> Standard inland
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="corrosionClass" value="heavyIndustrial"> Heavy industrial
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="corrosionClass" value="coastalSaltFog"> Coastal / Salt fog
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="corrosionClass" value="custom"> Custom:
+                    <input type="text" name="corrosionClassCustom" class="inline-input" placeholder="Specify" disabled>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Noise Barriers Required?</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="noiseBarriers" value="yes"> Yes
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="noiseBarriers" value="no"> No
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="altitude">Altitude Above Sea Level (ft or m)</label>
+                <input type="text" id="altitude" name="altitude" placeholder="If >1000m derating applies">
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="maxAmbient">Max Ambient Temperature (°C)</label>
+                  <input type="number" id="maxAmbient" name="maxAmbient">
+                </div>
+                <div class="form-group">
+                  <label for="minAmbient">Min Ambient Temperature (°C)</label>
+                  <input type="number" id="minAmbient" name="minAmbient">
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- 9. Testing Requirements -->
+            <fieldset class="form-fieldset">
+              <legend>9. Testing Requirements</legend>
+              <p class="fieldset-note">Select all that apply</p>
+              
+              <div class="checkbox-group checkbox-grid">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="testing" value="standardRoutine"> Standard IEEE/IEC routine tests
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="testing" value="temperatureRise"> Temperature-rise test
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="testing" value="lightningImpulse"> Lightning impulse test
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="testing" value="switchingSurge"> Switching surge test
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="testing" value="FRA"> FRA (Frequency Response Analysis)
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="testing" value="specialWitness"> Special witness testing required
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="testing" value="extendedHeatRun"> Extended heat run
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="testing" value="zeroSequence"> Zero-sequence impedance
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="testing" value="partialDischarge" id="partialDischargeCheck"> Partial Discharge limit
+                </label>
+                <input type="number" name="partialDischargeLimit" class="inline-input-wide" placeholder="Specify pC limit">
+              </div>
+
+              <div class="form-group">
+                <label>Optional Uploads (indicate if you will provide)</label>
+                <div class="checkbox-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="optionalUploads" value="utilitySpec"> Utility standard specification document
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="optionalUploads" value="testProcedures"> Special test procedures
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- 10. Compliance -->
+            <fieldset class="form-fieldset">
+              <legend>10. Compliance</legend>
+              
+              <div class="form-group">
+                <label>Governing Standards</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="governingStandards" value="IEEEC57"> IEEE C57 (North America)
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="governingStandards" value="IEC"> IEC
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="governingStandards" value="utilitySpecific"> Utility-specific standard (upload)
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- 11. Additional Notes -->
+            <fieldset class="form-fieldset">
+              <legend>11. Additional Notes / Requirements</legend>
+              
+              <div class="form-group">
+                <textarea id="additionalNotes" name="additionalNotes" rows="5" placeholder="Enter any additional requirements or notes..."></textarea>
+              </div>
+            </fieldset>
+
+            <!-- Section III: Commercial Understanding -->
+            <section class="text-section-inner">
+              <h2 class="section-title">III. Commercial Understanding</h2>
+              <p>This NBPO is non-binding and does not constitute a purchase order or contract. Terminus agrees to notify Customer upon commissioning of its Texas manufacturing facility and provide firm technical and commercial quotations. Customer intends, in good faith, to evaluate Terminus' transformers for inclusion in upcoming projects within the stated timeframe.</p>
+              
+              <div class="form-group" style="margin-top: 1.5rem;">
+                <label for="indicativeValue">Indicative Unit Value ($ million / unit, ± 20%)</label>
+                <input type="number" id="indicativeValue" name="indicativeValue" step="0.01" placeholder="Subject to detailed design and materials pricing">
+              </div>
+            </section>
+
+            <!-- Section IV: Cooperation -->
+            <section class="text-section-inner">
+              <h2 class="section-title">IV. Cooperation & Next Steps</h2>
+              <p>Customer and Terminus will cooperate to refine technical requirements and commercial terms. Terminus will provide design datasheets, manufacturing updates, and factory-readiness milestones. Both parties agree to explore potential state or Federal incentives related to domestic sourcing.</p>
+            </section>
+
+            <!-- Section V: Term -->
+            <section class="text-section-inner">
+              <h2 class="section-title">V. Term</h2>
+              <p>This NBPO remains effective for 36 months from the date of submission, renewable by mutual agreement.</p>
+            </section>
+
+            <!-- Submit Button -->
+            <div class="form-submit">
+              <button type="submit" class="submit-button">Review and Submit</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      // DEBUG: Instafill functionality
+      document.getElementById('instafillBtn').addEventListener('click', async function() {
+        try {
+          const response = await fetch('/receive-instant-quote/instafill-defaults.json');
+          const defaults = await response.json();
+          const form = document.getElementById('nbpoForm');
+          
+          Object.keys(defaults).forEach(key => {
+            const value = defaults[key];
+            const elements = form.elements[key];
+            
+            if (!elements) return;
+            
+            if (elements.length && elements[0]?.type === 'radio') {
+              for (let el of elements) {
+                if (el.value === value) el.checked = true;
+              }
+            } else if (elements.length && elements[0]?.type === 'checkbox') {
+              const values = Array.isArray(value) ? value : [value];
+              for (let el of elements) {
+                el.checked = values.includes(el.value);
+              }
+            } else if (elements.type === 'checkbox') {
+              elements.checked = value === elements.value;
+            } else if (elements.nodeName) {
+              elements.value = value;
+            }
+          });
+          
+          // Enable "Other" text inputs if their radio is selected
+          if (defaults.temperatureRise === 'other') {
+            document.querySelector('input[name="temperatureRiseOther"]').disabled = false;
+          }
+          if (defaults.oilType === 'other') {
+            document.querySelector('input[name="oilTypeOther"]').disabled = false;
+          }
+          if (defaults.corrosionClass === 'custom') {
+            document.querySelector('input[name="corrosionClassCustom"]').disabled = false;
+          }
+
+          this.textContent = '✓ Filled!';
+          this.style.background = '#69ffc2';
+          this.style.borderColor = '#69ffc2';
+          this.style.color = '#0a0f0e';
+          setTimeout(() => {
+            this.textContent = '⚡ Instafill (Debug)';
+            this.style.background = '#ff6b35';
+            this.style.borderColor = '#ff6b35';
+            this.style.color = '#fff';
+          }, 1500);
+        } catch (err) {
+          console.error('Instafill failed:', err);
+          alert('Failed to load defaults: ' + err.message);
+        }
+      });
+
+      // Handle "Other" text inputs - enable only when "Other" radio is selected
+      (function setupOtherInputs() {
+        const otherFields = [
+          { radio: 'temperatureRise', value: 'other', input: 'temperatureRiseOther' },
+          { radio: 'oilType', value: 'other', input: 'oilTypeOther' },
+          { radio: 'corrosionClass', value: 'custom', input: 'corrosionClassCustom' }
+        ];
+
+        otherFields.forEach(({ radio, value, input }) => {
+          const radios = document.querySelectorAll(`input[name="${radio}"]`);
+          const textInput = document.querySelector(`input[name="${input}"]`);
+          
+          radios.forEach(r => {
+            r.addEventListener('change', () => {
+              textInput.disabled = r.value !== value || !r.checked;
+              if (!textInput.disabled) textInput.focus();
+            });
+          });
+        });
+      })();
+
+      // Load saved draft if returning from review
+      (function loadDraft() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const editId = urlParams.get('edit');
+        if (editId) {
+          const saved = localStorage.getItem('nbpo_' + editId);
+          if (saved) {
+            const data = JSON.parse(saved);
+            const form = document.getElementById('nbpoForm');
+            
+            // Populate form fields
+            Object.keys(data).forEach(key => {
+              if (key === 'submittedAt' || key === 'id') return;
+              
+              const value = data[key];
+              const elements = form.elements[key];
+              
+              if (!elements) return;
+              
+              if (elements.length && elements[0]?.type === 'radio') {
+                // Radio buttons
+                for (let el of elements) {
+                  if (el.value === value) el.checked = true;
+                }
+              } else if (elements.length && elements[0]?.type === 'checkbox') {
+                // Checkboxes
+                const values = Array.isArray(value) ? value : [value];
+                for (let el of elements) {
+                  el.checked = values.includes(el.value);
+                }
+              } else if (elements.type === 'checkbox') {
+                elements.checked = value === elements.value;
+              } else if (elements.nodeName) {
+                elements.value = value;
+              }
+            });
+            
+            // Store the ID for resubmission
+            form.dataset.editId = editId;
+
+            // Enable "Other" text inputs if their radio is selected
+            if (data.temperatureRise === 'other') {
+              document.querySelector('input[name="temperatureRiseOther"]').disabled = false;
+            }
+            if (data.oilType === 'other') {
+              document.querySelector('input[name="oilTypeOther"]').disabled = false;
+            }
+            if (data.corrosionClass === 'custom') {
+              document.querySelector('input[name="corrosionClassCustom"]').disabled = false;
+            }
+          }
+        }
+      })();
+
+      document.getElementById('nbpoForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const data = {};
+        
+        // Handle regular fields
+        for (let [key, value] of formData.entries()) {
+          if (data[key]) {
+            if (Array.isArray(data[key])) {
+              data[key].push(value);
+            } else {
+              data[key] = [data[key], value];
+            }
+          } else {
+            data[key] = value;
+          }
+        }
+
+        // Use existing ID if editing, otherwise generate new one
+        const id = this.dataset.editId || Math.random().toString(36).substring(2, 10);
+        data.id = id;
+        data.savedAt = new Date().toISOString();
+
+        // Save to localStorage
+        localStorage.setItem('nbpo_' + id, JSON.stringify(data));
+        
+        // Navigate to review page
+        window.location.href = '/receive-instant-quote/review.html?id=' + id;
+      });
+    </script>
+  </body>
+</html>
