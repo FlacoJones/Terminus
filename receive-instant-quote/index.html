@@ -107,25 +107,8 @@
             engineering design at time of formal purchase order.
           </p>
 
-          <!-- DEBUG: Remove before deploy -->
-          <button
-            type="button"
-            id="instafillBtn"
-            style="
-              background: #ff6b35;
-              border: 2px solid #ff6b35;
-              color: #fff;
-              font-family: 'Roboto Mono', monospace;
-              font-size: 0.85rem;
-              font-weight: 700;
-              padding: 0.5rem 1rem;
-              border-radius: 6px;
-              cursor: pointer;
-              margin-bottom: 1.5rem;
-              text-transform: uppercase;
-              letter-spacing: 0.05em;
-            "
-          >
+          <!-- DEBUG: Instafill button hidden for production -->
+          <button type="button" id="instafillBtn" style="display: none">
             ⚡ Instafill (Debug)
           </button>
 
@@ -899,14 +882,14 @@
 
     <script>
       // Email worker URL - change to production URL when deployed
+      const EMAIL_WORKER_URL =
+        "https://terminus-email.terminusindustrials.workers.dev";
+
       {
         {
-          /* const EMAIL_WORKER_URL =
-        "https://terminus-email.terminusindustrials.workers.dev"; */
+          /* const EMAIL_WORKER_URL = "http://localhost:8787"; */
         }
       }
-
-      const EMAIL_WORKER_URL = "http://localhost:8787";
 
       // Send email via Cloudflare Worker
       async function sendEmail(toEmail, subject, bodyContent, fromEmail) {

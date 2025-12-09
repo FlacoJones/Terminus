@@ -163,14 +163,14 @@
         });
 
       // Email worker URL - change to production URL when deployed
+      const EMAIL_WORKER_URL =
+        "https://terminus-email.terminusindustrials.workers.dev";
+
       {
         {
-          /* const EMAIL_WORKER_URL =
-        "https://terminus-email.terminusindustrials.workers.dev"; */
+          /* const EMAIL_WORKER_URL = "http://localhost:8787"; */
         }
       }
-
-      const EMAIL_WORKER_URL = "http://localhost:8787";
 
       // Send email via Cloudflare Worker
       async function sendEmail(toEmail, subject, bodyContent, fromEmail) {
