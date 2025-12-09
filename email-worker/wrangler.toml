@@ -7,3 +7,18 @@ MAILGUN_DOMAIN = "terminusindustrials.com"
 
 # MAILGUN_API_KEY is stored as a secret (already uploaded)
 # To update it: npx wrangler secret put MAILGUN_API_KEY
+
+[observability]
+enabled = false
+head_sampling_rate = 1
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+persist = true
+invocation_logs = true
+
+[observability.traces]
+enabled = true
+persist = true
+head_sampling_rate = 1
