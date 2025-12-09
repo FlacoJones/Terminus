@@ -1,0 +1,9 @@
+name = "terminus-email"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+MAILGUN_DOMAIN = "terminusindustrials.com"
+
+# MAILGUN_API_KEY is stored as a secret (already uploaded)
+# To update it: npx wrangler secret put MAILGUN_API_KEY
