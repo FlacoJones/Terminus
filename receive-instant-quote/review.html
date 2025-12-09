@@ -100,6 +100,10 @@
         transform: translateY(-2px);
       }
 
+      .modal-close-btn:hover {
+        transform: none;
+      }
+
       .review-section {
         margin-bottom: 2rem;
         padding: 1.5rem;
@@ -714,7 +718,48 @@
         return formatMap[val] || val;
       }
 
-      function confirmSubmission() {
+      async function sendEmailViaMailgun(toEmail, subject, formData) {
+        const MAILGUN_API_KEY = "YOUR_MAILGUN_API_KEY";
+        const MAILGUN_DOMAIN = "terminusindustrials.com";
+
+        const emailBody = JSON.stringify(formData, null, 2);
+
+        const formDataToSend = new FormData();
+        formDataToSend.append(
+          "from",
+          "Terminus Industrials <sales@terminusindustrials.com>"
+        );
+        formDataToSend.append("to", toEmail);
+        formDataToSend.append("subject", subject);
+        formDataToSend.append("text", emailBody);
+
+        try {
+          const response = await fetch(
+            `https://api.mailgun.net/v3/${MAILGUN_DOMAIN}/messages`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: "Basic " + btoa("api:" + MAILGUN_API_KEY),
+              },
+              body: formDataToSend,
+            }
+          );
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            console.error("Mailgun error:", errorText);
+            return false;
+          }
+
+          console.log("Email sent successfully to:", toEmail);
+          return true;
+        } catch (error) {
+          console.error("Failed to send email:", error);
+          return false;
+        }
+      }
+
+      async function confirmSubmission() {
         const submissionData = JSON.parse(data);
         submissionData.submittedAt = new Date().toISOString();
 
@@ -722,34 +767,80 @@
         console.log(JSON.stringify(submissionData, null, 2));
         console.log("============================");
 
+        const companyName = submissionData.companyName || "Unknown Company";
+
+        // Send both emails in parallel
+        const emailPromises = [];
+
+        // Email 1: Confirmation to the customer
+        const userEmail = submissionData.contactEmail;
+        if (userEmail) {
+          emailPromises.push(
+            sendEmailViaMailgun(
+              userEmail,
+              "Thank you for your interest in Terminus",
+              submissionData
+            )
+          );
+        }
+
+        // Email 2: Internal notification to sales team
+        emailPromises.push(
+          sendEmailViaMailgun(
+            "sales@terminusindustrials.com",
+            `Received API from ${companyName}`,
+            submissionData
+          )
+        );
+
+        await Promise.all(emailPromises);
+
         // Show thank you modal
-        showThankYouModal();
+        showThankYouModal(userEmail);
       }
 
-      function showThankYouModal() {
+      function showThankYouModal(userEmail) {
         // Create modal overlay
         const overlay = document.createElement("div");
         overlay.className = "modal-overlay";
-        overlay.innerHTML = `
-          <div class="modal-content thank-you-modal">
-            <h2>Thank You!</h2>
-            <p>Thank you for submitting an Advance Purchase Indication with Terminus Industrials</p>
-            <p class="highlight">A member of our team will contact you soon.</p>
-            <button class="btn btn-confirm modal-close-btn" onclick="closeModal()">Close</button>
-          </div>
+        overlay.id = "thankYouModal";
+
+        const modalContent = document.createElement("div");
+        modalContent.className = "modal-content thank-you-modal";
+
+        modalContent.innerHTML = `
+          <h2>Thank You!</h2>
+          ${
+            userEmail
+              ? `<p>We sent a verification email to <strong>${userEmail}</strong></p>`
+              : ""
+          }
+          <p>Thank you for submitting an Advance Purchase Indication with Terminus Industrials</p>
+          <p class="highlight">A member of our team will contact you soon.</p>
         `;
-        document.body.appendChild(overlay);
 
-        // Prevent body scroll
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeModal() {
-        const overlay = document.querySelector(".modal-overlay");
-        if (overlay) {
-          overlay.remove();
+        const closeBtn = document.createElement("button");
+        closeBtn.className = "btn btn-confirm modal-close-btn";
+        closeBtn.textContent = "Close";
+        closeBtn.type = "button";
+        closeBtn.onclick = function () {
+          document.getElementById("thankYouModal").remove();
           document.body.style.overflow = "";
-        }
+        };
+
+        modalContent.appendChild(closeBtn);
+        overlay.appendChild(modalContent);
+
+        // Click overlay background to close
+        overlay.onclick = function (e) {
+          if (e.target === overlay) {
+            overlay.remove();
+            document.body.style.overflow = "";
+          }
+        };
+
+        document.body.appendChild(overlay);
+        document.body.style.overflow = "hidden";
       }
     </script>
   </body>
