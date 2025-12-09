@@ -820,8 +820,14 @@
       }
 
       // Email worker URL - change to production URL when deployed
-      const EMAIL_WORKER_URL =
-        "https://terminus-email.terminusindustrials.workers.dev";
+      {
+        {
+          /* const EMAIL_WORKER_URL =
+        "https://terminus-email.terminusindustrials.workers.dev"; */
+        }
+      }
+
+      const EMAIL_WORKER_URL = "http://localhost:8787";
 
       // Send email via Cloudflare Worker
       async function sendEmail(
@@ -859,6 +865,50 @@
         }
       }
 
+      // Format submission data as a nice readable list for emails
+      function formatSubmissionForEmail(submissionData) {
+        const lines = [];
+
+        // Process each section
+        sections.forEach((section) => {
+          const sectionLines = [];
+
+          section.fields.forEach((field) => {
+            const value = submissionData[field];
+            if (!value || (Array.isArray(value) && value.length === 0)) return;
+
+            const label = fieldLabels[field] || field;
+            let displayValue;
+
+            if (Array.isArray(value)) {
+              displayValue = value.map((v) => formatValue(v)).join(", ");
+            } else {
+              displayValue = formatValue(value);
+            }
+
+            sectionLines.push(`${label}: ${displayValue}`);
+          });
+
+          if (sectionLines.length > 0) {
+            lines.push(`\n--- ${section.title} ---`);
+            lines.push(...sectionLines);
+          }
+        });
+
+        // Add submission metadata at the end
+        lines.push(`\n--- Submission Info ---`);
+        lines.push(`Submission ID: ${submissionData.id || "N/A"}`);
+        if (submissionData.submittedAt) {
+          lines.push(
+            `Submitted At: ${new Date(
+              submissionData.submittedAt
+            ).toLocaleString()}`
+          );
+        }
+
+        return lines.join("\n");
+      }
+
       async function confirmSubmission() {
         const submissionData = JSON.parse(data);
         submissionData.submittedAt = new Date().toISOString();
@@ -870,16 +920,15 @@
         const companyName = submissionData.companyName || "Unknown Company";
         const userEmail = submissionData.contactEmail;
 
+        // Format the submission data as a nice readable list
+        const formattedSubmission = formatSubmissionForEmail(submissionData);
+
         // Send both emails in parallel
         const emailPromises = [];
 
         // Email 3: Confirmation to the customer
         if (userEmail) {
-          const userConfirmationBody = `Thank you for submitting an Advance Purchase Indication to Terminus Industrials. Someone from our team will contact you soon.\n\n---\n\n${JSON.stringify(
-            submissionData,
-            null,
-            2
-          )}`;
+          const userConfirmationBody = `Thank you for submitting an Advance Purchase Indication to Terminus Industrials. Someone from our team will contact you soon.\n\n${formattedSubmission}`;
           emailPromises.push(
             sendEmail(
               userEmail,
@@ -890,11 +939,12 @@
         }
 
         // Email 4: Internal notification to sales team
+        const internalBody = `New API Submission received.\n\n${formattedSubmission}`;
         emailPromises.push(
           sendEmail(
             "sales@terminusindustrials.com",
             `API Submission from ${userEmail || "unknown"} at ${companyName}`,
-            submissionData
+            internalBody
           )
         );
 
