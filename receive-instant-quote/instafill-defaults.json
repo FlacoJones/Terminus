@@ -3,7 +3,7 @@
   "projectName": "Riverside Substation Upgrade",
   "siteAddress": "4521 Industrial Blvd, Houston, TX 77015",
   "contactName": "Sarah Chen",
-  "contactEmail": "schen@acmepower.com",
+  "contactEmail": "andrew@terminusindustrials.com",
   "contactPhone": "(713) 555-0142",
   "hvRating": "138",
   "lvRating": "13.8",
@@ -46,4 +46,3 @@
   "additionalNotes": "Project timeline: Q3 2026 delivery preferred. Unit will replace aging 1978 transformer. Customer has existing pad and oil containment. Require factory acceptance test witness.",
   "indicativeValue": "2.8"
 }
-

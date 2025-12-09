@@ -107,10 +107,8 @@
             engineering design at time of formal purchase order.
           </p>
 
-          <!-- DEBUG: Instafill button hidden for production -->
-          <button type="button" id="instafillBtn" style="display: none">
-            ⚡ Instafill (Debug)
-          </button>
+          <!-- DEBUG: Instafill button for testing -->
+          <button type="button" id="instafillBtn">⚡ Instafill (Debug)</button>
 
           <form id="nbpoForm">
             <!-- 1. Basic Information -->
@@ -882,8 +880,7 @@
 
     <script>
       // Email worker URL - change to production URL when deployed
-      const EMAIL_WORKER_URL =
-        "https://terminus-email.terminusindustrials.workers.dev";
+      const EMAIL_WORKER_URL = "terminus-email.terminusemail.workers.dev";
 
       {
         {

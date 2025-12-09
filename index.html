@@ -104,6 +104,23 @@
           &times;
         </button>
         <h2>Contact Us</h2>
+        <button
+          type="button"
+          id="contactInstafillBtn"
+          style="
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            background: #ff6b35;
+            border: 2px solid #ff6b35;
+            color: #fff;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 4px;
+          "
+        >
+          ⚡ Instafill (Debug)
+        </button>
         <form id="contactForm" class="contact-form-modal">
           <div class="form-group-modal">
             <label for="contactName">Name</label>
@@ -163,8 +180,7 @@
         });
 
       // Email worker URL - change to production URL when deployed
-      const EMAIL_WORKER_URL =
-        "https://terminus-email.terminusindustrials.workers.dev";
+      const EMAIL_WORKER_URL = "terminus-email.terminusemail.workers.dev";
 
       {
         {
@@ -260,6 +276,32 @@
           document.body.style.overflow = "";
         }
       }
+
+      // Contact form instafill for debugging
+      document
+        .getElementById("contactInstafillBtn")
+        .addEventListener("click", function () {
+          document.getElementById("contactName").value = "Andrew Test";
+          document.getElementById("contactCompany").value =
+            "Terminus Industrials";
+          document.getElementById("contactEmail").value =
+            "andrew@terminusindustrials.com";
+          document.getElementById("contactSubject").value =
+            "Debug Test Message";
+          document.getElementById("contactMessage").value =
+            "This is a test message from the instafill debug button.";
+
+          this.textContent = "✓ Filled!";
+          this.style.background = "#69ffc2";
+          this.style.borderColor = "#69ffc2";
+          this.style.color = "#0a0f0e";
+          setTimeout(() => {
+            this.textContent = "⚡ Instafill (Debug)";
+            this.style.background = "#ff6b35";
+            this.style.borderColor = "#ff6b35";
+            this.style.color = "#fff";
+          }, 1500);
+        });
 
       // Handle form submission
       document
