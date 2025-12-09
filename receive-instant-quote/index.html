@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Receive Instant Quote - Terminus Industrials" />
-    <title>Receive Instant Quote - Terminus Industrials</title>
+    <meta name="description" content="Request Advance Purchase Indication - Terminus Industrials" />
+    <title>Request Advance Purchase Indication - Terminus Industrials</title>
 
     <!-- Critical CSS to prevent white flash -->
     <style>
@@ -17,7 +17,7 @@
     </style>
 
     <!-- Open Graph Metadata -->
-    <meta property="og:title" content="Receive Instant Quote - Terminus Industrials" />
+    <meta property="og:title" content="Request Advance Purchase Indication - Terminus Industrials" />
     <meta
       property="og:description"
       content="Defense-Grade Advanced Manufacturing"
@@ -27,7 +27,7 @@
 
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Receive Instant Quote - Terminus Industrials" />
+    <meta name="twitter:title" content="Request Advance Purchase Indication - Terminus Industrials" />
     <meta
       name="twitter:description"
       content="Defense-Grade Advanced Manufacturing"
@@ -52,7 +52,8 @@
         </a>
       </div>
       <div class="nav-links">
-        <a href="/receive-instant-quote" class="nav-link">Receive Instant Quote</a>
+        <button class="nav-link contact-nav-btn" onclick="openContactModal()">Contact Us</button>
+        <a href="/receive-instant-quote" class="nav-link">Request Advance Purchase Indication</a>
       </div>
     </nav>
 
@@ -61,20 +62,14 @@
       <div class="form-wrapper">
         <!-- Document Header -->
         <header class="document-header">
-          <h1 class="document-title">Non-Binding Purchase Order / Letter of Intent</h1>
-          <p class="document-subtitle">("NBPO"/"LOI")</p>
+          <h1 class="document-title">Advance Purchase Indication (API)</h1>
           <p class="document-parties">between<br><strong>TERMINUS INDUSTRIALS, INC</strong><br>&amp; Your Company</p>
         </header>
-
-        <!-- Intro Text -->
-        <section class="text-section">
-          <p><strong>Non-Binding Purchase Intent for U.S.-Manufactured Power Transformers:</strong> This document serves as a non-binding statement of purchase order, indicating intent between your company ("Customer") and Terminus Industrials, Inc. ("Terminus") for the future supply of domestically manufactured power transformers from Terminus' forthcoming Texas facility.</p>
-        </section>
 
         <!-- Section I: Purpose -->
         <section class="text-section">
           <h2 class="section-title">I. Purpose</h2>
-          <p>Customer and Terminus share an interest in supporting onshore, defense-grade manufacturing of critical grid components and recognize the importance of strengthening U.S. transformer supply resilience. This NBPO expresses Customer's intent to reserve production capacity for future procurement once Terminus' facility becomes operational.</p>
+          <p class="small-text">The purpose of this Advance Purchase Indication ("API") is solely to support preliminary planning, capacity forecasting, and commercial discussions between the Requestor and Terminus Industrials. This API is a non-binding expression of interest and does not create any obligation for either party to enter into a definitive agreement, purchase product, reserve manufacturing capacity, or commit to any financial transaction. It is not an offer, acceptance, purchase order, or contract. Terminus Industrials, Inc. will contact you directly regarding additional terms including indicative pricing and delivery.</p>
         </section>
 
         <!-- Section II: Technical Requirements Form -->
@@ -560,27 +555,10 @@
               </div>
             </fieldset>
 
-            <!-- Section III: Commercial Understanding -->
+            <!-- Section III: Commercial Conditions -->
             <section class="text-section-inner">
-              <h2 class="section-title">III. Commercial Understanding</h2>
-              <p>This NBPO is non-binding and does not constitute a purchase order or contract. Terminus agrees to notify Customer upon commissioning of its Texas manufacturing facility and provide firm technical and commercial quotations. Customer intends, in good faith, to evaluate Terminus' transformers for inclusion in upcoming projects within the stated timeframe.</p>
-              
-              <div class="form-group" style="margin-top: 1.5rem;">
-                <label for="indicativeValue">Indicative Unit Value ($ million / unit, ± 20%)</label>
-                <input type="number" id="indicativeValue" name="indicativeValue" step="0.01" placeholder="Subject to detailed design and materials pricing">
-              </div>
-            </section>
-
-            <!-- Section IV: Cooperation -->
-            <section class="text-section-inner">
-              <h2 class="section-title">IV. Cooperation & Next Steps</h2>
-              <p>Customer and Terminus will cooperate to refine technical requirements and commercial terms. Terminus will provide design datasheets, manufacturing updates, and factory-readiness milestones. Both parties agree to explore potential state or Federal incentives related to domestic sourcing.</p>
-            </section>
-
-            <!-- Section V: Term -->
-            <section class="text-section-inner">
-              <h2 class="section-title">V. Term</h2>
-              <p>This NBPO remains effective for 36 months from the date of submission, renewable by mutual agreement.</p>
+              <h2 class="section-title">III. Commercial Conditions</h2>
+              <p class="small-text">This Advance Purchase Indication ("API") is submitted solely for the purpose of enabling Terminus Industrials to evaluate demand, prepare preliminary commercial terms, and issue a subsequent Non-Binding Purchase Order ("NBPO") for the Requestor's review. The API does not constitute an order, agreement, offer, acceptance, or commitment by either party. No party shall incur any liability, obligation, or financial responsibility of any kind as a result of submitting, reviewing, or relying upon this API. The Requestor shall not be obligated to purchase any product, and Terminus Industrials shall not be obligated to manufacture, reserve capacity, or provide any goods or services unless and until a separate definitive agreement is executed by both parties. Both parties expressly disclaim any damages, reliance claims, expectations of performance, or remedies arising from this API, and each retains the unrestricted right to modify or withdraw from the process at any time prior to signing a binding agreement.</p>
             </section>
 
             <!-- Submit Button -->
@@ -591,6 +569,76 @@
         </section>
       </div>
     </main>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal-overlay" style="display: none;">
+      <div class="modal-content contact-modal">
+        <button class="modal-close-x" onclick="closeContactModal()">&times;</button>
+        <h2>Contact Us</h2>
+        <form id="contactForm" class="contact-form-modal">
+          <div class="form-group-modal">
+            <label for="modalContactName">Name</label>
+            <input type="text" id="modalContactName" name="name" required />
+          </div>
+          <div class="form-group-modal">
+            <label for="modalContactCompany">Company</label>
+            <input type="text" id="modalContactCompany" name="company" required />
+          </div>
+          <div class="form-group-modal">
+            <label for="modalContactEmail">Email</label>
+            <input type="email" id="modalContactEmail" name="email" required />
+          </div>
+          <div class="form-group-modal">
+            <label for="modalContactSubject">Subject</label>
+            <input type="text" id="modalContactSubject" name="subject" required />
+          </div>
+          <div class="form-group-modal">
+            <label for="modalContactMessage">Message</label>
+            <textarea id="modalContactMessage" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="submit-button modal-submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Contact Modal Functions
+      function openContactModal() {
+        document.getElementById('contactModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeContactModal() {
+        document.getElementById('contactModal').style.display = 'none';
+        document.body.style.overflow = '';
+      }
+
+      document.getElementById('contactModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeContactModal();
+        }
+      });
+
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('modalContactName').value;
+        const company = document.getElementById('modalContactCompany').value;
+        const email = document.getElementById('modalContactEmail').value;
+        const subject = document.getElementById('modalContactSubject').value;
+        const message = document.getElementById('modalContactMessage').value;
+        
+        const mailtoSubject = encodeURIComponent(subject);
+        const mailtoBody = encodeURIComponent(
+          `Name: ${name}\nCompany: ${company}\nEmail: ${email}\n\n${message}`
+        );
+        
+        window.location.href = `mailto:contact@terminusindustrials.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+        
+        closeContactModal();
+        this.reset();
+      });
+    </script>
 
     <script>
       // DEBUG: Instafill functionality

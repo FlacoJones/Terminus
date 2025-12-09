@@ -179,6 +179,12 @@ body:has(.hero-container) {
   line-height: 1.7;
 }
 
+.text-section p.small-text,
+.text-section-inner p.small-text {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
 .text-section-inner {
   margin: 2.5rem 0;
   padding: 1.5rem;
@@ -500,6 +506,120 @@ input[type="checkbox"] {
   color: #fff;
   transform: scale(1.05);
   box-shadow: 0 0 25px rgba(0, 232, 221, 0.6);
+}
+
+/* Contact Nav Button */
+.contact-nav-btn {
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 15, 14, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modal-content {
+  background: rgba(10, 15, 14, 0.98);
+  border: 2px solid var(--brand-cyan);
+  border-radius: 12px;
+  padding: 3rem;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 0 40px rgba(105, 255, 194, 0.3);
+}
+
+.modal-close-x {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--brand-gray);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  line-height: 1;
+}
+
+.modal-close-x:hover {
+  color: var(--brand-cyan);
+}
+
+.contact-modal h2 {
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.contact-form-modal .form-group-modal {
+  margin-bottom: 1.25rem;
+}
+
+.contact-form-modal .form-group-modal label {
+  display: block;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brand-gray);
+  margin-bottom: 0.5rem;
+}
+
+.contact-form-modal input,
+.contact-form-modal textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: var(--brand-white);
+  background: rgba(10, 15, 14, 0.8);
+  border: 1px solid rgba(105, 255, 194, 0.3);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.contact-form-modal input:focus,
+.contact-form-modal textarea:focus {
+  outline: none;
+  border-color: var(--brand-cyan);
+  box-shadow: 0 0 10px rgba(105, 255, 194, 0.2);
+}
+
+.contact-form-modal textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.modal-submit-btn {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .contact-modal h2 {
+    font-size: 1.5rem;
+  }
 }
 
 /* Responsive adjustments */

@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Review Your Quote - Terminus Industrials" />
-    <title>Review Your Quote - Terminus Industrials</title>
+    <meta name="description" content="Review Your API - Terminus Industrials" />
+    <title>Review Your API - Terminus Industrials</title>
 
     <!-- Critical CSS to prevent white flash -->
     <style>
@@ -219,6 +219,71 @@
           grid-template-columns: 1fr;
         }
       }
+
+      /* Modal Styles */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(10, 15, 14, 0.95);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 2rem;
+      }
+
+      .modal-content {
+        background: rgba(10, 15, 14, 0.98);
+        border: 2px solid var(--brand-cyan);
+        border-radius: 12px;
+        padding: 3rem;
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 0 40px rgba(105, 255, 194, 0.3);
+      }
+
+      .thank-you-modal h2 {
+        font-family: "Roboto Mono", monospace;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--brand-cyan);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 1.5rem;
+      }
+
+      .thank-you-modal p {
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+        color: var(--brand-gray);
+        line-height: 1.7;
+        margin-bottom: 1rem;
+      }
+
+      .thank-you-modal p.highlight {
+        color: var(--brand-white);
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-top: 1.5rem;
+      }
+
+      .modal-close-btn {
+        margin-top: 2rem;
+      }
+
+      @media (max-width: 768px) {
+        .modal-content {
+          padding: 2rem;
+        }
+
+        .thank-you-modal h2 {
+          font-size: 1.5rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -230,7 +295,12 @@
         </a>
       </div>
       <div class="nav-links">
-        <a href="/receive-instant-quote" class="nav-link">Receive Instant Quote</a>
+        <button class="nav-link contact-nav-btn" onclick="openContactModal()">
+          Contact Us
+        </button>
+        <a href="/receive-instant-quote" class="nav-link"
+          >Request Advance Purchase Indication</a
+        >
       </div>
     </nav>
 
@@ -241,92 +311,254 @@
       </div>
     </main>
 
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal-overlay" style="display: none">
+      <div class="modal-content contact-modal">
+        <button class="modal-close-x" onclick="closeContactModal()">
+          &times;
+        </button>
+        <h2>Contact Us</h2>
+        <form id="contactForm" class="contact-form-modal">
+          <div class="form-group-modal">
+            <label for="modalContactName">Name</label>
+            <input type="text" id="modalContactName" name="name" required />
+          </div>
+          <div class="form-group-modal">
+            <label for="modalContactCompany">Company</label>
+            <input
+              type="text"
+              id="modalContactCompany"
+              name="company"
+              required
+            />
+          </div>
+          <div class="form-group-modal">
+            <label for="modalContactEmail">Email</label>
+            <input type="email" id="modalContactEmail" name="email" required />
+          </div>
+          <div class="form-group-modal">
+            <label for="modalContactSubject">Subject</label>
+            <input
+              type="text"
+              id="modalContactSubject"
+              name="subject"
+              required
+            />
+          </div>
+          <div class="form-group-modal">
+            <label for="modalContactMessage">Message</label>
+            <textarea
+              id="modalContactMessage"
+              name="message"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="submit-button modal-submit-btn">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Contact Modal Functions
+      function openContactModal() {
+        document.getElementById("contactModal").style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeContactModal() {
+        document.getElementById("contactModal").style.display = "none";
+        document.body.style.overflow = "";
+      }
+
+      document
+        .getElementById("contactModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeContactModal();
+          }
+        });
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById("modalContactName").value;
+          const company = document.getElementById("modalContactCompany").value;
+          const email = document.getElementById("modalContactEmail").value;
+          const subject = document.getElementById("modalContactSubject").value;
+          const message = document.getElementById("modalContactMessage").value;
+
+          const mailtoSubject = encodeURIComponent(subject);
+          const mailtoBody = encodeURIComponent(
+            `Name: ${name}\nCompany: ${company}\nEmail: ${email}\n\n${message}`
+          );
+
+          window.location.href = `mailto:contact@terminusindustrials.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+          closeContactModal();
+          this.reset();
+        });
+    </script>
+
     <script>
       // Field labels for display
       const fieldLabels = {
-        companyName: 'Company Name',
-        projectName: 'Project / Site Name',
-        siteAddress: 'Site Address / GPS Coordinates',
-        contactName: 'Primary Contact Name',
-        contactEmail: 'Email',
-        contactPhone: 'Phone',
-        hvRating: 'High-Voltage Rating (kV)',
-        lvRating: 'Low-Voltage Rating (kV)',
-        mvaRating: 'MVA Rating (continuous)',
-        frequency: 'Frequency',
-        phase: 'Phase',
-        vectorGroup: 'Connection / Vector Group',
-        groundingPreference: 'Grounding Preference',
-        targetImpedance: 'Target Impedance (%Z)',
-        noLoadLoss: 'No-Load Loss Guarantee (W)',
-        loadLoss: 'Load Loss Guarantee (W)',
-        temperatureRise: 'Temperature Rise',
-        temperatureRiseOther: 'Temperature Rise (Other)',
-        soundLevel: 'Sound Level Requirement',
-        soundLimit: 'Sound Limit (dB(A))',
-        tapChangerType: 'Tap Changer Type',
-        tapRange: 'Tap Range',
-        tapSteps: 'Tap Steps',
-        tapLocation: 'Preferred Tap Location',
-        hvBil: 'HV BIL (kV)',
-        lvBil: 'LV BIL (kV)',
-        surgeRequirements: 'Surge / Lightning Requirements',
-        maxShippingWeight: 'Max Shipping Weight',
-        maxHeight: 'Max Height',
-        maxWidth: 'Max Width',
-        maxLength: 'Max Length',
-        seismicRating: 'Seismic Rating',
-        siteFootprint: 'Site Footprint Constraints',
-        coolingClass: 'Cooling Class',
-        coolingRedundancy: 'Cooling Redundancy',
-        oilType: 'Oil Type',
-        oilTypeOther: 'Oil Type (Other)',
-        corrosionClass: 'Corrosion / Paint Class',
-        corrosionClassCustom: 'Corrosion Class (Custom)',
-        noiseBarriers: 'Noise Barriers Required',
-        altitude: 'Altitude Above Sea Level',
-        maxAmbient: 'Max Ambient Temperature (°C)',
-        minAmbient: 'Min Ambient Temperature (°C)',
-        testing: 'Testing Requirements',
-        partialDischargeLimit: 'Partial Discharge Limit (pC)',
-        optionalUploads: 'Optional Uploads',
-        governingStandards: 'Governing Standards',
-        additionalNotes: 'Additional Notes',
-        indicativeValue: 'Indicative Unit Value ($ million)'
+        companyName: "Company Name",
+        projectName: "Project / Site Name",
+        siteAddress: "Site Address / GPS Coordinates",
+        contactName: "Primary Contact Name",
+        contactEmail: "Email",
+        contactPhone: "Phone",
+        hvRating: "High-Voltage Rating (kV)",
+        lvRating: "Low-Voltage Rating (kV)",
+        mvaRating: "MVA Rating (continuous)",
+        frequency: "Frequency",
+        phase: "Phase",
+        vectorGroup: "Connection / Vector Group",
+        groundingPreference: "Grounding Preference",
+        targetImpedance: "Target Impedance (%Z)",
+        noLoadLoss: "No-Load Loss Guarantee (W)",
+        loadLoss: "Load Loss Guarantee (W)",
+        temperatureRise: "Temperature Rise",
+        temperatureRiseOther: "Temperature Rise (Other)",
+        soundLevel: "Sound Level Requirement",
+        soundLimit: "Sound Limit (dB(A))",
+        tapChangerType: "Tap Changer Type",
+        tapRange: "Tap Range",
+        tapSteps: "Tap Steps",
+        tapLocation: "Preferred Tap Location",
+        hvBil: "HV BIL (kV)",
+        lvBil: "LV BIL (kV)",
+        surgeRequirements: "Surge / Lightning Requirements",
+        maxShippingWeight: "Max Shipping Weight",
+        maxHeight: "Max Height",
+        maxWidth: "Max Width",
+        maxLength: "Max Length",
+        seismicRating: "Seismic Rating",
+        siteFootprint: "Site Footprint Constraints",
+        coolingClass: "Cooling Class",
+        coolingRedundancy: "Cooling Redundancy",
+        oilType: "Oil Type",
+        oilTypeOther: "Oil Type (Other)",
+        corrosionClass: "Corrosion / Paint Class",
+        corrosionClassCustom: "Corrosion Class (Custom)",
+        noiseBarriers: "Noise Barriers Required",
+        altitude: "Altitude Above Sea Level",
+        maxAmbient: "Max Ambient Temperature (°C)",
+        minAmbient: "Min Ambient Temperature (°C)",
+        testing: "Testing Requirements",
+        partialDischargeLimit: "Partial Discharge Limit (pC)",
+        optionalUploads: "Optional Uploads",
+        governingStandards: "Governing Standards",
+        additionalNotes: "Additional Notes",
+        indicativeValue: "Indicative Unit Value ($ million)",
       };
 
       // Section groupings
       const sections = [
-        { title: '1. Basic Information', fields: ['companyName', 'projectName', 'siteAddress', 'contactName', 'contactEmail', 'contactPhone'] },
-        { title: '2. Electrical Ratings', fields: ['hvRating', 'lvRating', 'mvaRating', 'frequency', 'phase', 'vectorGroup', 'groundingPreference'] },
-        { title: '3. Impedance & Performance', fields: ['targetImpedance', 'noLoadLoss', 'loadLoss', 'temperatureRise', 'temperatureRiseOther', 'soundLevel', 'soundLimit'] },
-        { title: '4. Tap Changer', fields: ['tapChangerType', 'tapRange', 'tapSteps', 'tapLocation'] },
-        { title: '5. Dielectric Requirements', fields: ['hvBil', 'lvBil', 'surgeRequirements'] },
-        { title: '6. Mechanical & Transport Limits', fields: ['maxShippingWeight', 'maxHeight', 'maxWidth', 'maxLength', 'seismicRating', 'siteFootprint'] },
-        { title: '7. Cooling & Fluid System', fields: ['coolingClass', 'coolingRedundancy', 'oilType', 'oilTypeOther'] },
-        { title: '8. Environmental & Special Requirements', fields: ['corrosionClass', 'corrosionClassCustom', 'noiseBarriers', 'altitude', 'maxAmbient', 'minAmbient'] },
-        { title: '9. Testing Requirements', fields: ['testing', 'partialDischargeLimit', 'optionalUploads'] },
-        { title: '10. Compliance', fields: ['governingStandards'] },
-        { title: '11. Additional Notes', fields: ['additionalNotes'] },
-        { title: 'Commercial Information', fields: ['indicativeValue'] }
+        {
+          title: "1. Basic Information",
+          fields: [
+            "companyName",
+            "projectName",
+            "siteAddress",
+            "contactName",
+            "contactEmail",
+            "contactPhone",
+          ],
+        },
+        {
+          title: "2. Electrical Ratings",
+          fields: [
+            "hvRating",
+            "lvRating",
+            "mvaRating",
+            "frequency",
+            "phase",
+            "vectorGroup",
+            "groundingPreference",
+          ],
+        },
+        {
+          title: "3. Impedance & Performance",
+          fields: [
+            "targetImpedance",
+            "noLoadLoss",
+            "loadLoss",
+            "temperatureRise",
+            "temperatureRiseOther",
+            "soundLevel",
+            "soundLimit",
+          ],
+        },
+        {
+          title: "4. Tap Changer",
+          fields: ["tapChangerType", "tapRange", "tapSteps", "tapLocation"],
+        },
+        {
+          title: "5. Dielectric Requirements",
+          fields: ["hvBil", "lvBil", "surgeRequirements"],
+        },
+        {
+          title: "6. Mechanical & Transport Limits",
+          fields: [
+            "maxShippingWeight",
+            "maxHeight",
+            "maxWidth",
+            "maxLength",
+            "seismicRating",
+            "siteFootprint",
+          ],
+        },
+        {
+          title: "7. Cooling & Fluid System",
+          fields: [
+            "coolingClass",
+            "coolingRedundancy",
+            "oilType",
+            "oilTypeOther",
+          ],
+        },
+        {
+          title: "8. Environmental & Special Requirements",
+          fields: [
+            "corrosionClass",
+            "corrosionClassCustom",
+            "noiseBarriers",
+            "altitude",
+            "maxAmbient",
+            "minAmbient",
+          ],
+        },
+        {
+          title: "9. Testing Requirements",
+          fields: ["testing", "partialDischargeLimit", "optionalUploads"],
+        },
+        { title: "10. Compliance", fields: ["governingStandards"] },
+        { title: "11. Additional Notes", fields: ["additionalNotes"] },
+        { title: "Commercial Information", fields: ["indicativeValue"] },
       ];
 
       // Get submission ID from URL (supports both /review/abc123 and /review?id=abc123)
-      const pathParts = window.location.pathname.split('/').filter(p => p);
+      const pathParts = window.location.pathname.split("/").filter((p) => p);
       const urlParams = new URLSearchParams(window.location.search);
-      let submissionId = urlParams.get('id');
-      
+      let submissionId = urlParams.get("id");
+
       if (!submissionId) {
         // Try to get from path: /receive-instant-quote/review/abc123
-        const reviewIndex = pathParts.indexOf('review');
+        const reviewIndex = pathParts.indexOf("review");
         if (reviewIndex !== -1 && pathParts[reviewIndex + 1]) {
           submissionId = pathParts[reviewIndex + 1];
         }
       }
 
       // Load data from localStorage
-      const data = localStorage.getItem('nbpo_' + submissionId);
-      const container = document.getElementById('reviewContent');
+      const data = localStorage.getItem("nbpo_" + submissionId);
+      const container = document.getElementById("reviewContent");
 
       if (!data) {
         container.innerHTML = `
@@ -338,7 +570,7 @@
         `;
       } else {
         const formData = JSON.parse(data);
-        
+
         let html = `
           <div class="review-header">
             <h1 class="review-title">Review Your Submission</h1>
@@ -350,15 +582,20 @@
               ← Edit Submission
             </a>
             <button class="btn btn-confirm" onclick="confirmSubmission()">
-              Submit Letter of Intent
+              Submit API
             </button>
           </div>
         `;
 
-        sections.forEach(section => {
-          const hasValues = section.fields.some(field => {
+        sections.forEach((section) => {
+          const hasValues = section.fields.some((field) => {
             const val = formData[field];
-            return val && (Array.isArray(val) ? val.length > 0 : val.toString().trim() !== '');
+            return (
+              val &&
+              (Array.isArray(val)
+                ? val.length > 0
+                : val.toString().trim() !== "")
+            );
           });
 
           if (!hasValues) return;
@@ -369,25 +606,30 @@
               <div class="review-grid">
           `;
 
-          section.fields.forEach(field => {
+          section.fields.forEach((field) => {
             const value = formData[field];
             if (!value || (Array.isArray(value) && value.length === 0)) return;
-            
+
             const label = fieldLabels[field] || field;
-            const isFullWidth = field === 'siteFootprint' || field === 'additionalNotes';
-            
-            let displayValue = '';
+            const isFullWidth =
+              field === "siteFootprint" || field === "additionalNotes";
+
+            let displayValue = "";
             if (Array.isArray(value)) {
-              displayValue = value.map(v => `<span class="tag">${formatValue(v)}</span>`).join('');
+              displayValue = value
+                .map((v) => `<span class="tag">${formatValue(v)}</span>`)
+                .join("");
             } else {
               displayValue = formatValue(value);
             }
 
             html += `
-              <div class="review-item${isFullWidth ? ' full-width' : ''}">
+              <div class="review-item${isFullWidth ? " full-width" : ""}">
                 <span class="review-label">${label}</span>
-                <div class="review-value${Array.isArray(value) ? ' list' : ''}${!displayValue ? ' empty' : ''}">
-                  ${displayValue || 'Not specified'}
+                <div class="review-value${Array.isArray(value) ? " list" : ""}${
+              !displayValue ? " empty" : ""
+            }">
+                  ${displayValue || "Not specified"}
                 </div>
               </div>
             `;
@@ -405,7 +647,7 @@
               ← Edit Submission
             </a>
             <button class="btn btn-confirm" onclick="confirmSubmission()">
-              Submit Letter of Intent
+              Submit API
             </button>
           </div>
         `;
@@ -416,73 +658,99 @@
       function formatValue(val) {
         // Format common values for better display
         const formatMap = {
-          '60Hz': '60 Hz',
-          '50Hz': '50 Hz',
-          '3-phase': '3-Phase (Standard)',
-          'Δ-Y': 'Δ-Y',
-          'Y-Δ': 'Y-Δ',
-          'Y-Y': 'Y-Y',
-          '55C': '55°C',
-          '65C': '65°C',
-          'standardIEEE': 'Standard IEEE',
-          'lowNoise': 'Low-noise',
-          'ultraLowNoise': 'Ultra-low-noise',
-          'DETC': 'DETC (Off-circuit)',
-          'OLTC': 'OLTC (On-load)',
-          'HV': 'HV Side',
-          'LV': 'LV Side',
-          'noPreference': 'No Preference',
-          'standard': 'Standard',
-          'enhanced': 'Enhanced',
-          'provideSurgeProfile': 'Will Provide Surge Profile',
-          'zone2': 'Seismic Zone 2',
-          'zone3': 'Seismic Zone 3',
-          'zone4': 'Seismic Zone 4',
-          'provideSiteSpec': 'Will Provide Site Seismic Spec',
-          'ONAN': 'ONAN',
-          'ONAF': 'ONAF',
-          'OFAF': 'OFAF',
-          'ODAF': 'ODAF',
-          'N+1': 'N+1',
-          'N+2': 'N+2',
-          'mineralOil': 'Mineral Oil',
-          'naturalEster': 'Natural Ester',
-          'syntheticEster': 'Synthetic Ester',
-          'standardInland': 'Standard Inland',
-          'heavyIndustrial': 'Heavy Industrial',
-          'coastalSaltFog': 'Coastal / Salt Fog',
-          'yes': 'Yes',
-          'no': 'No',
-          'standardRoutine': 'Standard IEEE/IEC Routine Tests',
-          'temperatureRise': 'Temperature-rise Test',
-          'lightningImpulse': 'Lightning Impulse Test',
-          'switchingSurge': 'Switching Surge Test',
-          'FRA': 'FRA (Frequency Response Analysis)',
-          'specialWitness': 'Special Witness Testing',
-          'extendedHeatRun': 'Extended Heat Run',
-          'zeroSequence': 'Zero-sequence Impedance',
-          'partialDischarge': 'Partial Discharge Test',
-          'utilitySpec': 'Utility Standard Specification',
-          'testProcedures': 'Special Test Procedures',
-          'IEEEC57': 'IEEE C57 (North America)',
-          'IEC': 'IEC',
-          'utilitySpecific': 'Utility-specific Standard'
+          "60Hz": "60 Hz",
+          "50Hz": "50 Hz",
+          "3-phase": "3-Phase (Standard)",
+          "Δ-Y": "Δ-Y",
+          "Y-Δ": "Y-Δ",
+          "Y-Y": "Y-Y",
+          "55C": "55°C",
+          "65C": "65°C",
+          standardIEEE: "Standard IEEE",
+          lowNoise: "Low-noise",
+          ultraLowNoise: "Ultra-low-noise",
+          DETC: "DETC (Off-circuit)",
+          OLTC: "OLTC (On-load)",
+          HV: "HV Side",
+          LV: "LV Side",
+          noPreference: "No Preference",
+          standard: "Standard",
+          enhanced: "Enhanced",
+          provideSurgeProfile: "Will Provide Surge Profile",
+          zone2: "Seismic Zone 2",
+          zone3: "Seismic Zone 3",
+          zone4: "Seismic Zone 4",
+          provideSiteSpec: "Will Provide Site Seismic Spec",
+          ONAN: "ONAN",
+          ONAF: "ONAF",
+          OFAF: "OFAF",
+          ODAF: "ODAF",
+          "N+1": "N+1",
+          "N+2": "N+2",
+          mineralOil: "Mineral Oil",
+          naturalEster: "Natural Ester",
+          syntheticEster: "Synthetic Ester",
+          standardInland: "Standard Inland",
+          heavyIndustrial: "Heavy Industrial",
+          coastalSaltFog: "Coastal / Salt Fog",
+          yes: "Yes",
+          no: "No",
+          standardRoutine: "Standard IEEE/IEC Routine Tests",
+          temperatureRise: "Temperature-rise Test",
+          lightningImpulse: "Lightning Impulse Test",
+          switchingSurge: "Switching Surge Test",
+          FRA: "FRA (Frequency Response Analysis)",
+          specialWitness: "Special Witness Testing",
+          extendedHeatRun: "Extended Heat Run",
+          zeroSequence: "Zero-sequence Impedance",
+          partialDischarge: "Partial Discharge Test",
+          utilitySpec: "Utility Standard Specification",
+          testProcedures: "Special Test Procedures",
+          IEEEC57: "IEEE C57 (North America)",
+          IEC: "IEC",
+          utilitySpecific: "Utility-specific Standard",
         };
-        
+
         return formatMap[val] || val;
       }
 
       function confirmSubmission() {
         const submissionData = JSON.parse(data);
         submissionData.submittedAt = new Date().toISOString();
-        
-        console.log('=== NBPO FORM SUBMISSION ===');
+
+        console.log("=== API FORM SUBMISSION ===");
         console.log(JSON.stringify(submissionData, null, 2));
-        console.log('============================');
-        
-        alert('Form submitted! Data logged to console.\n\nPress F12 or Cmd+Option+J to view.');
+        console.log("============================");
+
+        // Show thank you modal
+        showThankYouModal();
+      }
+
+      function showThankYouModal() {
+        // Create modal overlay
+        const overlay = document.createElement("div");
+        overlay.className = "modal-overlay";
+        overlay.innerHTML = `
+          <div class="modal-content thank-you-modal">
+            <h2>Thank You!</h2>
+            <p>Thank you for submitting an Advance Purchase Indication with Terminus Industrials</p>
+            <p class="highlight">A member of our team will contact you soon.</p>
+            <button class="btn btn-confirm modal-close-btn" onclick="closeModal()">Close</button>
+          </div>
+        `;
+        document.body.appendChild(overlay);
+
+        // Prevent body scroll
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        const overlay = document.querySelector(".modal-overlay");
+        if (overlay) {
+          overlay.remove();
+          document.body.style.overflow = "";
+        }
       }
     </script>
   </body>
 </html>
-
