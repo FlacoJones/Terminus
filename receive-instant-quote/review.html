@@ -448,21 +448,22 @@
           };
 
           try {
-            // Email 1: Send to Terminus contact
-            await sendEmailViaMailgun(
-              "contact@terminusindustrials.com",
-              subject,
-              contactFormData,
-              `${name} <${email}>`
+            // Email 1: Send confirmation to user
+            const userConfirmationBody = `Thank you for contacting Terminus Industrials. Someone from our team will contact you soon.\n\n---\n\nSubject: ${subject}\n\nMessage: ${message}`;
+            await sendEmail(
+              email,
+              "Thank you for contacting Terminus Industrials!",
+              userConfirmationBody,
+              "Terminus Industrials <contact@terminusindustrials.com>"
             );
 
-            // Email 2: Send confirmation to user
-            const confirmationBody = `We will be in touch soon!\n\n---\n\nYour message:\n\nSubject: ${subject}\n\n${message}`;
-            await sendEmailViaMailgun(
-              email,
-              "Thank you for reaching out!",
-              confirmationBody,
-              "Terminus Industrials <contact@terminusindustrials.com>"
+            // Email 2: Send to Terminus contact
+            const internalBody = `Subject: ${subject}\n\nMessage: ${message}`;
+            await sendEmail(
+              "contact@terminusindustrials.com",
+              `Inquiry from ${company} ${email}`,
+              internalBody,
+              `${name} <${email}>`
             );
 
             // Reset button state
@@ -818,42 +819,35 @@
         return formatMap[val] || val;
       }
 
-      async function sendEmailViaMailgun(
+      // Email worker URL - change to production URL when deployed
+      const EMAIL_WORKER_URL =
+        "https://terminus-email.terminusindustrials.workers.dev";
+
+      // Send email via Cloudflare Worker
+      async function sendEmail(
         toEmail,
         subject,
         bodyContent,
         fromEmail = "Terminus Industrials <sales@terminusindustrials.com>"
       ) {
-        const MAILGUN_API_KEY = "MAILGUN_API_KEY";
-        const MAILGUN_DOMAIN = "terminusindustrials.com";
-
-        // If bodyContent is an object, stringify it; otherwise use as-is
-        const emailBody =
-          typeof bodyContent === "string"
-            ? bodyContent
-            : JSON.stringify(bodyContent, null, 2);
-
-        const formDataToSend = new FormData();
-        formDataToSend.append("from", fromEmail);
-        formDataToSend.append("to", toEmail);
-        formDataToSend.append("subject", subject);
-        formDataToSend.append("text", emailBody);
-
         try {
-          const response = await fetch(
-            `https://api.mailgun.net/v3/${MAILGUN_DOMAIN}/messages`,
-            {
-              method: "POST",
-              headers: {
-                Authorization: "Basic " + btoa("api:" + MAILGUN_API_KEY),
-              },
-              body: formDataToSend,
-            }
-          );
+          const response = await fetch(EMAIL_WORKER_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              to: toEmail,
+              subject: subject,
+              body: bodyContent,
+              from: fromEmail,
+            }),
+          });
 
-          if (!response.ok) {
-            const errorText = await response.text();
-            console.error("Mailgun error:", errorText);
+          const result = await response.json();
+
+          if (!response.ok || !result.success) {
+            console.error("Email worker error:", result.error);
             return false;
           }
 
@@ -874,27 +868,32 @@
         console.log("============================");
 
         const companyName = submissionData.companyName || "Unknown Company";
+        const userEmail = submissionData.contactEmail;
 
         // Send both emails in parallel
         const emailPromises = [];
 
-        // Email 1: Confirmation to the customer
-        const userEmail = submissionData.contactEmail;
+        // Email 3: Confirmation to the customer
         if (userEmail) {
+          const userConfirmationBody = `Thank you for submitting an Advance Purchase Indication to Terminus Industrials. Someone from our team will contact you soon.\n\n---\n\n${JSON.stringify(
+            submissionData,
+            null,
+            2
+          )}`;
           emailPromises.push(
-            sendEmailViaMailgun(
+            sendEmail(
               userEmail,
-              "Thank you for your interest in Terminus",
-              submissionData
+              "Thank you for submitting an Advance Purchase Indication to Terminus Industrials",
+              userConfirmationBody
             )
           );
         }
 
-        // Email 2: Internal notification to sales team
+        // Email 4: Internal notification to sales team
         emailPromises.push(
-          sendEmailViaMailgun(
+          sendEmail(
             "sales@terminusindustrials.com",
-            `Received API from ${companyName}`,
+            `API Submission from ${userEmail || "unknown"} at ${companyName}`,
             submissionData
           )
         );

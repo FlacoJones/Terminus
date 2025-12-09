@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Request Advance Purchase Indication - Terminus Industrials" />
+    <meta
+      name="description"
+      content="Request Advance Purchase Indication - Terminus Industrials"
+    />
     <title>Request Advance Purchase Indication - Terminus Industrials</title>
 
     <!-- Critical CSS to prevent white flash -->
@@ -17,7 +20,10 @@
     </style>
 
     <!-- Open Graph Metadata -->
-    <meta property="og:title" content="Request Advance Purchase Indication - Terminus Industrials" />
+    <meta
+      property="og:title"
+      content="Request Advance Purchase Indication - Terminus Industrials"
+    />
     <meta
       property="og:description"
       content="Defense-Grade Advanced Manufacturing"
@@ -27,7 +33,10 @@
 
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Request Advance Purchase Indication - Terminus Industrials" />
+    <meta
+      name="twitter:title"
+      content="Request Advance Purchase Indication - Terminus Industrials"
+    />
     <meta
       name="twitter:description"
       content="Defense-Grade Advanced Manufacturing"
@@ -52,8 +61,12 @@
         </a>
       </div>
       <div class="nav-links">
-        <button class="nav-link contact-nav-btn" onclick="openContactModal()">Contact Us</button>
-        <a href="/receive-instant-quote" class="nav-link">Request Advance Purchase Indication</a>
+        <button class="nav-link contact-nav-btn" onclick="openContactModal()">
+          Contact Us
+        </button>
+        <a href="/receive-instant-quote" class="nav-link"
+          >Request Advance Purchase Indication</a
+        >
       </div>
     </nav>
 
@@ -63,68 +76,106 @@
         <!-- Document Header -->
         <header class="document-header">
           <h1 class="document-title">Advance Purchase Indication (API)</h1>
-          <p class="document-parties">between<br><strong>TERMINUS INDUSTRIALS, INC</strong><br>&amp; Your Company</p>
+          <p class="document-parties">
+            between<br /><strong>TERMINUS INDUSTRIALS, INC</strong><br />&amp;
+            Your Company
+          </p>
         </header>
 
         <!-- Section I: Purpose -->
         <section class="text-section">
           <h2 class="section-title">I. Purpose</h2>
-          <p class="small-text">The purpose of this Advance Purchase Indication ("API") is solely to support preliminary planning, capacity forecasting, and commercial discussions between the Requestor and Terminus Industrials. This API is a non-binding expression of interest and does not create any obligation for either party to enter into a definitive agreement, purchase product, reserve manufacturing capacity, or commit to any financial transaction. It is not an offer, acceptance, purchase order, or contract. Terminus Industrials, Inc. will contact you directly regarding additional terms including indicative pricing and delivery.</p>
+          <p class="small-text">
+            The purpose of this Advance Purchase Indication ("API") is solely to
+            support preliminary planning, capacity forecasting, and commercial
+            discussions between the Requestor and Terminus Industrials. This API
+            is a non-binding expression of interest and does not create any
+            obligation for either party to enter into a definitive agreement,
+            purchase product, reserve manufacturing capacity, or commit to any
+            financial transaction. It is not an offer, acceptance, purchase
+            order, or contract. Terminus Industrials, Inc. will contact you
+            directly regarding additional terms including indicative pricing and
+            delivery.
+          </p>
         </section>
 
         <!-- Section II: Technical Requirements Form -->
         <section class="form-section">
           <h2 class="section-title">II. Indicative Technical Requirements</h2>
-          <p class="section-note">Note that specifications are indicative and subject to final engineering design at time of formal purchase order.</p>
-          
+          <p class="section-note">
+            Note that specifications are indicative and subject to final
+            engineering design at time of formal purchase order.
+          </p>
+
           <!-- DEBUG: Remove before deploy -->
-          <button type="button" id="instafillBtn" style="
-            background: #ff6b35;
-            border: 2px solid #ff6b35;
-            color: #fff;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.85rem;
-            font-weight: 700;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-          ">⚡ Instafill (Debug)</button>
+          <button
+            type="button"
+            id="instafillBtn"
+            style="
+              background: #ff6b35;
+              border: 2px solid #ff6b35;
+              color: #fff;
+              font-family: 'Roboto Mono', monospace;
+              font-size: 0.85rem;
+              font-weight: 700;
+              padding: 0.5rem 1rem;
+              border-radius: 6px;
+              cursor: pointer;
+              margin-bottom: 1.5rem;
+              text-transform: uppercase;
+              letter-spacing: 0.05em;
+            "
+          >
+            ⚡ Instafill (Debug)
+          </button>
 
           <form id="nbpoForm">
             <!-- 1. Basic Information -->
             <fieldset class="form-fieldset">
               <legend>1. Basic Information</legend>
-              
+
               <div class="form-group">
                 <label for="companyName">Company Name</label>
-                <input type="text" id="companyName" name="companyName" required>
+                <input
+                  type="text"
+                  id="companyName"
+                  name="companyName"
+                  required
+                />
               </div>
 
               <div class="form-group">
                 <label for="projectName">Project / Site Name</label>
-                <input type="text" id="projectName" name="projectName">
+                <input type="text" id="projectName" name="projectName" />
               </div>
 
               <div class="form-group">
                 <label for="siteAddress">Site Address or GPS Coordinates</label>
-                <input type="text" id="siteAddress" name="siteAddress">
+                <input type="text" id="siteAddress" name="siteAddress" />
               </div>
 
               <div class="form-row">
                 <div class="form-group">
                   <label for="contactName">Primary Contact Name</label>
-                  <input type="text" id="contactName" name="contactName" required>
+                  <input
+                    type="text"
+                    id="contactName"
+                    name="contactName"
+                    required
+                  />
                 </div>
                 <div class="form-group">
                   <label for="contactEmail">Email</label>
-                  <input type="email" id="contactEmail" name="contactEmail" required>
+                  <input
+                    type="email"
+                    id="contactEmail"
+                    name="contactEmail"
+                    required
+                  />
                 </div>
                 <div class="form-group">
                   <label for="contactPhone">Phone</label>
-                  <input type="tel" id="contactPhone" name="contactPhone">
+                  <input type="tel" id="contactPhone" name="contactPhone" />
                 </div>
               </div>
             </fieldset>
@@ -132,19 +183,34 @@
             <!-- 2. Electrical Ratings -->
             <fieldset class="form-fieldset">
               <legend>2. Electrical Ratings</legend>
-              
+
               <div class="form-row">
                 <div class="form-group">
                   <label for="hvRating">High-Voltage Rating (kV)</label>
-                  <input type="number" id="hvRating" name="hvRating" step="0.1">
+                  <input
+                    type="number"
+                    id="hvRating"
+                    name="hvRating"
+                    step="0.1"
+                  />
                 </div>
                 <div class="form-group">
                   <label for="lvRating">Low-Voltage Rating (kV)</label>
-                  <input type="number" id="lvRating" name="lvRating" step="0.1">
+                  <input
+                    type="number"
+                    id="lvRating"
+                    name="lvRating"
+                    step="0.1"
+                  />
                 </div>
                 <div class="form-group">
                   <label for="mvaRating">MVA Rating (continuous)</label>
-                  <input type="number" id="mvaRating" name="mvaRating" step="0.1">
+                  <input
+                    type="number"
+                    id="mvaRating"
+                    name="mvaRating"
+                    step="0.1"
+                  />
                 </div>
               </div>
 
@@ -152,10 +218,11 @@
                 <label>Frequency</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="frequency" value="60Hz" checked> 60 Hz
+                    <input type="radio" name="frequency" value="60Hz" checked />
+                    60 Hz
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="frequency" value="50Hz"> 50 Hz
+                    <input type="radio" name="frequency" value="50Hz" /> 50 Hz
                   </label>
                 </div>
               </div>
@@ -164,7 +231,13 @@
                 <label>Phase</label>
                 <div class="checkbox-group">
                   <label class="checkbox-label">
-                    <input type="checkbox" name="phase" value="3-phase" checked> 3-phase (standard)
+                    <input
+                      type="checkbox"
+                      name="phase"
+                      value="3-phase"
+                      checked
+                    />
+                    3-phase (standard)
                   </label>
                 </div>
               </div>
@@ -173,39 +246,48 @@
                 <label>Connection / Vector Group</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="vectorGroup" value="Δ-Y"> Δ-Y
+                    <input type="radio" name="vectorGroup" value="Δ-Y" /> Δ-Y
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="vectorGroup" value="Y-Δ"> Y-Δ
+                    <input type="radio" name="vectorGroup" value="Y-Δ" /> Y-Δ
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="vectorGroup" value="Y-Y"> Y-Y
+                    <input type="radio" name="vectorGroup" value="Y-Y" /> Y-Y
                   </label>
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="groundingPreference">Grounding Preference</label>
-                <input type="text" id="groundingPreference" name="groundingPreference">
+                <input
+                  type="text"
+                  id="groundingPreference"
+                  name="groundingPreference"
+                />
               </div>
             </fieldset>
 
             <!-- 3. Impedance & Performance -->
             <fieldset class="form-fieldset">
               <legend>3. Impedance & Performance</legend>
-              
+
               <div class="form-row">
                 <div class="form-group">
                   <label for="targetImpedance">Target Impedance (%Z)</label>
-                  <input type="number" id="targetImpedance" name="targetImpedance" step="0.01">
+                  <input
+                    type="number"
+                    id="targetImpedance"
+                    name="targetImpedance"
+                    step="0.01"
+                  />
                 </div>
                 <div class="form-group">
                   <label for="noLoadLoss">No-Load Loss Guarantee (W)</label>
-                  <input type="number" id="noLoadLoss" name="noLoadLoss">
+                  <input type="number" id="noLoadLoss" name="noLoadLoss" />
                 </div>
                 <div class="form-group">
                   <label for="loadLoss">Load Loss Guarantee (W)</label>
-                  <input type="number" id="loadLoss" name="loadLoss">
+                  <input type="number" id="loadLoss" name="loadLoss" />
                 </div>
               </div>
 
@@ -213,14 +295,23 @@
                 <label>Temperature Rise</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="temperatureRise" value="55C"> 55°C
+                    <input type="radio" name="temperatureRise" value="55C" />
+                    55°C
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="temperatureRise" value="65C"> 65°C
+                    <input type="radio" name="temperatureRise" value="65C" />
+                    65°C
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="temperatureRise" value="other"> Other:
-                    <input type="text" name="temperatureRiseOther" class="inline-input" placeholder="Specify" disabled>
+                    <input type="radio" name="temperatureRise" value="other" />
+                    Other:
+                    <input
+                      type="text"
+                      name="temperatureRiseOther"
+                      class="inline-input"
+                      placeholder="Specify"
+                      disabled
+                    />
                   </label>
                 </div>
               </div>
@@ -229,35 +320,53 @@
                 <label>Sound Level Requirement</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="soundLevel" value="standardIEEE"> Standard IEEE
+                    <input
+                      type="radio"
+                      name="soundLevel"
+                      value="standardIEEE"
+                    />
+                    Standard IEEE
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="soundLevel" value="lowNoise"> Low-noise
+                    <input type="radio" name="soundLevel" value="lowNoise" />
+                    Low-noise
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="soundLevel" value="ultraLowNoise"> Ultra-low-noise
+                    <input
+                      type="radio"
+                      name="soundLevel"
+                      value="ultraLowNoise"
+                    />
+                    Ultra-low-noise
                   </label>
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="soundLimit">Sound Limit (if specified) dB(A)</label>
-                <input type="number" id="soundLimit" name="soundLimit" step="0.1">
+                <input
+                  type="number"
+                  id="soundLimit"
+                  name="soundLimit"
+                  step="0.1"
+                />
               </div>
             </fieldset>
 
             <!-- 4. Tap Changer -->
             <fieldset class="form-fieldset">
               <legend>4. Tap Changer</legend>
-              
+
               <div class="form-group">
                 <label>Tap Changer Type</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="tapChangerType" value="DETC"> DETC (Off-circuit)
+                    <input type="radio" name="tapChangerType" value="DETC" />
+                    DETC (Off-circuit)
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="tapChangerType" value="OLTC"> OLTC (On-load tap changer)
+                    <input type="radio" name="tapChangerType" value="OLTC" />
+                    OLTC (On-load tap changer)
                   </label>
                 </div>
               </div>
@@ -265,11 +374,11 @@
               <div class="form-row">
                 <div class="form-group">
                   <label for="tapRange">Tap Range (e.g., ±10%)</label>
-                  <input type="text" id="tapRange" name="tapRange">
+                  <input type="text" id="tapRange" name="tapRange" />
                 </div>
                 <div class="form-group">
                   <label for="tapSteps">Tap Steps (e.g., 16, 32)</label>
-                  <input type="text" id="tapSteps" name="tapSteps">
+                  <input type="text" id="tapSteps" name="tapSteps" />
                 </div>
               </div>
 
@@ -277,13 +386,18 @@
                 <label>Preferred Tap Location</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="tapLocation" value="HV"> HV side
+                    <input type="radio" name="tapLocation" value="HV" /> HV side
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="tapLocation" value="LV"> LV side
+                    <input type="radio" name="tapLocation" value="LV" /> LV side
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="tapLocation" value="noPreference"> No preference
+                    <input
+                      type="radio"
+                      name="tapLocation"
+                      value="noPreference"
+                    />
+                    No preference
                   </label>
                 </div>
               </div>
@@ -292,15 +406,15 @@
             <!-- 5. Dielectric Requirements -->
             <fieldset class="form-fieldset">
               <legend>5. Dielectric Requirements</legend>
-              
+
               <div class="form-row">
                 <div class="form-group">
                   <label for="hvBil">HV BIL (kV)</label>
-                  <input type="number" id="hvBil" name="hvBil">
+                  <input type="number" id="hvBil" name="hvBil" />
                 </div>
                 <div class="form-group">
                   <label for="lvBil">LV BIL (kV)</label>
-                  <input type="number" id="lvBil" name="lvBil">
+                  <input type="number" id="lvBil" name="lvBil" />
                 </div>
               </div>
 
@@ -308,13 +422,28 @@
                 <label>Surge / Lightning Requirements</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="surgeRequirements" value="standard"> Standard
+                    <input
+                      type="radio"
+                      name="surgeRequirements"
+                      value="standard"
+                    />
+                    Standard
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="surgeRequirements" value="enhanced"> Enhanced
+                    <input
+                      type="radio"
+                      name="surgeRequirements"
+                      value="enhanced"
+                    />
+                    Enhanced
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="surgeRequirements" value="provideSurgeProfile"> Provide surge profile (optional upload)
+                    <input
+                      type="radio"
+                      name="surgeRequirements"
+                      value="provideSurgeProfile"
+                    />
+                    Provide surge profile (optional upload)
                   </label>
                 </div>
               </div>
@@ -323,24 +452,30 @@
             <!-- 6. Mechanical & Transport Limits -->
             <fieldset class="form-fieldset">
               <legend>6. Mechanical & Transport Limits</legend>
-              
+
               <div class="form-group">
-                <label for="maxShippingWeight">Max Shipping Weight (lbs or metric tons)</label>
-                <input type="text" id="maxShippingWeight" name="maxShippingWeight">
+                <label for="maxShippingWeight"
+                  >Max Shipping Weight (lbs or metric tons)</label
+                >
+                <input
+                  type="text"
+                  id="maxShippingWeight"
+                  name="maxShippingWeight"
+                />
               </div>
 
               <div class="form-row">
                 <div class="form-group">
                   <label for="maxHeight">Max Height</label>
-                  <input type="text" id="maxHeight" name="maxHeight">
+                  <input type="text" id="maxHeight" name="maxHeight" />
                 </div>
                 <div class="form-group">
                   <label for="maxWidth">Max Width</label>
-                  <input type="text" id="maxWidth" name="maxWidth">
+                  <input type="text" id="maxWidth" name="maxWidth" />
                 </div>
                 <div class="form-group">
                   <label for="maxLength">Max Length</label>
-                  <input type="text" id="maxLength" name="maxLength">
+                  <input type="text" id="maxLength" name="maxLength" />
                 </div>
               </div>
 
@@ -348,44 +483,59 @@
                 <label>Seismic Rating</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="seismicRating" value="zone2"> Seismic Zone 2
+                    <input type="radio" name="seismicRating" value="zone2" />
+                    Seismic Zone 2
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="seismicRating" value="zone3"> Seismic Zone 3
+                    <input type="radio" name="seismicRating" value="zone3" />
+                    Seismic Zone 3
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="seismicRating" value="zone4"> Seismic Zone 4
+                    <input type="radio" name="seismicRating" value="zone4" />
+                    Seismic Zone 4
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="seismicRating" value="provideSiteSpec"> Provide site seismic spec (optional upload)
+                    <input
+                      type="radio"
+                      name="seismicRating"
+                      value="provideSiteSpec"
+                    />
+                    Provide site seismic spec (optional upload)
                   </label>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="siteFootprint">Site Footprint Constraints (Max pad area, orientation, obstacles)</label>
-                <textarea id="siteFootprint" name="siteFootprint" rows="3"></textarea>
+                <label for="siteFootprint"
+                  >Site Footprint Constraints (Max pad area, orientation,
+                  obstacles)</label
+                >
+                <textarea
+                  id="siteFootprint"
+                  name="siteFootprint"
+                  rows="3"
+                ></textarea>
               </div>
             </fieldset>
 
             <!-- 7. Cooling & Fluid System -->
             <fieldset class="form-fieldset">
               <legend>7. Cooling & Fluid System</legend>
-              
+
               <div class="form-group">
                 <label>Cooling Class</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="coolingClass" value="ONAN"> ONAN
+                    <input type="radio" name="coolingClass" value="ONAN" /> ONAN
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="coolingClass" value="ONAF"> ONAF
+                    <input type="radio" name="coolingClass" value="ONAF" /> ONAF
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="coolingClass" value="OFAF"> OFAF
+                    <input type="radio" name="coolingClass" value="OFAF" /> OFAF
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="coolingClass" value="ODAF"> ODAF
+                    <input type="radio" name="coolingClass" value="ODAF" /> ODAF
                   </label>
                 </div>
               </div>
@@ -394,10 +544,12 @@
                 <label>Cooling Redundancy</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="coolingRedundancy" value="N+1"> N+1
+                    <input type="radio" name="coolingRedundancy" value="N+1" />
+                    N+1
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="coolingRedundancy" value="N+2"> N+2
+                    <input type="radio" name="coolingRedundancy" value="N+2" />
+                    N+2
                   </label>
                 </div>
               </div>
@@ -406,17 +558,26 @@
                 <label>Oil Type</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="oilType" value="mineralOil"> Mineral oil
+                    <input type="radio" name="oilType" value="mineralOil" />
+                    Mineral oil
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="oilType" value="naturalEster"> Natural ester
+                    <input type="radio" name="oilType" value="naturalEster" />
+                    Natural ester
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="oilType" value="syntheticEster"> Synthetic ester
+                    <input type="radio" name="oilType" value="syntheticEster" />
+                    Synthetic ester
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="oilType" value="other"> Other:
-                    <input type="text" name="oilTypeOther" class="inline-input" placeholder="Specify" disabled>
+                    <input type="radio" name="oilType" value="other" /> Other:
+                    <input
+                      type="text"
+                      name="oilTypeOther"
+                      class="inline-input"
+                      placeholder="Specify"
+                      disabled
+                    />
                   </label>
                 </div>
               </div>
@@ -425,22 +586,44 @@
             <!-- 8. Environmental & Special Requirements -->
             <fieldset class="form-fieldset">
               <legend>8. Environmental & Special Requirements</legend>
-              
+
               <div class="form-group">
                 <label>Corrosion / Paint Class</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="corrosionClass" value="standardInland"> Standard inland
+                    <input
+                      type="radio"
+                      name="corrosionClass"
+                      value="standardInland"
+                    />
+                    Standard inland
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="corrosionClass" value="heavyIndustrial"> Heavy industrial
+                    <input
+                      type="radio"
+                      name="corrosionClass"
+                      value="heavyIndustrial"
+                    />
+                    Heavy industrial
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="corrosionClass" value="coastalSaltFog"> Coastal / Salt fog
+                    <input
+                      type="radio"
+                      name="corrosionClass"
+                      value="coastalSaltFog"
+                    />
+                    Coastal / Salt fog
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="corrosionClass" value="custom"> Custom:
-                    <input type="text" name="corrosionClassCustom" class="inline-input" placeholder="Specify" disabled>
+                    <input type="radio" name="corrosionClass" value="custom" />
+                    Custom:
+                    <input
+                      type="text"
+                      name="corrosionClassCustom"
+                      class="inline-input"
+                      placeholder="Specify"
+                      disabled
+                    />
                   </label>
                 </div>
               </div>
@@ -449,27 +632,32 @@
                 <label>Noise Barriers Required?</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="noiseBarriers" value="yes"> Yes
+                    <input type="radio" name="noiseBarriers" value="yes" /> Yes
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="noiseBarriers" value="no"> No
+                    <input type="radio" name="noiseBarriers" value="no" /> No
                   </label>
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="altitude">Altitude Above Sea Level (ft or m)</label>
-                <input type="text" id="altitude" name="altitude" placeholder="If >1000m derating applies">
+                <input
+                  type="text"
+                  id="altitude"
+                  name="altitude"
+                  placeholder="If >1000m derating applies"
+                />
               </div>
 
               <div class="form-row">
                 <div class="form-group">
                   <label for="maxAmbient">Max Ambient Temperature (°C)</label>
-                  <input type="number" id="maxAmbient" name="maxAmbient">
+                  <input type="number" id="maxAmbient" name="maxAmbient" />
                 </div>
                 <div class="form-group">
                   <label for="minAmbient">Min Ambient Temperature (°C)</label>
-                  <input type="number" id="minAmbient" name="minAmbient">
+                  <input type="number" id="minAmbient" name="minAmbient" />
                 </div>
               </div>
             </fieldset>
@@ -478,49 +666,102 @@
             <fieldset class="form-fieldset">
               <legend>9. Testing Requirements</legend>
               <p class="fieldset-note">Select all that apply</p>
-              
+
               <div class="checkbox-group checkbox-grid">
                 <label class="checkbox-label">
-                  <input type="checkbox" name="testing" value="standardRoutine"> Standard IEEE/IEC routine tests
+                  <input
+                    type="checkbox"
+                    name="testing"
+                    value="standardRoutine"
+                  />
+                  Standard IEEE/IEC routine tests
                 </label>
                 <label class="checkbox-label">
-                  <input type="checkbox" name="testing" value="temperatureRise"> Temperature-rise test
+                  <input
+                    type="checkbox"
+                    name="testing"
+                    value="temperatureRise"
+                  />
+                  Temperature-rise test
                 </label>
                 <label class="checkbox-label">
-                  <input type="checkbox" name="testing" value="lightningImpulse"> Lightning impulse test
+                  <input
+                    type="checkbox"
+                    name="testing"
+                    value="lightningImpulse"
+                  />
+                  Lightning impulse test
                 </label>
                 <label class="checkbox-label">
-                  <input type="checkbox" name="testing" value="switchingSurge"> Switching surge test
+                  <input
+                    type="checkbox"
+                    name="testing"
+                    value="switchingSurge"
+                  />
+                  Switching surge test
                 </label>
                 <label class="checkbox-label">
-                  <input type="checkbox" name="testing" value="FRA"> FRA (Frequency Response Analysis)
+                  <input type="checkbox" name="testing" value="FRA" /> FRA
+                  (Frequency Response Analysis)
                 </label>
                 <label class="checkbox-label">
-                  <input type="checkbox" name="testing" value="specialWitness"> Special witness testing required
+                  <input
+                    type="checkbox"
+                    name="testing"
+                    value="specialWitness"
+                  />
+                  Special witness testing required
                 </label>
                 <label class="checkbox-label">
-                  <input type="checkbox" name="testing" value="extendedHeatRun"> Extended heat run
+                  <input
+                    type="checkbox"
+                    name="testing"
+                    value="extendedHeatRun"
+                  />
+                  Extended heat run
                 </label>
                 <label class="checkbox-label">
-                  <input type="checkbox" name="testing" value="zeroSequence"> Zero-sequence impedance
+                  <input type="checkbox" name="testing" value="zeroSequence" />
+                  Zero-sequence impedance
                 </label>
               </div>
 
               <div class="form-group">
                 <label class="checkbox-label">
-                  <input type="checkbox" name="testing" value="partialDischarge" id="partialDischargeCheck"> Partial Discharge limit
+                  <input
+                    type="checkbox"
+                    name="testing"
+                    value="partialDischarge"
+                    id="partialDischargeCheck"
+                  />
+                  Partial Discharge limit
                 </label>
-                <input type="number" name="partialDischargeLimit" class="inline-input-wide" placeholder="Specify pC limit">
+                <input
+                  type="number"
+                  name="partialDischargeLimit"
+                  class="inline-input-wide"
+                  placeholder="Specify pC limit"
+                />
               </div>
 
               <div class="form-group">
                 <label>Optional Uploads (indicate if you will provide)</label>
                 <div class="checkbox-group">
                   <label class="checkbox-label">
-                    <input type="checkbox" name="optionalUploads" value="utilitySpec"> Utility standard specification document
+                    <input
+                      type="checkbox"
+                      name="optionalUploads"
+                      value="utilitySpec"
+                    />
+                    Utility standard specification document
                   </label>
                   <label class="checkbox-label">
-                    <input type="checkbox" name="optionalUploads" value="testProcedures"> Special test procedures
+                    <input
+                      type="checkbox"
+                      name="optionalUploads"
+                      value="testProcedures"
+                    />
+                    Special test procedures
                   </label>
                 </div>
               </div>
@@ -529,18 +770,29 @@
             <!-- 10. Compliance -->
             <fieldset class="form-fieldset">
               <legend>10. Compliance</legend>
-              
+
               <div class="form-group">
                 <label>Governing Standards</label>
                 <div class="radio-group">
                   <label class="radio-label">
-                    <input type="radio" name="governingStandards" value="IEEEC57"> IEEE C57 (North America)
+                    <input
+                      type="radio"
+                      name="governingStandards"
+                      value="IEEEC57"
+                    />
+                    IEEE C57 (North America)
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="governingStandards" value="IEC"> IEC
+                    <input type="radio" name="governingStandards" value="IEC" />
+                    IEC
                   </label>
                   <label class="radio-label">
-                    <input type="radio" name="governingStandards" value="utilitySpecific"> Utility-specific standard (upload)
+                    <input
+                      type="radio"
+                      name="governingStandards"
+                      value="utilitySpecific"
+                    />
+                    Utility-specific standard (upload)
                   </label>
                 </div>
               </div>
@@ -549,21 +801,46 @@
             <!-- 11. Additional Notes -->
             <fieldset class="form-fieldset">
               <legend>11. Additional Notes / Requirements</legend>
-              
+
               <div class="form-group">
-                <textarea id="additionalNotes" name="additionalNotes" rows="5" placeholder="Enter any additional requirements or notes..."></textarea>
+                <textarea
+                  id="additionalNotes"
+                  name="additionalNotes"
+                  rows="5"
+                  placeholder="Enter any additional requirements or notes..."
+                ></textarea>
               </div>
             </fieldset>
 
             <!-- Section III: Commercial Conditions -->
             <section class="text-section-inner">
               <h2 class="section-title">III. Commercial Conditions</h2>
-              <p class="small-text">This Advance Purchase Indication ("API") is submitted solely for the purpose of enabling Terminus Industrials to evaluate demand, prepare preliminary commercial terms, and issue a subsequent Non-Binding Purchase Order ("NBPO") for the Requestor's review. The API does not constitute an order, agreement, offer, acceptance, or commitment by either party. No party shall incur any liability, obligation, or financial responsibility of any kind as a result of submitting, reviewing, or relying upon this API. The Requestor shall not be obligated to purchase any product, and Terminus Industrials shall not be obligated to manufacture, reserve capacity, or provide any goods or services unless and until a separate definitive agreement is executed by both parties. Both parties expressly disclaim any damages, reliance claims, expectations of performance, or remedies arising from this API, and each retains the unrestricted right to modify or withdraw from the process at any time prior to signing a binding agreement.</p>
+              <p class="small-text">
+                This Advance Purchase Indication ("API") is submitted solely for
+                the purpose of enabling Terminus Industrials to evaluate demand,
+                prepare preliminary commercial terms, and issue a subsequent
+                Non-Binding Purchase Order ("NBPO") for the Requestor's review.
+                The API does not constitute an order, agreement, offer,
+                acceptance, or commitment by either party. No party shall incur
+                any liability, obligation, or financial responsibility of any
+                kind as a result of submitting, reviewing, or relying upon this
+                API. The Requestor shall not be obligated to purchase any
+                product, and Terminus Industrials shall not be obligated to
+                manufacture, reserve capacity, or provide any goods or services
+                unless and until a separate definitive agreement is executed by
+                both parties. Both parties expressly disclaim any damages,
+                reliance claims, expectations of performance, or remedies
+                arising from this API, and each retains the unrestricted right
+                to modify or withdraw from the process at any time prior to
+                signing a binding agreement.
+              </p>
             </section>
 
             <!-- Submit Button -->
             <div class="form-submit">
-              <button type="submit" class="submit-button">Review and Submit</button>
+              <button type="submit" class="submit-button">
+                Review and Submit
+              </button>
             </div>
           </form>
         </section>
@@ -571,9 +848,11 @@
     </main>
 
     <!-- Contact Modal -->
-    <div id="contactModal" class="modal-overlay" style="display: none;">
+    <div id="contactModal" class="modal-overlay" style="display: none">
       <div class="modal-content contact-modal">
-        <button class="modal-close-x" onclick="closeContactModal()">&times;</button>
+        <button class="modal-close-x" onclick="closeContactModal()">
+          &times;
+        </button>
         <h2>Contact Us</h2>
         <form id="contactForm" class="contact-form-modal">
           <div class="form-group-modal">
@@ -582,7 +861,12 @@
           </div>
           <div class="form-group-modal">
             <label for="modalContactCompany">Company</label>
-            <input type="text" id="modalContactCompany" name="company" required />
+            <input
+              type="text"
+              id="modalContactCompany"
+              name="company"
+              required
+            />
           </div>
           <div class="form-group-modal">
             <label for="modalContactEmail">Email</label>
@@ -590,127 +874,301 @@
           </div>
           <div class="form-group-modal">
             <label for="modalContactSubject">Subject</label>
-            <input type="text" id="modalContactSubject" name="subject" required />
+            <input
+              type="text"
+              id="modalContactSubject"
+              name="subject"
+              required
+            />
           </div>
           <div class="form-group-modal">
             <label for="modalContactMessage">Message</label>
-            <textarea id="modalContactMessage" name="message" rows="4" required></textarea>
+            <textarea
+              id="modalContactMessage"
+              name="message"
+              rows="4"
+              required
+            ></textarea>
           </div>
-          <button type="submit" class="submit-button modal-submit-btn">Send Message</button>
+          <button type="submit" class="submit-button modal-submit-btn">
+            Send Message
+          </button>
         </form>
       </div>
     </div>
 
     <script>
+      // Email worker URL - change to production URL when deployed
+      {
+        {
+          /* const EMAIL_WORKER_URL =
+        "https://terminus-email.terminusindustrials.workers.dev"; */
+        }
+      }
+
+      const EMAIL_WORKER_URL = "http://localhost:8787";
+
+      // Send email via Cloudflare Worker
+      async function sendEmail(toEmail, subject, bodyContent, fromEmail) {
+        try {
+          const response = await fetch(EMAIL_WORKER_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              to: toEmail,
+              subject: subject,
+              body: bodyContent,
+              from: fromEmail,
+            }),
+          });
+
+          const result = await response.json();
+
+          if (!response.ok || !result.success) {
+            console.error("Email worker error:", result.error);
+            return false;
+          }
+
+          console.log("Email sent successfully!");
+          return true;
+        } catch (error) {
+          console.error("Failed to send email:", error);
+          return false;
+        }
+      }
+
+      // Add spinner styles
+      const spinnerStyle = document.createElement("style");
+      spinnerStyle.textContent = `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        .btn-loading {
+          position: relative;
+          pointer-events: none;
+          opacity: 0.8;
+        }
+        .btn-loading .btn-text {
+          visibility: hidden;
+        }
+        .btn-loading::after {
+          content: "";
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          top: 50%;
+          left: 50%;
+          margin-left: -10px;
+          margin-top: -10px;
+          border: 3px solid rgba(10, 15, 14, 0.3);
+          border-top-color: #0a0f0e;
+          border-radius: 50%;
+          animation: spin 0.8s linear infinite;
+        }
+      `;
+      document.head.appendChild(spinnerStyle);
+
+      // Success modal functions
+      function showContactSuccessModal() {
+        const overlay = document.createElement("div");
+        overlay.className = "modal-overlay";
+        overlay.id = "contactSuccessModal";
+        overlay.style.display = "flex";
+        overlay.innerHTML = `
+          <div class="modal-content contact-modal" style="text-align: center;">
+            <h2>Message Sent!</h2>
+            <p style="font-family: 'Roboto', sans-serif; color: var(--brand-gray); margin-bottom: 1rem;">Your message was sent successfully!</p>
+            <p style="font-family: 'Roboto', sans-serif; color: var(--brand-white); font-weight: 700;">Our team will reach out to you shortly.</p>
+            <button class="submit-button modal-submit-btn" style="margin-top: 1.5rem;" onclick="closeContactSuccessModal()">Close</button>
+          </div>
+        `;
+        document.body.appendChild(overlay);
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeContactSuccessModal() {
+        const overlay = document.getElementById("contactSuccessModal");
+        if (overlay) {
+          overlay.remove();
+          document.body.style.overflow = "";
+        }
+      }
+
       // Contact Modal Functions
       function openContactModal() {
-        document.getElementById('contactModal').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+        document.getElementById("contactModal").style.display = "flex";
+        document.body.style.overflow = "hidden";
       }
 
       function closeContactModal() {
-        document.getElementById('contactModal').style.display = 'none';
-        document.body.style.overflow = '';
+        document.getElementById("contactModal").style.display = "none";
+        document.body.style.overflow = "";
       }
 
-      document.getElementById('contactModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-          closeContactModal();
-        }
-      });
+      document
+        .getElementById("contactModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeContactModal();
+          }
+        });
 
-      document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const name = document.getElementById('modalContactName').value;
-        const company = document.getElementById('modalContactCompany').value;
-        const email = document.getElementById('modalContactEmail').value;
-        const subject = document.getElementById('modalContactSubject').value;
-        const message = document.getElementById('modalContactMessage').value;
-        
-        const mailtoSubject = encodeURIComponent(subject);
-        const mailtoBody = encodeURIComponent(
-          `Name: ${name}\nCompany: ${company}\nEmail: ${email}\n\n${message}`
-        );
-        
-        window.location.href = `mailto:contact@terminusindustrials.com?subject=${mailtoSubject}&body=${mailtoBody}`;
-        
-        closeContactModal();
-        this.reset();
-      });
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const submitBtn = this.querySelector('button[type="submit"]');
+          const originalText = submitBtn.innerHTML;
+
+          // Show loading state
+          submitBtn.innerHTML = `<span class="btn-text">${originalText}</span>`;
+          submitBtn.classList.add("btn-loading");
+
+          const name = document.getElementById("modalContactName").value;
+          const company = document.getElementById("modalContactCompany").value;
+          const email = document.getElementById("modalContactEmail").value;
+          const subject = document.getElementById("modalContactSubject").value;
+          const message = document.getElementById("modalContactMessage").value;
+
+          // Send email via Cloudflare Worker
+          const contactFormData = {
+            name: name,
+            company: company,
+            email: email,
+            message: message,
+          };
+
+          try {
+            // Email 1: Send confirmation to user
+            const userConfirmationBody = `Thank you for contacting Terminus Industrials. Someone from our team will contact you soon.\n\n---\n\nSubject: ${subject}\n\nMessage: ${message}`;
+            await sendEmail(
+              email,
+              "Thank you for contacting Terminus Industrials!",
+              userConfirmationBody,
+              "Terminus Industrials <contact@terminusindustrials.com>"
+            );
+
+            // Email 2: Send to Terminus contact
+            const internalBody = `Subject: ${subject}\n\nMessage: ${message}`;
+            await sendEmail(
+              "contact@terminusindustrials.com",
+              `Inquiry from ${company} ${email}`,
+              internalBody,
+              `${name} <${email}>`
+            );
+
+            // Reset button state
+            submitBtn.innerHTML = originalText;
+            submitBtn.classList.remove("btn-loading");
+
+            // Close modal and reset form
+            closeContactModal();
+            this.reset();
+
+            // Show success modal
+            showContactSuccessModal();
+          } catch (error) {
+            console.error("Error sending emails:", error);
+            // Reset button state on error
+            submitBtn.innerHTML = originalText;
+            submitBtn.classList.remove("btn-loading");
+          }
+        });
     </script>
 
     <script>
       // DEBUG: Instafill functionality
-      document.getElementById('instafillBtn').addEventListener('click', async function() {
-        try {
-          const response = await fetch('/receive-instant-quote/instafill-defaults.json');
-          const defaults = await response.json();
-          const form = document.getElementById('nbpoForm');
-          
-          Object.keys(defaults).forEach(key => {
-            const value = defaults[key];
-            const elements = form.elements[key];
-            
-            if (!elements) return;
-            
-            if (elements.length && elements[0]?.type === 'radio') {
-              for (let el of elements) {
-                if (el.value === value) el.checked = true;
-              }
-            } else if (elements.length && elements[0]?.type === 'checkbox') {
-              const values = Array.isArray(value) ? value : [value];
-              for (let el of elements) {
-                el.checked = values.includes(el.value);
-              }
-            } else if (elements.type === 'checkbox') {
-              elements.checked = value === elements.value;
-            } else if (elements.nodeName) {
-              elements.value = value;
-            }
-          });
-          
-          // Enable "Other" text inputs if their radio is selected
-          if (defaults.temperatureRise === 'other') {
-            document.querySelector('input[name="temperatureRiseOther"]').disabled = false;
-          }
-          if (defaults.oilType === 'other') {
-            document.querySelector('input[name="oilTypeOther"]').disabled = false;
-          }
-          if (defaults.corrosionClass === 'custom') {
-            document.querySelector('input[name="corrosionClassCustom"]').disabled = false;
-          }
+      document
+        .getElementById("instafillBtn")
+        .addEventListener("click", async function () {
+          try {
+            const response = await fetch(
+              "/receive-instant-quote/instafill-defaults.json"
+            );
+            const defaults = await response.json();
+            const form = document.getElementById("nbpoForm");
 
-          this.textContent = '✓ Filled!';
-          this.style.background = '#69ffc2';
-          this.style.borderColor = '#69ffc2';
-          this.style.color = '#0a0f0e';
-          setTimeout(() => {
-            this.textContent = '⚡ Instafill (Debug)';
-            this.style.background = '#ff6b35';
-            this.style.borderColor = '#ff6b35';
-            this.style.color = '#fff';
-          }, 1500);
-        } catch (err) {
-          console.error('Instafill failed:', err);
-          alert('Failed to load defaults: ' + err.message);
-        }
-      });
+            Object.keys(defaults).forEach((key) => {
+              const value = defaults[key];
+              const elements = form.elements[key];
+
+              if (!elements) return;
+
+              if (elements.length && elements[0]?.type === "radio") {
+                for (let el of elements) {
+                  if (el.value === value) el.checked = true;
+                }
+              } else if (elements.length && elements[0]?.type === "checkbox") {
+                const values = Array.isArray(value) ? value : [value];
+                for (let el of elements) {
+                  el.checked = values.includes(el.value);
+                }
+              } else if (elements.type === "checkbox") {
+                elements.checked = value === elements.value;
+              } else if (elements.nodeName) {
+                elements.value = value;
+              }
+            });
+
+            // Enable "Other" text inputs if their radio is selected
+            if (defaults.temperatureRise === "other") {
+              document.querySelector(
+                'input[name="temperatureRiseOther"]'
+              ).disabled = false;
+            }
+            if (defaults.oilType === "other") {
+              document.querySelector(
+                'input[name="oilTypeOther"]'
+              ).disabled = false;
+            }
+            if (defaults.corrosionClass === "custom") {
+              document.querySelector(
+                'input[name="corrosionClassCustom"]'
+              ).disabled = false;
+            }
+
+            this.textContent = "✓ Filled!";
+            this.style.background = "#69ffc2";
+            this.style.borderColor = "#69ffc2";
+            this.style.color = "#0a0f0e";
+            setTimeout(() => {
+              this.textContent = "⚡ Instafill (Debug)";
+              this.style.background = "#ff6b35";
+              this.style.borderColor = "#ff6b35";
+              this.style.color = "#fff";
+            }, 1500);
+          } catch (err) {
+            console.error("Instafill failed:", err);
+            alert("Failed to load defaults: " + err.message);
+          }
+        });
 
       // Handle "Other" text inputs - enable only when "Other" radio is selected
       (function setupOtherInputs() {
         const otherFields = [
-          { radio: 'temperatureRise', value: 'other', input: 'temperatureRiseOther' },
-          { radio: 'oilType', value: 'other', input: 'oilTypeOther' },
-          { radio: 'corrosionClass', value: 'custom', input: 'corrosionClassCustom' }
+          {
+            radio: "temperatureRise",
+            value: "other",
+            input: "temperatureRiseOther",
+          },
+          { radio: "oilType", value: "other", input: "oilTypeOther" },
+          {
+            radio: "corrosionClass",
+            value: "custom",
+            input: "corrosionClassCustom",
+          },
         ];
 
         otherFields.forEach(({ radio, value, input }) => {
           const radios = document.querySelectorAll(`input[name="${radio}"]`);
           const textInput = document.querySelector(`input[name="${input}"]`);
-          
-          radios.forEach(r => {
-            r.addEventListener('change', () => {
+
+          radios.forEach((r) => {
+            r.addEventListener("change", () => {
               textInput.disabled = r.value !== value || !r.checked;
               if (!textInput.disabled) textInput.focus();
             });
@@ -721,87 +1179,96 @@
       // Load saved draft if returning from review
       (function loadDraft() {
         const urlParams = new URLSearchParams(window.location.search);
-        const editId = urlParams.get('edit');
+        const editId = urlParams.get("edit");
         if (editId) {
-          const saved = localStorage.getItem('nbpo_' + editId);
+          const saved = localStorage.getItem("nbpo_" + editId);
           if (saved) {
             const data = JSON.parse(saved);
-            const form = document.getElementById('nbpoForm');
-            
+            const form = document.getElementById("nbpoForm");
+
             // Populate form fields
-            Object.keys(data).forEach(key => {
-              if (key === 'submittedAt' || key === 'id') return;
-              
+            Object.keys(data).forEach((key) => {
+              if (key === "submittedAt" || key === "id") return;
+
               const value = data[key];
               const elements = form.elements[key];
-              
+
               if (!elements) return;
-              
-              if (elements.length && elements[0]?.type === 'radio') {
+
+              if (elements.length && elements[0]?.type === "radio") {
                 // Radio buttons
                 for (let el of elements) {
                   if (el.value === value) el.checked = true;
                 }
-              } else if (elements.length && elements[0]?.type === 'checkbox') {
+              } else if (elements.length && elements[0]?.type === "checkbox") {
                 // Checkboxes
                 const values = Array.isArray(value) ? value : [value];
                 for (let el of elements) {
                   el.checked = values.includes(el.value);
                 }
-              } else if (elements.type === 'checkbox') {
+              } else if (elements.type === "checkbox") {
                 elements.checked = value === elements.value;
               } else if (elements.nodeName) {
                 elements.value = value;
               }
             });
-            
+
             // Store the ID for resubmission
             form.dataset.editId = editId;
 
             // Enable "Other" text inputs if their radio is selected
-            if (data.temperatureRise === 'other') {
-              document.querySelector('input[name="temperatureRiseOther"]').disabled = false;
+            if (data.temperatureRise === "other") {
+              document.querySelector(
+                'input[name="temperatureRiseOther"]'
+              ).disabled = false;
             }
-            if (data.oilType === 'other') {
-              document.querySelector('input[name="oilTypeOther"]').disabled = false;
+            if (data.oilType === "other") {
+              document.querySelector(
+                'input[name="oilTypeOther"]'
+              ).disabled = false;
             }
-            if (data.corrosionClass === 'custom') {
-              document.querySelector('input[name="corrosionClassCustom"]').disabled = false;
+            if (data.corrosionClass === "custom") {
+              document.querySelector(
+                'input[name="corrosionClassCustom"]'
+              ).disabled = false;
             }
           }
         }
       })();
 
-      document.getElementById('nbpoForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(this);
-        const data = {};
-        
-        // Handle regular fields
-        for (let [key, value] of formData.entries()) {
-          if (data[key]) {
-            if (Array.isArray(data[key])) {
-              data[key].push(value);
+      document
+        .getElementById("nbpoForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const formData = new FormData(this);
+          const data = {};
+
+          // Handle regular fields
+          for (let [key, value] of formData.entries()) {
+            if (data[key]) {
+              if (Array.isArray(data[key])) {
+                data[key].push(value);
+              } else {
+                data[key] = [data[key], value];
+              }
             } else {
-              data[key] = [data[key], value];
+              data[key] = value;
             }
-          } else {
-            data[key] = value;
           }
-        }
 
-        // Use existing ID if editing, otherwise generate new one
-        const id = this.dataset.editId || Math.random().toString(36).substring(2, 10);
-        data.id = id;
-        data.savedAt = new Date().toISOString();
+          // Use existing ID if editing, otherwise generate new one
+          const id =
+            this.dataset.editId || Math.random().toString(36).substring(2, 10);
+          data.id = id;
+          data.savedAt = new Date().toISOString();
 
-        // Save to localStorage
-        localStorage.setItem('nbpo_' + id, JSON.stringify(data));
-        
-        // Navigate to review page
-        window.location.href = '/receive-instant-quote/review.html?id=' + id;
-      });
+          // Save to localStorage
+          localStorage.setItem("nbpo_" + id, JSON.stringify(data));
+
+          // Navigate to review page
+          window.location.href = "/receive-instant-quote/review.html?id=" + id;
+        });
     </script>
   </body>
 </html>
