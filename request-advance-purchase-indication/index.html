@@ -62,7 +62,7 @@
       </div>
       <div class="nav-links">
         <a href="/contact-us" class="nav-link contact-nav-btn">Contact Us</a>
-        <a href="/receive-instant-quote" class="nav-link"
+        <a href="/request-advance-purchase-indication" class="nav-link"
           >Request Advance Purchase Indication</a
         >
       </div>
@@ -835,7 +835,7 @@
         .addEventListener("click", async function () {
           try {
             const response = await fetch(
-              "/receive-instant-quote/instafill-defaults.json"
+              "/request-advance-purchase-indication/instafill-defaults.json"
             );
             const defaults = await response.json();
             const form = document.getElementById("nbpoForm");
@@ -1015,7 +1015,8 @@
           localStorage.setItem("nbpo_" + id, JSON.stringify(data));
 
           // Navigate to review page
-          window.location.href = "/receive-instant-quote/review.html?id=" + id;
+          window.location.href =
+            "/request-advance-purchase-indication/review.html?id=" + id;
         });
     </script>
   </body>
