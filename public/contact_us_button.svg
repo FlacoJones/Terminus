@@ -4,13 +4,13 @@
     <style>
       .cls-1 {
         fill: none;
-        stroke: #00e8dd;
+        stroke: #ffffff;
         stroke-miterlimit: 10;
         stroke-width: 3.53px;
       }
 
       .cls-2 {
-        fill: #00e8dd;
+        fill: #ffffff;
         font-family: RobotoMono-Bold, 'Roboto Mono';
         font-size: 22px;
         font-weight: 700;
