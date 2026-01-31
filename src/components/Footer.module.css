@@ -12,7 +12,7 @@
 }
 
 .madeInUsa {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
   font-size: 36px;
   font-weight: 700;
   color: var(--brand-gray);

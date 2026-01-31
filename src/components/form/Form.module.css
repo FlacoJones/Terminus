@@ -8,7 +8,7 @@
 }
 
 .formFieldset legend {
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
   font-size: 1rem;
   font-weight: 700;
   color: var(--brand-cyan);
@@ -18,7 +18,7 @@
 }
 
 .fieldsetNote {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
   font-size: 0.85rem;
   color: var(--brand-light-gray);
   margin-bottom: 1rem;
@@ -35,7 +35,7 @@
 
 .formGroup > label {
   display: block;
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--brand-gray);
@@ -58,7 +58,7 @@
 .formGroup select {
   width: 100%;
   padding: 0.75rem 1rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
   font-size: 1rem;
   color: var(--brand-white);
   background: rgba(10, 15, 14, 0.8);
@@ -94,7 +94,7 @@
   padding: 0.4rem 0.6rem;
   font-size: 0.9rem;
   margin-left: 0.5rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
   color: var(--brand-white);
   background: rgba(10, 15, 14, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -134,7 +134,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
   font-size: 0.95rem;
   color: var(--brand-light-gray);
   cursor: pointer;
@@ -164,7 +164,7 @@
   background: transparent;
   border: 3px solid var(--brand-cyan);
   color: var(--brand-cyan);
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.1em;

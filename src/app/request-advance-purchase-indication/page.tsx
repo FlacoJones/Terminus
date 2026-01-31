@@ -9,14 +9,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Request Advance Purchase Indication - Terminus Industrials',
     description: 'Defense-Grade Advanced Manufacturing',
-    images: ['/public/logo.svg'],
+    images: ['/logo.svg'],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Request Advance Purchase Indication - Terminus Industrials',
     description: 'Defense-Grade Advanced Manufacturing',
-    images: ['/public/logo.svg'],
+    images: ['/logo.svg'],
   },
 };
 

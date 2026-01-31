@@ -1,4 +1,4 @@
-import Image from 'next/image';
+/* eslint-disable @next/next/no-img-element */
 import styles from './Footer.module.css';
 
 export function Footer() {
@@ -11,12 +11,10 @@ export function Footer() {
         rel="noopener noreferrer"
         className={styles.socialLink}
       >
-        <Image
-          src="/public/x.png"
+        <img
+          src="/x.png"
           alt="X (Twitter)"
           className={styles.xLogo}
-          width={24}
-          height={24}
         />
       </a>
     </footer>

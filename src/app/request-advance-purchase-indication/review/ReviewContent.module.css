@@ -10,7 +10,7 @@
 }
 
 .reviewTitle {
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--brand-cyan);
@@ -19,7 +19,7 @@
 }
 
 .reviewId {
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
   font-size: 0.9rem;
   color: var(--brand-light-gray);
   background: rgba(255, 255, 255, 0.1);
@@ -41,7 +41,7 @@
 
 .btnEdit,
 .btnConfirm {
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -94,7 +94,7 @@
 }
 
 .reviewSectionTitle {
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
   font-size: 1rem;
   font-weight: 700;
   color: var(--brand-cyan);
@@ -122,7 +122,7 @@
 }
 
 .reviewLabel {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--brand-light-gray);
@@ -131,7 +131,7 @@
 }
 
 .reviewValue {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
   font-size: 1rem;
   color: var(--brand-white);
   padding: 0.5rem 0.75rem;
@@ -177,14 +177,14 @@
 }
 
 .notFound h2 {
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
   font-size: 1.5rem;
   color: var(--brand-cyan);
   margin-bottom: 1rem;
 }
 
 .notFound p {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
   color: var(--brand-gray);
   margin-bottom: 2rem;
 }
@@ -195,7 +195,7 @@
 }
 
 .loading p {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
   color: var(--brand-gray);
 }
 

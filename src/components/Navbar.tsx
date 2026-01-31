@@ -1,8 +1,8 @@
 'use client';
 
+/* eslint-disable @next/next/no-img-element */
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import styles from './Navbar.module.css';
 
 export function Navbar() {
@@ -44,13 +44,10 @@ export function Navbar() {
     <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
         <Link href="/">
-          <Image
-            src="/public/logo.svg"
+          <img
+            src="/logo.svg"
             alt="Terminus Logo"
             className={styles.logo}
-            width={80}
-            height={40}
-            priority
           />
         </Link>
       </div>

@@ -41,7 +41,7 @@
 }
 
 .title {
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--brand-cyan);
@@ -57,7 +57,7 @@
 }
 
 .thankYouTitle {
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
   font-size: 2rem;
   font-weight: 700;
   color: var(--brand-cyan);
@@ -67,7 +67,7 @@
 }
 
 .thankYouMessage {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
   font-size: 1rem;
   color: var(--brand-gray);
   line-height: 1.7;
@@ -75,6 +75,7 @@
 }
 
 .thankYouHighlight {
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
   color: var(--brand-white);
   font-weight: 700;
   font-size: 1.1rem;
@@ -86,7 +87,7 @@
   background: var(--brand-cyan);
   border: 2px solid var(--brand-cyan);
   color: #0a0f0e;
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.05em;

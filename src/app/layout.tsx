@@ -26,14 +26,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Terminus Industrials',
     description: 'Defense-Grade Advanced Manufacturing',
-    images: ['/public/logo.svg'],
+    images: ['/logo.svg'],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Terminus Industrials',
     description: 'Defense-Grade Advanced Manufacturing',
-    images: ['/public/logo.svg'],
+    images: ['/logo.svg'],
   },
 };
 
@@ -43,8 +43,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${roboto.variable} ${robotoMono.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${roboto.variable} ${robotoMono.variable}`} suppressHydrationWarning>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
