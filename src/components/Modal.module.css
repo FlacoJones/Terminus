@@ -1,0 +1,118 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 15, 14, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.content {
+  background: rgba(10, 15, 14, 0.98);
+  border: 2px solid var(--brand-cyan);
+  border-radius: 12px;
+  padding: 3rem;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+}
+
+.closeX {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--brand-gray);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  line-height: 1;
+}
+
+.closeX:hover {
+  color: var(--brand-cyan);
+}
+
+.title {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Thank You / Success Modal */
+.thankYouContent {
+  text-align: center;
+}
+
+.thankYouTitle {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.thankYouMessage {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: var(--brand-gray);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.thankYouHighlight {
+  color: var(--brand-white);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+.closeBtn {
+  margin-top: 2rem;
+  background: var(--brand-cyan);
+  border: 2px solid var(--brand-cyan);
+  color: #0a0f0e;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.closeBtn:hover {
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .thankYouTitle {
+    font-size: 1.5rem;
+  }
+}

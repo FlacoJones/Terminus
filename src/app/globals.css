@@ -1,0 +1,228 @@
+:root {
+  /* Brand Colors */
+  --brand-gray: #cfd9d6; /* CMYK: 19, 15, 16, 0 */
+  --brand-white: #ffffff; /* CMYK: 0, 0, 0, 0 */
+  --brand-light-gray: #b0c7c7; /* CMYK: 31, 22, 22, 0 */
+  --brand-cyan: #ffffff; /* Changed from green to white */
+  --brand-blue: #0c81e8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #0a0f0e;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url('/public/background.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Page Container */
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.page-heading {
+  font-family: 'Roboto Mono', monospace;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  color: var(--brand-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+/* ===== FORM PAGE STYLES ===== */
+
+.form-page-container {
+  min-height: 100vh;
+  padding: 8rem 2rem 4rem;
+  overflow-y: auto;
+}
+
+.form-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(10, 15, 14, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 3rem;
+  backdrop-filter: blur(10px);
+}
+
+/* Document Header */
+.document-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.document-title {
+  font-family: 'Roboto Mono', monospace;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: var(--brand-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.document-subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: var(--brand-gray);
+  margin-bottom: 1.5rem;
+}
+
+.document-parties {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+  color: var(--brand-light-gray);
+  line-height: 1.8;
+}
+
+.document-parties strong {
+  color: var(--brand-white);
+}
+
+/* Text Sections */
+.text-section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-section p,
+.text-section-inner p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: var(--brand-gray);
+  line-height: 1.7;
+}
+
+.text-section p.small-text,
+.text-section-inner p.small-text {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.text-section-inner {
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border-left: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.section-title {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.section-note {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  color: var(--brand-light-gray);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+/* Form Submit wrapper */
+.form-submit {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+/* Contact Modal styles (reused in contact page) */
+.contact-modal h2 {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.contact-form-modal .form-group-modal {
+  margin-bottom: 1.25rem;
+}
+
+.contact-form-modal .form-group-modal label {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brand-gray);
+  margin-bottom: 0.5rem;
+}
+
+.contact-form-modal input,
+.contact-form-modal textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: var(--brand-white);
+  background: rgba(10, 15, 14, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.contact-form-modal input:focus,
+.contact-form-modal textarea:focus {
+  outline: none;
+  border-color: var(--brand-cyan);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.contact-form-modal textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.modal-submit-btn {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Form Page Responsive */
+@media (max-width: 768px) {
+  .form-page-container {
+    padding: 6rem 1rem 3rem;
+  }
+
+  .form-wrapper {
+    padding: 1.5rem;
+  }
+
+  .document-title {
+    font-size: 1.3rem;
+  }
+}

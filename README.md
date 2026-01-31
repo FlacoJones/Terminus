@@ -1,96 +1,159 @@
-# Terminus Industrials - GitHub Pages Site
+# Terminus Industrials
 
-This is a GitHub Pages project for terminusindustrials.com.
+A modern Next.js application for Terminus Industrials - Defense-Grade Advanced Manufacturing.
 
-## Setup Instructions
+## Tech Stack
 
-### 1. Create a GitHub Repository
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript (strict mode)
+- **Styling**: CSS Modules + Global CSS
+- **Linting**: ESLint with TypeScript, React, and Next.js plugins
+- **Email**: Cloudflare Workers (Mailgun integration)
 
-1. Create a new repository on GitHub (e.g., `terminusindustrials` or `terminus-industrials`)
-2. Initialize and push this code to the repository:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-   git push -u origin main
-   ```
+## Getting Started
 
-### 2. Enable GitHub Pages
+### Prerequisites
 
-1. Go to your repository on GitHub
-2. Navigate to **Settings** → **Pages**
-3. Under **Source**, select the branch (usually `main`) and folder (usually `/ (root)`)
-4. Click **Save**
+- Node.js 18.x or later
+- Yarn
 
-### 3. Configure Custom Domain
+### Installation
 
-1. In the same **Pages** settings section, enter `terminusindustrials.com` in the **Custom domain** field
-2. Click **Save**
-3. The `CNAME` file is already included in this repository
+```bash
+yarn install
+```
 
-### 4. DNS Configuration
+### Development
 
-Configure your DNS records with your domain provider:
+```bash
+yarn dev
+```
 
-**Option A: Apex Domain (terminusindustrials.com)**
-- Type: `A`
-- Name: `@` or `terminusindustrials.com`
-- Value: 
-  - `185.199.108.153`
-  - `185.199.109.153`
-  - `185.199.110.153`
-  - `185.199.111.153`
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-**Option B: Subdomain (www.terminusindustrials.com)**
-- Type: `CNAME`
-- Name: `www`
-- Value: `YOUR_USERNAME.github.io`
+### Build
 
-**Option C: Both (Recommended)**
-- Set up both A records for the apex domain AND a CNAME for www
-- This allows both `terminusindustrials.com` and `www.terminusindustrials.com` to work
+```bash
+yarn build
+```
 
-### 5. SSL Certificate
+### Type Checking
 
-GitHub Pages will automatically provision an SSL certificate for your custom domain. This may take a few minutes to a few hours after DNS propagation.
+```bash
+yarn type-check
+```
 
-## Local Development
+### Linting
 
-To test the site locally:
-
-1. Simply open `index.html` in a web browser, or
-2. Use a local server:
-   ```bash
-   # Python 3
-   python3 -m http.server 8000
-   
-   # Node.js (with http-server)
-   npx http-server
-   ```
-3. Visit `http://localhost:8000` in your browser
+```bash
+yarn lint
+yarn lint:fix  # Auto-fix issues
+```
 
 ## Project Structure
 
 ```
-.
-├── index.html      # Main HTML file
-├── styles.css      # Stylesheet
-├── script.js       # JavaScript functionality
-├── CNAME          # Custom domain configuration
-└── README.md      # This file
+src/
+├── app/                          # Next.js App Router pages
+│   ├── layout.tsx               # Root layout
+│   ├── page.tsx                 # Homepage
+│   ├── globals.css              # Global styles
+│   ├── contact-us/              # Contact page
+│   │   ├── page.tsx
+│   │   ├── ContactForm.tsx
+│   │   └── ContactForm.module.css
+│   └── request-advance-purchase-indication/
+│       ├── page.tsx             # API form page
+│       ├── APIForm.tsx
+│       ├── APIForm.module.css
+│       └── review/              # Review & submit page
+│           ├── page.tsx
+│           ├── ReviewContent.tsx
+│           └── ReviewContent.module.css
+├── components/                   # Reusable components
+│   ├── Navbar.tsx
+│   ├── Footer.tsx
+│   ├── Modal.tsx
+│   ├── form/                    # Form components
+│   │   ├── FormGroup.tsx
+│   │   ├── FormFieldset.tsx
+│   │   ├── RadioGroup.tsx
+│   │   ├── SubmitButton.tsx
+│   │   └── Form.module.css
+│   └── index.ts                 # Component exports
+├── actions/                     # Server Actions
+│   └── email.ts                 # Email sending functionality
+├── types/                       # TypeScript types
+│   └── forms.ts                 # Form types and constants
+public/                          # Static assets
+├── logo.svg
+├── wordmark.svg
+├── background.svg
+└── ...
+email-worker/                    # Cloudflare Worker for email
+├── src/index.js
+├── wrangler.toml
+└── package.json
 ```
 
-## Customization
+## Environment Variables
 
-- Edit `index.html` to modify the content
-- Edit `styles.css` to change the styling
-- Edit `script.js` to modify the JavaScript behavior
-- Update the `CNAME` file if you need to change the domain
+Copy `.env.example` to `.env.local` and configure:
 
-## Notes
+```bash
+cp .env.example .env.local
+```
 
-- The site will be available at `https://terminusindustrials.com` after DNS propagation
-- GitHub Pages supports Jekyll, but this is a static HTML site
-- Make sure to commit and push changes to see them live (may take a few minutes)
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `EMAIL_WORKER_URL` | Cloudflare Worker URL for email | Production URL |
+| `NEXT_PUBLIC_BASE_URL` | Base URL for metadata | https://terminusindustrials.com |
+
+## Features
+
+### Pages
+
+- **Homepage** (`/`): Hero section with company branding
+- **Contact Us** (`/contact-us`): Contact form with email notifications
+- **Request API** (`/request-advance-purchase-indication`): Detailed technical requirements form
+- **Review** (`/request-advance-purchase-indication/review`): Review and submit API form
+
+### Key Functionality
+
+- **Server Actions**: Email sending is handled server-side for security
+- **TypeScript**: Full type coverage with strict mode enabled
+- **Responsive Design**: Mobile-first responsive layout
+- **Form Persistence**: Draft forms saved to localStorage for editing
+
+## Email Worker
+
+The email worker is a separate Cloudflare Workers project located in `email-worker/`. It handles sending emails via Mailgun.
+
+### Deploy Email Worker
+
+```bash
+cd email-worker
+yarn install
+yarn wrangler deploy
+```
+
+## Deployment
+
+### Vercel (Recommended)
+
+```bash
+yarn build
+vercel deploy
+```
+
+### Static Export
+
+For static hosting (GitHub Pages, etc.):
+
+1. Uncomment `output: 'export'` in `next.config.js`
+2. Run `yarn build`
+3. Deploy the `out/` directory
+
+## License
+
+Proprietary - Terminus Industrials, Inc.
