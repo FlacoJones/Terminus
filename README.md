@@ -4,8 +4,9 @@ A modern Next.js application for Terminus Industrials - Defense-Grade Advanced M
 
 ## Tech Stack
 
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: Next.js 15 (App Router) with Turbopack
 - **Language**: TypeScript (strict mode)
+- **React**: React 19
 - **Styling**: CSS Modules + Global CSS
 - **Linting**: ESLint with TypeScript, React, and Next.js plugins
 - **Email**: Cloudflare Workers (Mailgun integration)

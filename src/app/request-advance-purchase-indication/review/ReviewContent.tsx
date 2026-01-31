@@ -82,7 +82,7 @@ export function ReviewContent() {
     );
   }
 
-  const renderValue = (value: unknown): string | JSX.Element => {
+  const renderValue = (value: unknown): string | React.ReactNode => {
     if (Array.isArray(value)) {
       return (
         <span className={styles.tagList}>
