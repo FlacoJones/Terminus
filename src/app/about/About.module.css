@@ -1,0 +1,200 @@
+.aboutContent {
+  padding: 1rem 0;
+}
+
+.title {
+  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--brand-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.lead {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-size: 1.2rem;
+  color: var(--brand-white);
+  line-height: 1.8;
+  text-align: center;
+}
+
+.text {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-size: 1rem;
+  color: var(--brand-gray);
+  line-height: 1.7;
+}
+
+/* List styles */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0 0;
+}
+
+.listItem {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-size: 1rem;
+  color: var(--brand-gray);
+  line-height: 1.6;
+}
+
+.listItem::before {
+  content: "●";
+  position: absolute;
+  left: 0;
+  color: var(--brand-cyan);
+  font-size: 0.6rem;
+  top: 0.4rem;
+}
+
+.listItem:last-child {
+  margin-bottom: 0;
+}
+
+/* Approach grid */
+.approachGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.approachCard {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.approachTitle {
+  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--brand-white);
+  margin-bottom: 0.75rem;
+}
+
+.approachText {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-size: 0.9rem;
+  color: var(--brand-gray);
+  line-height: 1.6;
+}
+
+/* Team grid */
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.teamCard {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.teamName {
+  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brand-white);
+  margin-bottom: 0.25rem;
+}
+
+.teamRole {
+  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--brand-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.teamBio {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-size: 0.9rem;
+  color: var(--brand-gray);
+  line-height: 1.6;
+}
+
+/* Vision section */
+.visionSection {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid var(--brand-cyan);
+  border-radius: 0 8px 8px 0;
+}
+
+.visionText {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-size: 1rem;
+  color: var(--brand-gray);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.visionQuote {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-size: 1rem;
+  color: var(--brand-white);
+  line-height: 1.8;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .teamGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.1rem;
+  }
+
+  .lead {
+    font-size: 1.1rem;
+  }
+
+  .approachGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .visionSection {
+    padding: 1.5rem;
+  }
+}

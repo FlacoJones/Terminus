@@ -1,0 +1,110 @@
+.careersContent {
+  padding: 1rem 0;
+}
+
+.title {
+  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--brand-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.intro {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-size: 1.1rem;
+  color: var(--brand-gray);
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+
+.positionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.positionCard {
+  display: block;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.positionCard:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.positionTitle {
+  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brand-white);
+  margin-bottom: 0.5rem;
+}
+
+.positionLocation {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-size: 0.9rem;
+  color: var(--brand-cyan);
+  margin-bottom: 1rem;
+}
+
+.positionDescription {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-size: 0.95rem;
+  color: var(--brand-gray);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.viewDetails {
+  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brand-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.positionCard:hover .viewDetails {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.1rem;
+  }
+
+  .positionCard {
+    padding: 1.25rem;
+  }
+
+  .positionTitle {
+    font-size: 1rem;
+  }
+}
