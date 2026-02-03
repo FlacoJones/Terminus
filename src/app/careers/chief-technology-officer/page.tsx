@@ -9,14 +9,14 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: 'Chief Technology Officer | Careers | Terminus Industrials',
 		description: 'Join Terminus Industrials as Chief Technology Officer - Define and own the full technology stack for defense-grade advanced manufacturing',
-		images: ['/logo.png'],
+		images: ['/og-image.png'],
 		type: 'website',
 	},
 	twitter: {
 		card: 'summary_large_image',
 		title: 'Chief Technology Officer | Careers | Terminus Industrials',
 		description: 'Join Terminus Industrials as Chief Technology Officer - Define and own the full technology stack for defense-grade advanced manufacturing',
-		images: ['/logo.png'],
+		images: ['/og-image.png'],
 	},
 };
 

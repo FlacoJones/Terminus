@@ -8,14 +8,14 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: 'Contact Us | Terminus Industrials',
 		description: 'Contact Terminus Industrials - Defense-Grade Advanced Manufacturing',
-		images: ['/logo.png'],
+		images: ['/og-image.png'],
 		type: 'website',
 	},
 	twitter: {
 		card: 'summary_large_image',
 		title: 'Contact Us | Terminus Industrials',
 		description: 'Contact Terminus Industrials - Defense-Grade Advanced Manufacturing',
-		images: ['/logo.png'],
+		images: ['/og-image.png'],
 	},
 };
 
