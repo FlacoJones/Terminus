@@ -9,14 +9,14 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: 'Head of Product Engineering | Careers | Terminus Industrials',
 		description: 'Join Terminus Industrials as Head of Product Engineering - Lead design, materials, and manufacturability for Large Power Transformers',
-		images: ['/logo.svg'],
+		images: ['/logo.png'],
 		type: 'website',
 	},
 	twitter: {
 		card: 'summary_large_image',
 		title: 'Head of Product Engineering | Careers | Terminus Industrials',
 		description: 'Join Terminus Industrials as Head of Product Engineering - Lead design, materials, and manufacturability for Large Power Transformers',
-		images: ['/logo.svg'],
+		images: ['/logo.png'],
 	},
 };
 

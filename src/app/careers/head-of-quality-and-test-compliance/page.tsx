@@ -9,14 +9,14 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: 'Head of Quality and Test Compliance | Careers | Terminus Industrials',
 		description: 'Join Terminus Industrials as Head of Quality and Test Compliance - Lead laboratory accreditation, testing procedures, and compliance systems',
-		images: ['/logo.svg'],
+		images: ['/logo.png'],
 		type: 'website',
 	},
 	twitter: {
 		card: 'summary_large_image',
 		title: 'Head of Quality and Test Compliance | Careers | Terminus Industrials',
 		description: 'Join Terminus Industrials as Head of Quality and Test Compliance - Lead laboratory accreditation, testing procedures, and compliance systems',
-		images: ['/logo.svg'],
+		images: ['/logo.png'],
 	},
 };
 
