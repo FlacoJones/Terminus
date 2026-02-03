@@ -3,20 +3,37 @@ import Link from 'next/link';
 import { Navbar, Footer } from '@/components';
 import styles from '../[slug]/CareerDetail.module.css';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://cad.terminusindustrials.com';
+
 export const metadata: Metadata = {
 	title: 'Head of Product Engineering | Careers | Terminus Industrials',
 	description: 'Join Terminus Industrials as Head of Product Engineering - Lead design, materials, and manufacturability for Large Power Transformers',
 	openGraph: {
 		title: 'Head of Product Engineering | Careers | Terminus Industrials',
 		description: 'Join Terminus Industrials as Head of Product Engineering - Lead design, materials, and manufacturability for Large Power Transformers',
-		images: ['/og-image.png'],
+		images: [
+			{
+				url: `${baseUrl}/og-image.png`,
+				width: 1200,
+				height: 630,
+				alt: 'Head of Product Engineering - Terminus Industrials',
+			},
+		],
 		type: 'website',
 	},
 	twitter: {
 		card: 'summary_large_image',
+		site: '@TerminusIndstrl',
 		title: 'Head of Product Engineering | Careers | Terminus Industrials',
 		description: 'Join Terminus Industrials as Head of Product Engineering - Lead design, materials, and manufacturability for Large Power Transformers',
-		images: ['/og-image.png'],
+		images: [
+			{
+				url: `${baseUrl}/og-image.png`,
+				width: 1200,
+				height: 630,
+				alt: 'Head of Product Engineering - Terminus Industrials',
+			},
+		],
 	},
 };
 

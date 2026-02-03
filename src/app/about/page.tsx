@@ -2,20 +2,37 @@ import type { Metadata } from 'next';
 import { Navbar, Footer } from '@/components';
 import styles from './About.module.css';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://cad.terminusindustrials.com';
+
 export const metadata: Metadata = {
 	title: 'About | Terminus Industrials',
 	description: 'About Terminus Industrials - Defense-Grade Advanced Manufacturing for Critical U.S. Infrastructure',
 	openGraph: {
 		title: 'About | Terminus Industrials',
 		description: 'About Terminus Industrials - Defense-Grade Advanced Manufacturing for Critical U.S. Infrastructure',
-		images: ['/og-image.png'],
+		images: [
+			{
+				url: `${baseUrl}/og-image.png`,
+				width: 1200,
+				height: 630,
+				alt: 'About - Terminus Industrials',
+			},
+		],
 		type: 'website',
 	},
 	twitter: {
 		card: 'summary_large_image',
+		site: '@TerminusIndstrl',
 		title: 'About | Terminus Industrials',
 		description: 'About Terminus Industrials - Defense-Grade Advanced Manufacturing for Critical U.S. Infrastructure',
-		images: ['/og-image.png'],
+		images: [
+			{
+				url: `${baseUrl}/og-image.png`,
+				width: 1200,
+				height: 630,
+				alt: 'About - Terminus Industrials',
+			},
+		],
 	},
 };
 

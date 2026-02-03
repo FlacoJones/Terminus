@@ -16,8 +16,10 @@ const robotoMono = Roboto_Mono({
 	variable: '--font-roboto-mono',
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://cad.terminusindustrials.com';
+
 export const metadata: Metadata = {
-	metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? 'https://terminusindustrials.com'),
+	metadataBase: new URL(baseUrl),
 	title: 'Terminus Industrials',
 	description: 'Defense-Grade Advanced Manufacturing',
 	icons: {
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
 		siteName: 'Terminus Industrials',
 		images: [
 			{
-				url: '/og-image.png',
+				url: `${baseUrl}/og-image.png`,
 				width: 1200,
 				height: 630,
 				alt: 'Terminus Industrials Logo',
@@ -41,17 +43,18 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: 'summary_large_image',
+		site: '@TerminusIndstrl',
+		creator: '@TerminusIndstrl',
 		title: 'Terminus Industrials',
 		description: 'Defense-Grade Advanced Manufacturing',
 		images: [
 			{
-				url: '/og-image.png',
+				url: `${baseUrl}/og-image.png`,
 				width: 1200,
 				height: 630,
 				alt: 'Terminus Industrials Logo',
 			},
 		],
-		creator: '@TerminusIndstrl',
 	},
 };
 

@@ -3,20 +3,37 @@ import type { Metadata } from 'next';
 import { Navbar } from '@/components';
 import { APIForm } from './APIForm';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://cad.terminusindustrials.com';
+
 export const metadata: Metadata = {
 	title: 'Request Advance Purchase Indication - Terminus Industrials',
 	description: 'Request Advance Purchase Indication - Terminus Industrials',
 	openGraph: {
 		title: 'Request Advance Purchase Indication - Terminus Industrials',
 		description: 'Defense-Grade Advanced Manufacturing',
-		images: ['/og-image.png'],
+		images: [
+			{
+				url: `${baseUrl}/og-image.png`,
+				width: 1200,
+				height: 630,
+				alt: 'Request Advance Purchase Indication - Terminus Industrials',
+			},
+		],
 		type: 'website',
 	},
 	twitter: {
 		card: 'summary_large_image',
+		site: '@TerminusIndstrl',
 		title: 'Request Advance Purchase Indication - Terminus Industrials',
 		description: 'Defense-Grade Advanced Manufacturing',
-		images: ['/og-image.png'],
+		images: [
+			{
+				url: `${baseUrl}/og-image.png`,
+				width: 1200,
+				height: 630,
+				alt: 'Request Advance Purchase Indication - Terminus Industrials',
+			},
+		],
 	},
 };
 
