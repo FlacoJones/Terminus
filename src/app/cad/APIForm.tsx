@@ -1,85 +1,10 @@
 'use client';
 
 import { useEffect, useCallback } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { FormFieldset, FormGroup, FormRow, SubmitButton } from '@/components';
 import styles from './APIForm.module.css';
 
 export function APIForm() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const editId = searchParams.get('edit');
-
-  // Load saved draft if returning from review
-  useEffect(() => {
-    if (editId) {
-      const saved = localStorage.getItem('nbpo_' + editId);
-      if (saved) {
-        const data = JSON.parse(saved) as Record<string, unknown>;
-        const form = document.getElementById('nbpoForm') as HTMLFormElement;
-
-        if (!form) return;
-
-        // Populate form fields
-        Object.keys(data).forEach((key) => {
-          if (key === 'submittedAt' || key === 'id' || key === 'savedAt') return;
-
-          const value = data[key];
-          const elements = form.elements.namedItem(key);
-
-          if (!elements) return;
-
-          if (elements instanceof RadioNodeList) {
-            const firstEl = elements[0];
-            if (firstEl instanceof HTMLInputElement && firstEl.type === 'radio') {
-              Array.from(elements).forEach((el) => {
-                if (el instanceof HTMLInputElement && el.value === value) {
-                  el.checked = true;
-                }
-              });
-            } else if (firstEl instanceof HTMLInputElement && firstEl.type === 'checkbox') {
-              const values = Array.isArray(value) ? value : [value];
-              Array.from(elements).forEach((el) => {
-                if (el instanceof HTMLInputElement) {
-                  el.checked = values.includes(el.value);
-                }
-              });
-            }
-          } else if (elements instanceof HTMLInputElement) {
-            if (elements.type === 'checkbox') {
-              elements.checked = value === elements.value;
-            } else {
-              elements.value = String(value);
-            }
-          } else if (elements instanceof HTMLTextAreaElement || elements instanceof HTMLSelectElement) {
-            elements.value = String(value);
-          }
-        });
-
-        // Store the ID for resubmission
-        form.dataset.editId = editId;
-
-        // Enable "Other" text inputs if their radio is selected
-        enableOtherInputs(data);
-      }
-    }
-  }, [editId]);
-
-  const enableOtherInputs = (data: Record<string, unknown>) => {
-    if (data.temperatureRise === 'other') {
-      const input = document.querySelector('input[name="temperatureRiseOther"]') as HTMLInputElement;
-      if (input) input.disabled = false;
-    }
-    if (data.oilType === 'other') {
-      const input = document.querySelector('input[name="oilTypeOther"]') as HTMLInputElement;
-      if (input) input.disabled = false;
-    }
-    if (data.corrosionClass === 'custom') {
-      const input = document.querySelector('input[name="corrosionClassCustom"]') as HTMLInputElement;
-      if (input) input.disabled = false;
-    }
-  };
-
   // Handle "Other" text inputs - enable only when "Other" radio is selected
   useEffect(() => {
     const otherFields = [
@@ -125,17 +50,11 @@ export function APIForm() {
       }
     });
 
-    // Use existing ID if editing, otherwise generate new one
-    const id = form.dataset.editId ?? Math.random().toString(36).substring(2, 10);
-    data.id = id;
-    data.savedAt = new Date().toISOString();
+    data.submittedAt = new Date().toISOString();
 
-    // Save to localStorage
-    localStorage.setItem('nbpo_' + id, JSON.stringify(data));
-
-    // Navigate to review page
-    router.push('/request-advance-purchase-indication/review?id=' + id);
-  }, [router]);
+    // Print JSON to console
+    console.log(JSON.stringify(data, null, 2));
+  }, []);
 
   return (
     <form id="nbpoForm" onSubmit={handleSubmit}>
@@ -639,7 +558,7 @@ export function APIForm() {
 
       {/* Submit Button */}
       <div className="form-submit">
-        <SubmitButton>Review and Submit</SubmitButton>
+        <SubmitButton>Submit</SubmitButton>
       </div>
     </form>
   );

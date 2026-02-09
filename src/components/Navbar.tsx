@@ -62,9 +62,9 @@ export function Navbar() {
 				<Link href="/contact-us" className={`${styles.navLink} ${styles.contactNavBtn}`}>
 					Contact Us
 				</Link>
-				<Link href="/request-advance-purchase-indication" className={styles.navLink}>
-					Request Advance Purchase Indication
-				</Link>
+			<a href="https://cad.terminusindustrials.com" className={styles.navLink}>
+				Request Advance Purchase Indication
+			</a>
 			</div>
 
 			{/* Hamburger Menu for Mobile */}
@@ -95,13 +95,13 @@ export function Navbar() {
 				<Link href="/contact-us" className={styles.mobileMenuLink} onClick={closeMenu}>
 					Contact Us
 				</Link>
-				<Link
-					href="/request-advance-purchase-indication"
-					className={styles.mobileMenuLink}
-					onClick={closeMenu}
-				>
-					Request Advance Purchase Indication
-				</Link>
+			<a
+				href="https://cad.terminusindustrials.com"
+				className={styles.mobileMenuLink}
+				onClick={closeMenu}
+			>
+				Request Advance Purchase Indication
+			</a>
 			</div>
 		</nav>
 	);
