@@ -73,8 +73,8 @@
 /* Debug Button */
 .debugButton {
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
+  top: 1rem;
+  left: 1rem;
   padding: 0.75rem 1rem;
   font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
   font-size: 0.8rem;

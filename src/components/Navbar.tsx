@@ -5,7 +5,12 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import styles from './Navbar.module.css';
 
-export function Navbar() {
+interface NavbarProps {
+	logoOnly?: boolean;
+	logoHref?: string;
+}
+
+export function Navbar({ logoOnly = false, logoHref = '/' }: NavbarProps) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const toggleMenu = useCallback(() => {
@@ -43,56 +48,72 @@ export function Navbar() {
 	return (
 		<nav className={styles.navbar}>
 			<div className={styles.logoContainer}>
-				<Link href="/">
-					<img
-						src="/logo.svg"
-						alt="Terminus Logo"
-						className={styles.logo}
-					/>
-				</Link>
+				{logoHref.startsWith('http') ? (
+					<a href={logoHref}>
+						<img
+							src="/logo.svg"
+							alt="Terminus Logo"
+							className={styles.logo}
+						/>
+					</a>
+				) : (
+					<Link href={logoHref}>
+						<img
+							src="/logo.svg"
+							alt="Terminus Logo"
+							className={styles.logo}
+						/>
+					</Link>
+				)}
 			</div>
 
-			<div className={styles.navLinks}>
+			{!logoOnly && <div className={styles.navLinks}>
 				<Link href="/about" className={styles.navLink}>
 					About
 				</Link>
 				<Link href="/careers" className={styles.navLink}>
 					Careers
 				</Link>
-			<Link href="/contact-us" className={`${styles.navLink} ${styles.contactNavBtn}`}>
-				Contact Us
-			</Link>
-		</div>
+		<Link href="/contact-us" className={`${styles.navLink} ${styles.contactNavBtn}`}>
+			Contact Us
+		</Link>
+	</div>}
 
 			{/* Hamburger Menu for Mobile */}
-			<button
-				className={`${styles.hamburger} ${isMenuOpen ? styles.active : ''}`}
-				aria-label="Toggle navigation menu"
-				onClick={toggleMenu}
-			>
-				<span className={styles.hamburgerLine}></span>
-				<span className={styles.hamburgerLine}></span>
-				<span className={styles.hamburgerLine}></span>
-			</button>
+			{!logoOnly && (
+				<button
+					className={`${styles.hamburger} ${isMenuOpen ? styles.active : ''}`}
+					aria-label="Toggle navigation menu"
+					onClick={toggleMenu}
+				>
+					<span className={styles.hamburgerLine}></span>
+					<span className={styles.hamburgerLine}></span>
+					<span className={styles.hamburgerLine}></span>
+				</button>
+			)}
 
 			{/* Mobile Menu Overlay */}
-			<div
-				className={`${styles.mobileMenuOverlay} ${isMenuOpen ? styles.active : ''}`}
-				onClick={closeMenu}
-			/>
+			{!logoOnly && (
+				<div
+					className={`${styles.mobileMenuOverlay} ${isMenuOpen ? styles.active : ''}`}
+					onClick={closeMenu}
+				/>
+			)}
 
 			{/* Mobile Menu */}
-			<div className={`${styles.mobileMenu} ${isMenuOpen ? styles.active : ''}`}>
-				<Link href="/about" className={styles.mobileMenuLink} onClick={closeMenu}>
-					About
-				</Link>
-				<Link href="/careers" className={styles.mobileMenuLink} onClick={closeMenu}>
-					Careers
-				</Link>
-			<Link href="/contact-us" className={styles.mobileMenuLink} onClick={closeMenu}>
-				Contact Us
-			</Link>
-		</div>
+			{!logoOnly && (
+				<div className={`${styles.mobileMenu} ${isMenuOpen ? styles.active : ''}`}>
+					<Link href="/about" className={styles.mobileMenuLink} onClick={closeMenu}>
+						About
+					</Link>
+					<Link href="/careers" className={styles.mobileMenuLink} onClick={closeMenu}>
+						Careers
+					</Link>
+					<Link href="/contact-us" className={styles.mobileMenuLink} onClick={closeMenu}>
+						Contact Us
+					</Link>
+				</div>
+			)}
 		</nav>
 	);
 }

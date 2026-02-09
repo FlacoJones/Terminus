@@ -4,7 +4,7 @@ import { useEffect, useCallback } from 'react';
 import { FormFieldset, FormGroup, FormRow, SubmitButton } from '@/components';
 import styles from './APIForm.module.css';
 
-const HIDE_DEBUG = true;
+const HIDE_DEBUG = false;
 
 const DEBUG_DATA = {
   companyName: 'Acme Power Corp',
