@@ -1,7 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
-import { Navbar } from '@/components';
 import { APIForm } from './APIForm';
+import styles from './Cad.module.css';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://cad.terminusindustrials.com';
 
@@ -48,7 +49,15 @@ function FormLoadingFallback() {
 export default function CadPage() {
 	return (
 		<>
-			<Navbar />
+			<nav className={styles.navbar}>
+				<a href="https://terminusindustrials.com" className={styles.logoLink}>
+					<img
+						src="/logo.svg"
+						alt="Terminus Logo"
+						className={styles.logo}
+					/>
+				</a>
+			</nav>
 
 			<main className="form-page-container">
 				<div className="form-wrapper">
