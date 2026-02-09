@@ -1,0 +1,16 @@
+.main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+
+.title {
+  font-family: var(--font-roboto-mono);
+  font-size: 4rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.2em;
+}
