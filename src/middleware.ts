@@ -6,10 +6,15 @@ export function middleware(request: NextRequest) {
 
   // Check if we're on the CAD subdomain
   if (host.startsWith('cad.')) {
-    // Don't rewrite if already on a /cad path to avoid loops
+    // Rewrite to /cad route
     if (!url.pathname.startsWith('/cad')) {
       url.pathname = `/cad${url.pathname}`;
       return NextResponse.rewrite(url);
+    }
+  } else {
+    // Block direct access to /cad from main domain
+    if (url.pathname.startsWith('/cad')) {
+      return NextResponse.redirect(new URL('/', request.url));
     }
   }
 
