@@ -4,7 +4,93 @@ import { useEffect, useCallback } from 'react';
 import { FormFieldset, FormGroup, FormRow, SubmitButton } from '@/components';
 import styles from './APIForm.module.css';
 
+const HIDE_DEBUG = true;
+
+const DEBUG_DATA = {
+  companyName: 'Acme Power Corp',
+  projectName: 'Desert Solar Farm Phase 2',
+  siteAddress: '34.0522° N, 118.2437° W',
+  contactName: 'John Smith',
+  contactEmail: 'john.smith@acmepower.com',
+  contactPhone: '+1 (555) 123-4567',
+  hvRating: '138',
+  lvRating: '34.5',
+  mvaRating: '100',
+  frequency: '60Hz',
+  phase: '3-phase',
+  vectorGroup: 'Δ-Y',
+  groundingPreference: 'Solidly grounded',
+  targetImpedance: '8.5',
+  noLoadLoss: '45000',
+  loadLoss: '280000',
+  temperatureRise: '65C',
+  soundLevel: 'lowNoise',
+  soundLimit: '65',
+  tapChangerType: 'OLTC',
+  tapRange: '±10%',
+  tapSteps: '32',
+  tapLocation: 'HV',
+  hvBil: '550',
+  lvBil: '200',
+  surgeRequirements: 'enhanced',
+  maxShippingWeight: '180 metric tons',
+  maxHeight: '4.5m',
+  maxWidth: '4.0m',
+  maxLength: '8.0m',
+  seismicRating: 'zone4',
+  siteFootprint: 'Max pad area 15m x 20m. No overhead obstructions. East-west orientation preferred.',
+  coolingClass: 'ONAF',
+  coolingRedundancy: 'N+1',
+  oilType: 'naturalEster',
+  corrosionClass: 'heavyIndustrial',
+  noiseBarriers: 'no',
+  altitude: '350m',
+  maxAmbient: '45',
+  minAmbient: '-10',
+  testing: ['standardRoutine', 'temperatureRise', 'lightningImpulse', 'FRA'],
+  partialDischargeLimit: '300',
+  optionalUploads: ['utilitySpec'],
+  governingStandards: 'IEEEC57',
+  additionalNotes: 'Require factory witness testing. Delivery to be coordinated with site preparation schedule.',
+};
+
 export function APIForm() {
+  const handleDebugFill = useCallback(() => {
+    const form = document.getElementById('nbpoForm') as HTMLFormElement;
+    if (!form) return;
+
+    Object.entries(DEBUG_DATA).forEach(([key, value]) => {
+      const elements = form.elements.namedItem(key);
+      if (!elements) return;
+
+      if (elements instanceof RadioNodeList) {
+        const firstEl = elements[0];
+        if (firstEl instanceof HTMLInputElement && firstEl.type === 'radio') {
+          Array.from(elements).forEach((el) => {
+            if (el instanceof HTMLInputElement && el.value === value) {
+              el.checked = true;
+            }
+          });
+        } else if (firstEl instanceof HTMLInputElement && firstEl.type === 'checkbox') {
+          const values = Array.isArray(value) ? value : [value];
+          Array.from(elements).forEach((el) => {
+            if (el instanceof HTMLInputElement) {
+              el.checked = values.includes(el.value);
+            }
+          });
+        }
+      } else if (elements instanceof HTMLInputElement) {
+        if (elements.type === 'checkbox') {
+          elements.checked = value === elements.value;
+        } else {
+          elements.value = String(value);
+        }
+      } else if (elements instanceof HTMLTextAreaElement || elements instanceof HTMLSelectElement) {
+        elements.value = String(value);
+      }
+    });
+  }, []);
+
   // Handle "Other" text inputs - enable only when "Other" radio is selected
   useEffect(() => {
     const otherFields = [
@@ -560,6 +646,17 @@ export function APIForm() {
       <div className="form-submit">
         <SubmitButton>Submit</SubmitButton>
       </div>
+
+      {/* Debug Button */}
+      {!HIDE_DEBUG && (
+        <button
+          type="button"
+          onClick={handleDebugFill}
+          className={styles.debugButton}
+        >
+          Debug: Auto-fill Form
+        </button>
+      )}
     </form>
   );
 }

@@ -59,13 +59,10 @@ export function Navbar() {
 				<Link href="/careers" className={styles.navLink}>
 					Careers
 				</Link>
-				<Link href="/contact-us" className={`${styles.navLink} ${styles.contactNavBtn}`}>
-					Contact Us
-				</Link>
-			<a href="https://cad.terminusindustrials.com" className={styles.navLink}>
-				Request Advance Purchase Indication
-			</a>
-			</div>
+			<Link href="/contact-us" className={`${styles.navLink} ${styles.contactNavBtn}`}>
+				Contact Us
+			</Link>
+		</div>
 
 			{/* Hamburger Menu for Mobile */}
 			<button
@@ -92,17 +89,10 @@ export function Navbar() {
 				<Link href="/careers" className={styles.mobileMenuLink} onClick={closeMenu}>
 					Careers
 				</Link>
-				<Link href="/contact-us" className={styles.mobileMenuLink} onClick={closeMenu}>
-					Contact Us
-				</Link>
-			<a
-				href="https://cad.terminusindustrials.com"
-				className={styles.mobileMenuLink}
-				onClick={closeMenu}
-			>
-				Request Advance Purchase Indication
-			</a>
-			</div>
+			<Link href="/contact-us" className={styles.mobileMenuLink} onClick={closeMenu}>
+				Contact Us
+			</Link>
+		</div>
 		</nav>
 	);
 }

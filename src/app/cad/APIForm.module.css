@@ -70,6 +70,33 @@
   transition: all 0.3s ease;
 }
 
+/* Debug Button */
+.debugButton {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #000;
+  background: #ff6b6b;
+  border: 2px solid #ff6b6b;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 9999;
+  transition: all 0.2s ease;
+}
+
+.debugButton:hover {
+  background: #ff5252;
+  border-color: #ff5252;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
 /* Form Page Responsive */
 @media (max-width: 768px) {
   .radioGroup,
