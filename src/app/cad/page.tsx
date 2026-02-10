@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
-import { Navbar } from '@/components';
 import { APIForm } from './APIForm';
+import styles from './APIForm.module.css';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://cad.terminusindustrials.com';
 
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 function FormLoadingFallback() {
 	return (
 		<div style={{ textAlign: 'center', padding: '2rem', color: 'var(--brand-gray)' }}>
-			Loading form...
+			Loading...
 		</div>
 	);
 }
@@ -48,50 +48,26 @@ function FormLoadingFallback() {
 export default function CadPage() {
 	return (
 		<>
-			<Navbar logoOnly logoHref="https://terminusindustrials.com" />
+			<main className={styles.cadLayout}>
+				{/* Left Panel: Sidebar with form */}
+				<aside className={styles.sidebar}>
+					<div className={styles.sidebarHeader}>
+						<h1 className={styles.sidebarTitle}>Transformer Spec</h1>
+						<p className={styles.sidebarSubtitle}>Advance Purchase Indication</p>
+					</div>
 
-			<main className="form-page-container">
-				<div className="form-wrapper">
-					{/* Document Header */}
-					<header className="document-header">
-						<h1 className="document-title">Advance Purchase Indication (API)</h1>
-						<p className="document-parties">
-							between
-							<br />
-							<strong>TERMINUS INDUSTRIALS, INC</strong>
-							<br />
-							&amp; Your Company
-						</p>
-					</header>
-
-					{/* Section I: Purpose */}
-					<section className="text-section">
-						<h2 className="section-title">I. Purpose</h2>
-						<p className="small-text">
-							The purpose of this Advance Purchase Indication (&quot;API&quot;) is solely to
-							support preliminary planning, capacity forecasting, and commercial discussions
-							between the Requestor and Terminus Industrials. This API is a non-binding
-							expression of interest and does not create any obligation for either party to
-							enter into a definitive agreement, purchase product, reserve manufacturing
-							capacity, or commit to any financial transaction. It is not an offer,
-							acceptance, purchase order, or contract. Terminus Industrials, Inc. will
-							contact you directly regarding additional terms including indicative pricing
-							and delivery.
-						</p>
-					</section>
-
-					{/* Section II: Technical Requirements Form */}
-					<section className="form-section">
-						<h2 className="section-title">II. Indicative Technical Requirements</h2>
-						<p className="section-note">
-							Note that specifications are indicative and subject to final engineering
-							design at time of formal purchase order.
-						</p>
-
+					<div className={styles.sidebarContent}>
 						<Suspense fallback={<FormLoadingFallback />}>
 							<APIForm />
 						</Suspense>
-					</section>
+					</div>
+				</aside>
+
+				{/* Right Panel: Canvas / Viewport */}
+				<div className={styles.canvas}>
+					<div className={styles.canvasPlaceholder}>
+						<span className={styles.canvasLabel}>VIEWPORT</span>
+					</div>
 				</div>
 			</main>
 		</>

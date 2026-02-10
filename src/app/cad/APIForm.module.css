@@ -1,117 +1,431 @@
-/* Radio & Checkbox Groups */
-.radioGroup,
-.checkboxGroup {
+/* ═══════════════════════════════════════════
+   CAD Layout — Split Panel
+   ═══════════════════════════════════════════ */
+
+.cadLayout {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.checkboxGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 0.75rem;
+/* ─── Left Sidebar ─── */
+
+.sidebar {
+  width: 33.333%;
+  min-width: 340px;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  background: #111414;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
 }
 
-.radioLabel,
-.checkboxLabel {
+.sidebarHeader {
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.sidebarTitle {
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brand-white);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+
+.sidebarSubtitle {
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.25rem;
+}
+
+.sidebarContent {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+
+.sidebarContent::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebarContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebarContent::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+
+.sidebarContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Right Canvas ─── */
+
+.canvas {
+  flex: 1;
+  background: #000000;
   display: flex;
   align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.canvasPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvasLabel {
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.06);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+/* ═══════════════════════════════════════════
+   Form — Accordion Sections
+   ═══════════════════════════════════════════ */
+
+.cadForm {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Section ─── */
+
+.section {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.7rem 1.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.sectionHeader:hover {
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.sectionHeaderOpen {
+  color: var(--brand-white);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sectionIndex {
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.25);
+  min-width: 1.4rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  flex: 1;
+}
+
+.chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  opacity: 0.4;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+  opacity: 0.7;
+}
+
+/* ─── Section Body ─── */
+
+.sectionBody {
+  padding: 0.5rem 1.25rem 1rem;
+  animation: slideDown 0.15s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   Fields
+   ═══════════════════════════════════════════ */
+
+.field {
+  margin-bottom: 0.65rem;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.fieldLabel {
+  display: block;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.3rem;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.fieldRow:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── Inputs ─── */
+
+.input {
+  width: 100%;
+  padding: 0.45rem 0.6rem;
   font-family: var(--font-roboto), 'Roboto', sans-serif;
-  font-size: 0.95rem;
-  color: var(--brand-light-gray);
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.radioLabel:hover,
-.checkboxLabel:hover {
+  font-size: 0.8rem;
   color: var(--brand-white);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.radioLabel input[type='radio'],
-.checkboxLabel input[type='checkbox'] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--brand-cyan);
+.input:focus {
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  color: var(--brand-white);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  outline: none;
+  resize: vertical;
+  min-height: 50px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.textarea:focus {
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.textarea::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Radio & Checkbox ─── */
+
+.radioRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.radioCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.radioItem,
+.checkItem {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   cursor: pointer;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.15s ease;
 }
 
-/* Inline inputs (for "Other" options) */
+.radioItem:hover,
+.checkItem:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.radioItem input[type='radio'],
+.checkItem input[type='checkbox'] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--brand-white);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.checkGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+  margin-bottom: 0.65rem;
+}
+
+/* ─── Inline Input (for "Other" options) ─── */
+
 .inlineInput {
-  width: 150px;
-  padding: 0.4rem 0.6rem;
-  font-size: 0.9rem;
-  margin-left: 0.5rem;
+  width: 80px;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.75rem;
+  margin-left: 0.25rem;
   font-family: var(--font-roboto), 'Roboto', sans-serif;
   color: var(--brand-white);
-  background: rgba(10, 15, 14, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.inlineInput:focus {
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .inlineInput:disabled {
-  opacity: 0.5;
+  opacity: 0.3;
   cursor: not-allowed;
 }
 
-.inlineInputWide {
-  width: 200px;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
-  display: block;
-  font-family: var(--font-roboto), 'Roboto', sans-serif;
-  color: var(--brand-white);
-  background: rgba(10, 15, 14, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 6px;
-  transition: all 0.3s ease;
+/* ═══════════════════════════════════════════
+   Submit & Debug
+   ═══════════════════════════════════════════ */
+
+.submitArea {
+  padding: 1rem 1.25rem 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #111414;
+  background: var(--brand-white);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.submitBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.submitBtn:active {
+  transform: translateY(0);
 }
 
 /* Debug Button */
 .debugButton {
   position: fixed;
-  top: 1rem;
-  left: 1rem;
-  padding: 0.75rem 1rem;
+  top: 5rem;
+  left: 0.75rem;
+  padding: 0.4rem 0.6rem;
   font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: #000;
   background: #ff6b6b;
-  border: 2px solid #ff6b6b;
-  border-radius: 6px;
+  border: none;
+  border-radius: 3px;
   cursor: pointer;
   z-index: 9999;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .debugButton:hover {
   background: #ff5252;
-  border-color: #ff5252;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
 }
 
-/* Form Page Responsive */
+/* ═══════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════ */
+
 @media (max-width: 768px) {
-  .radioGroup,
-  .checkboxGroup {
+  .cadLayout {
     flex-direction: column;
-    gap: 0.75rem;
   }
 
-  .checkboxGrid {
+  .sidebar {
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+    height: 60vh;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .canvas {
+    height: 40vh;
+  }
+
+  .checkGrid {
     grid-template-columns: 1fr;
   }
 
-  .inlineInput {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 0.5rem;
+  .fieldRow {
+    grid-template-columns: 1fr;
   }
 }
