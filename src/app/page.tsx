@@ -12,7 +12,7 @@ export default function HomePage() {
 				<HeroVideo />
 			</div>
 
-			<Footer />
+			<Footer fixed />
 		</>
 	);
 }

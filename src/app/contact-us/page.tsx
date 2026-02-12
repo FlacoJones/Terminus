@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Navbar } from '@/components';
+import { Navbar, Footer } from '@/components';
 import { ContactForm } from './ContactForm';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://cad.terminusindustrials.com';
@@ -57,6 +57,8 @@ export default function ContactUsPage() {
 					</div>
 				</div>
 			</div>
+
+			<Footer />
 		</>
 	);
 }

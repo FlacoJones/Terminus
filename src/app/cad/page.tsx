@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
+import { Footer } from '@/components';
 import { APIForm } from './APIForm';
 import styles from './APIForm.module.css';
 
@@ -70,6 +71,8 @@ export default function CadPage() {
 					</div>
 				</div>
 			</main>
+
+			<Footer />
 		</>
 	);
 }
