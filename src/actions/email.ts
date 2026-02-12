@@ -3,7 +3,8 @@
 import type { ContactFormData, APISubmission } from '@/types/forms';
 import { FIELD_LABELS, REVIEW_SECTIONS, formatValue } from '@/types/forms';
 
-const EMAIL_WORKER_URL = process.env.EMAIL_WORKER_URL ?? 'https://terminus-email.terminusemail.workers.dev';
+const MAILGUN_API_KEY = process.env.MAILGUN_API_KEY;
+const MAILGUN_DOMAIN = process.env.MAILGUN_DOMAIN;
 
 interface EmailResult {
   success: boolean;
@@ -17,24 +18,37 @@ async function sendEmail(
   from?: string
 ): Promise<EmailResult> {
   try {
-    const response = await fetch(EMAIL_WORKER_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        to,
-        subject,
-        body,
-        from,
-      }),
-    });
+    // Validate Mailgun configuration
+    if (!MAILGUN_API_KEY || !MAILGUN_DOMAIN) {
+      console.error('Missing Mailgun configuration');
+      return { success: false, error: 'Email service not configured' };
+    }
 
-    const result = await response.json() as { success: boolean; error?: string };
+    // Default from address if not provided
+    const fromEmail = from ?? `Terminus Industrials <sales@${MAILGUN_DOMAIN}>`;
 
-    if (!response.ok || !result.success) {
-      console.error('Email worker error:', result.error);
-      return { success: false, error: result.error ?? 'Unknown error' };
+    // Send via Mailgun API
+    const response = await fetch(
+      `https://api.mailgun.net/v3/${MAILGUN_DOMAIN}/messages`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Basic ${Buffer.from(`api:${MAILGUN_API_KEY}`).toString('base64')}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          from: fromEmail,
+          to: to,
+          subject: subject,
+          text: body,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('Mailgun error:', error);
+      return { success: false, error };
     }
 
     return { success: true };

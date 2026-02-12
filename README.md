@@ -9,7 +9,7 @@ A modern Next.js application for Terminus Industrials - Defense-Grade Advanced M
 - **React**: React 19
 - **Styling**: CSS Modules + Global CSS
 - **Linting**: ESLint with TypeScript, React, and Next.js plugins
-- **Email**: Cloudflare Workers (Mailgun integration)
+- **Email**: Mailgun API (server-side integration)
 
 ## Getting Started
 
@@ -91,10 +91,6 @@ public/                          # Static assets
 ├── wordmark.svg
 ├── background.svg
 └── ...
-email-worker/                    # Cloudflare Worker for email
-├── src/index.js
-├── wrangler.toml
-└── package.json
 ```
 
 ## Environment Variables
@@ -107,7 +103,8 @@ cp .env.example .env.local
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `EMAIL_WORKER_URL` | Cloudflare Worker URL for email | Production URL |
+| `MAILGUN_API_KEY` | Mailgun API key for sending emails | Required |
+| `MAILGUN_DOMAIN` | Mailgun domain for sending emails | Required |
 | `NEXT_PUBLIC_BASE_URL` | Base URL for metadata | https://terminusindustrials.com |
 
 ## Features
@@ -125,18 +122,7 @@ cp .env.example .env.local
 - **TypeScript**: Full type coverage with strict mode enabled
 - **Responsive Design**: Mobile-first responsive layout
 - **Form Persistence**: Draft forms saved to localStorage for editing
-
-## Email Worker
-
-The email worker is a separate Cloudflare Workers project located in `email-worker/`. It handles sending emails via Mailgun.
-
-### Deploy Email Worker
-
-```bash
-cd email-worker
-yarn install
-yarn wrangler deploy
-```
+- **Email Integration**: Direct Mailgun API integration for email notifications
 
 ## Deployment
 

@@ -43,5 +43,5 @@
     "react-hooks/exhaustive-deps": "warn",
     "no-console": ["warn", { "allow": ["warn", "error"] }]
   },
-  "ignorePatterns": ["email-worker/**/*", "node_modules/**/*", ".next/**/*"]
+  "ignorePatterns": ["node_modules/**/*", ".next/**/*"]
 }
