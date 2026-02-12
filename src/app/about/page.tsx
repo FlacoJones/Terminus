@@ -44,7 +44,7 @@ export default function AboutPage() {
 			<div className="form-page-container">
 				<div className="form-wrapper">
 					<div className={styles.aboutContent}>
-						<h1 className={styles.title}>About Terminus Industrials</h1>
+						<h1 className={styles.title}>About<br className={styles.titleBreak} /> Terminus Industrials</h1>
 
 						<div className={styles.section}>
 							<p className={styles.lead}>

@@ -4,13 +4,23 @@
 
 .title {
   font-family: "Terminus", Arial, sans-serif;
-  font-size: clamp(2.34rem, 5.2vw, 3.25rem);
+  font-size: 2.6rem;
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
   letter-spacing: 0.15em;
   margin-bottom: 2rem;
   text-align: center;
+}
+
+.titleBreak {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .titleBreak {
+    display: none;
+  }
 }
 
 .section {
@@ -33,9 +43,9 @@
 
 .lead {
   font-family: "Terminus", Arial, sans-serif;
-  font-size: 1.56rem;
-  color: var(--brand-white);
-  line-height: 1.8;
+  font-size: 1.43rem;
+  color: var(--brand-gray);
+  line-height: 1.7;
   text-align: center;
 }
 
