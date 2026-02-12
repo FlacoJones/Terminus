@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { generateMetadata } from '@/lib/metadata';
 import { APIForm } from './APIForm';
 import styles from './APIForm.module.css';
-import { ThemeToggle } from '@/components';
+import { ThemeToggle, MobileGate } from '@/components';
 
 export const metadata: Metadata = generateMetadata({
 	title: 'Advance Purchase Indication - Terminus Industrials',
@@ -21,7 +21,7 @@ function FormLoadingFallback() {
 
 export default function CadPage() {
 	return (
-		<>
+		<MobileGate>
 			<ThemeToggle />
 			<main className={styles.cadLayout}>
 				{/* Left Panel: Sidebar with form */}
@@ -45,6 +45,6 @@ export default function CadPage() {
 					</div>
 				</div>
 			</main>
-		</>
+		</MobileGate>
 	);
 }
