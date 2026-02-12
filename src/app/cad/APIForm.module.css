@@ -169,11 +169,32 @@
   opacity: 0.7;
 }
 
+/* ─── Section Check Icon ─── */
+
+.checkIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.checkIconComplete {
+  color: #22c55e;
+}
+
+.checkIconIncomplete {
+  color: color-mix(in srgb, var(--cad-text) 18%, transparent);
+}
+
 /* ─── Section Body ─── */
 
 .sectionBody {
   padding: 0.5rem 1.25rem 1rem;
   animation: slideDown 0.15s ease;
+}
+
+.sectionBodyHidden {
+  display: none;
 }
 
 @keyframes slideDown {
@@ -204,7 +225,7 @@
   font-family: var(--ui-font-family);
   font-size: var(--cad-fs-field-label);
   font-weight: 600;
-  color: var(--cad-text-dim);
+  color: var(--cad-text);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   margin-bottom: 0.3rem;
@@ -304,9 +325,52 @@
 .checkItem input[type='checkbox'] {
   width: 14px;
   height: 14px;
-  accent-color: var(--cad-accent);
   cursor: pointer;
   flex-shrink: 0;
+}
+
+/* Custom radio (clearer checked state: solid black inner dot) */
+.radioItem input[type='radio'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 2px solid color-mix(in srgb, var(--cad-text) 88%, transparent);
+  background: transparent;
+  display: grid;
+  place-items: center;
+  transition: background 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.radioItem input[type='radio']::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--cad-radio-checked-dot);
+  transform: scale(0);
+  transition: transform 0.12s ease;
+}
+
+.radioItem input[type='radio']:checked {
+  background: var(--cad-radio-checked-bg);
+  border-color: var(--cad-radio-checked-bg);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--cad-text) 35%, transparent);
+}
+
+.radioItem input[type='radio']:checked::after {
+  transform: scale(1);
+}
+
+.radioItem input[type='radio']:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cad-text) 22%, transparent);
+}
+
+/* Keep native checkbox; theme via accent-color */
+.checkItem input[type='checkbox'] {
+  accent-color: var(--cad-accent);
 }
 
 .checkGrid {

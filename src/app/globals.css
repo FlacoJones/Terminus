@@ -52,6 +52,8 @@
   --cad-input-placeholder: var(--ui-input-placeholder);
   --cad-accent: var(--ui-accent);
   --cad-radius: var(--ui-radius-sm);
+  --cad-radio-checked-bg: #ffffff;
+  --cad-radio-checked-dot: #000000;
 
   /* CAD typography (make bigger here) */
   --cad-fs-sidebar-title: 1.05rem;
@@ -100,34 +102,41 @@ body {
   font-size: 1.3rem;
 }
 
-/* Theme toggle (fixed, top-right) */
+/* Theme toggle (CAD only; component mounted on /cad) */
 .themeToggle {
+  --toggle-w: 70px;
+  --toggle-h: 34px;
+  --toggle-pad: 4px;
+  --thumb: calc(var(--toggle-h) - (var(--toggle-pad) * 2));
+
   position: fixed;
   top: 1.25rem;
   right: 2rem;
   z-index: 1100;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.55rem 0.75rem;
-  border-radius: var(--ui-radius-md);
-  border: 1px solid var(--ui-border);
-  background: color-mix(in srgb, var(--ui-surface) 70%, transparent);
-  color: var(--ui-fg);
-  font-family: var(--ui-font-family);
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+
+  width: var(--toggle-w);
+  height: var(--toggle-h);
+  padding: var(--toggle-pad);
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--ui-border) 90%, transparent);
   cursor: pointer;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  background: #2c3135; /* matches reference (dark track) */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
   transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease;
 }
 
+.themeToggle[data-theme="dark"] {
+  justify-content: flex-end;
+  background: #ffffff; /* matches reference (light track) */
+  border-color: rgba(0, 0, 0, 0.14);
+}
+
 .themeToggle:hover {
-  background: color-mix(in srgb, var(--ui-surface) 82%, transparent);
-  border-color: color-mix(in srgb, var(--ui-border) 70%, var(--ui-fg) 10%);
   transform: translateY(-1px);
 }
 
@@ -137,20 +146,29 @@ body {
 
 .themeToggle:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ui-fg) 20%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ui-fg) 22%, transparent), 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
-.themeTogglePill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 4.75rem;
-  padding: 0.25rem 0.5rem;
+.themeToggleThumb {
+  width: var(--thumb);
+  height: var(--thumb);
   border-radius: 999px;
-  border: 1px solid var(--ui-border);
-  background: color-mix(in srgb, var(--ui-surface) 92%, transparent);
-  font-size: 0.74rem;
-  letter-spacing: 0.1em;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  color: #0b0d0e;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.themeToggle[data-theme="dark"] .themeToggleThumb {
+  background: #0b0d0e;
+  color: #ffffff;
+}
+
+.themeToggleIcon {
+  width: 14px;
+  height: 14px;
 }
 
 @media (max-width: 768px) {

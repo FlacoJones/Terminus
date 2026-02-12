@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
-import { Footer } from '@/components';
 import { generateMetadata } from '@/lib/metadata';
 import { APIForm } from './APIForm';
 import styles from './APIForm.module.css';
+import { ThemeToggle } from '@/components';
 
 export const metadata: Metadata = generateMetadata({
 	title: 'CAD - Terminus Industrials',
@@ -22,6 +22,7 @@ function FormLoadingFallback() {
 export default function CadPage() {
 	return (
 		<>
+			<ThemeToggle />
 			<main className={styles.cadLayout}>
 				{/* Left Panel: Sidebar with form */}
 				<aside className={styles.sidebar}>
@@ -44,8 +45,6 @@ export default function CadPage() {
 					</div>
 				</div>
 			</main>
-
-			<Footer />
 		</>
 	);
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, type ReactNode } from 'react';
+import { useState, useEffect, useCallback, useRef, type ReactNode } from 'react';
 import styles from './APIForm.module.css';
 
 const HIDE_DEBUG = true;
@@ -53,6 +53,37 @@ const DEBUG_DATA = {
 	additionalNotes: 'Require factory witness testing. Delivery to be coordinated with site preparation schedule.',
 };
 
+/* ─── Section field names (for completion tracking) ─── */
+
+const SECTION_FIELDS: Record<number, string[]> = {
+	1: ['companyName', 'projectName', 'siteAddress', 'contactName', 'contactEmail', 'contactPhone'],
+	2: ['hvRating', 'lvRating', 'mvaRating', 'frequency', 'phase', 'vectorGroup', 'groundingPreference'],
+	3: ['targetImpedance', 'noLoadLoss', 'loadLoss', 'temperatureRise', 'soundLevel', 'soundLimit'],
+	4: ['tapChangerType', 'tapRange', 'tapSteps', 'tapLocation'],
+	5: ['hvBil', 'lvBil', 'surgeRequirements'],
+	6: ['maxShippingWeight', 'maxHeight', 'maxWidth', 'maxLength', 'seismicRating', 'siteFootprint'],
+	7: ['coolingClass', 'coolingRedundancy', 'oilType'],
+	8: ['corrosionClass', 'noiseBarriers', 'altitude', 'maxAmbient', 'minAmbient'],
+	9: ['testing', 'partialDischargeLimit'],
+	10: ['governingStandards'],
+	11: ['additionalNotes'],
+};
+
+/* ─── Checkmark SVG ─── */
+
+function CheckIcon({ complete }: { complete: boolean }) {
+	return (
+		<svg
+			className={`${styles.checkIcon} ${complete ? styles.checkIconComplete : styles.checkIconIncomplete}`}
+			viewBox="0 0 20 20"
+			aria-hidden="true"
+		>
+			<circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" strokeWidth="1.6" />
+			<path d="M6 10.4l2.5 2.5L14 7.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+		</svg>
+	);
+}
+
 /* ─── Collapsible Section Component ─── */
 
 function Section({
@@ -60,12 +91,14 @@ function Section({
 	index,
 	isOpen,
 	onToggle,
+	complete,
 	children,
 }: {
 	title: string;
 	index: number;
 	isOpen: boolean;
 	onToggle: () => void;
+	complete: boolean;
 	children: ReactNode;
 }) {
 	return (
@@ -78,6 +111,7 @@ function Section({
 			>
 				<span className={styles.sectionIndex}>{String(index).padStart(2, '0')}</span>
 				<span className={styles.sectionTitle}>{title}</span>
+				<CheckIcon complete={complete} />
 				<svg
 					className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ''}`}
 					width="12"
@@ -88,11 +122,10 @@ function Section({
 					<path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 				</svg>
 			</button>
-			{isOpen && (
-				<div className={styles.sectionBody}>
-					{children}
-				</div>
-			)}
+			{/* Always render children so form state persists; hide with CSS */}
+			<div className={`${styles.sectionBody} ${isOpen ? '' : styles.sectionBodyHidden}`}>
+				{children}
+			</div>
 		</div>
 	);
 }
@@ -112,10 +145,47 @@ function FieldRow({ children }: { children: ReactNode }) {
 	return <div className={styles.fieldRow}>{children}</div>;
 }
 
+/* ─── Completion helper ─── */
+
+function checkFieldFilled(form: HTMLFormElement, name: string): boolean {
+	const elements = form.elements.namedItem(name);
+	if (!elements) return false;
+
+	if (elements instanceof RadioNodeList) {
+		const firstEl = elements[0];
+		if (firstEl instanceof HTMLInputElement && firstEl.type === 'radio') {
+			return Array.from(elements).some((el) => el instanceof HTMLInputElement && el.checked);
+		}
+		if (firstEl instanceof HTMLInputElement && firstEl.type === 'checkbox') {
+			return Array.from(elements).some((el) => el instanceof HTMLInputElement && el.checked);
+		}
+		return false;
+	}
+
+	if (elements instanceof HTMLInputElement) {
+		if (elements.type === 'checkbox') return elements.checked;
+		return elements.value.trim().length > 0;
+	}
+	if (elements instanceof HTMLTextAreaElement || elements instanceof HTMLSelectElement) {
+		return elements.value.trim().length > 0;
+	}
+	return false;
+}
+
+function computeCompletion(form: HTMLFormElement): Record<number, boolean> {
+	const result: Record<number, boolean> = {};
+	for (const [key, fields] of Object.entries(SECTION_FIELDS)) {
+		result[Number(key)] = fields.every((f) => checkFieldFilled(form, f));
+	}
+	return result;
+}
+
 /* ─── Main Form ─── */
 
 export function APIForm() {
 	const [openSections, setOpenSections] = useState<Set<number>>(new Set([1]));
+	const [completion, setCompletion] = useState<Record<number, boolean>>({});
+	const formRef = useRef<HTMLFormElement>(null);
 
 	const toggleSection = useCallback((index: number) => {
 		setOpenSections((prev) => {
@@ -129,8 +199,29 @@ export function APIForm() {
 		});
 	}, []);
 
+	/* Track form changes for completion indicators */
+	const refreshCompletion = useCallback(() => {
+		if (!formRef.current) return;
+		setCompletion(computeCompletion(formRef.current));
+	}, []);
+
+	useEffect(() => {
+		const form = formRef.current;
+		if (!form) return;
+
+		// Initial check (handles defaultChecked, etc.)
+		refreshCompletion();
+
+		form.addEventListener('input', refreshCompletion);
+		form.addEventListener('change', refreshCompletion);
+		return () => {
+			form.removeEventListener('input', refreshCompletion);
+			form.removeEventListener('change', refreshCompletion);
+		};
+	}, [refreshCompletion]);
+
 	const handleDebugFill = useCallback(() => {
-		const form = document.getElementById('nbpoForm') as HTMLFormElement;
+		const form = formRef.current;
 		if (!form) return;
 
 		// Open all sections for visibility
@@ -166,7 +257,9 @@ export function APIForm() {
 				elements.value = String(value);
 			}
 		});
-	}, []);
+
+		refreshCompletion();
+	}, [refreshCompletion]);
 
 	// Handle "Other" text inputs
 	useEffect(() => {
@@ -218,9 +311,9 @@ export function APIForm() {
 	}, []);
 
 	return (
-		<form id="nbpoForm" onSubmit={handleSubmit} className={styles.cadForm}>
+		<form id="nbpoForm" ref={formRef} onSubmit={handleSubmit} className={styles.cadForm}>
 			{/* 1. Basic Information */}
-			<Section title="Basic Information" index={1} isOpen={openSections.has(1)} onToggle={() => toggleSection(1)}>
+			<Section title="Basic Information" index={1} isOpen={openSections.has(1)} onToggle={() => toggleSection(1)} complete={!!completion[1]}>
 				<Field label="Company Name" htmlFor="companyName">
 					<input type="text" id="companyName" name="companyName" className={styles.input} required />
 				</Field>
@@ -244,7 +337,7 @@ export function APIForm() {
 			</Section>
 
 			{/* 2. Electrical Ratings */}
-			<Section title="Electrical Ratings" index={2} isOpen={openSections.has(2)} onToggle={() => toggleSection(2)}>
+			<Section title="Electrical Ratings" index={2} isOpen={openSections.has(2)} onToggle={() => toggleSection(2)} complete={!!completion[2]}>
 				<FieldRow>
 					<Field label="HV Rating (kV)" htmlFor="hvRating">
 						<input type="number" id="hvRating" name="hvRating" step="0.1" className={styles.input} />
@@ -296,7 +389,7 @@ export function APIForm() {
 			</Section>
 
 			{/* 3. Impedance & Performance */}
-			<Section title="Impedance & Performance" index={3} isOpen={openSections.has(3)} onToggle={() => toggleSection(3)}>
+			<Section title="Impedance & Performance" index={3} isOpen={openSections.has(3)} onToggle={() => toggleSection(3)} complete={!!completion[3]}>
 				<FieldRow>
 					<Field label="Target Impedance (%Z)" htmlFor="targetImpedance">
 						<input type="number" id="targetImpedance" name="targetImpedance" step="0.01" className={styles.input} />
@@ -353,7 +446,7 @@ export function APIForm() {
 			</Section>
 
 			{/* 4. Tap Changer */}
-			<Section title="Tap Changer" index={4} isOpen={openSections.has(4)} onToggle={() => toggleSection(4)}>
+			<Section title="Tap Changer" index={4} isOpen={openSections.has(4)} onToggle={() => toggleSection(4)} complete={!!completion[4]}>
 				<Field label="Tap Changer Type">
 					<div className={styles.radioRow}>
 						<label className={styles.radioItem}>
@@ -393,7 +486,7 @@ export function APIForm() {
 			</Section>
 
 			{/* 5. Dielectric Requirements */}
-			<Section title="Dielectric Requirements" index={5} isOpen={openSections.has(5)} onToggle={() => toggleSection(5)}>
+			<Section title="Dielectric Requirements" index={5} isOpen={openSections.has(5)} onToggle={() => toggleSection(5)} complete={!!completion[5]}>
 				<FieldRow>
 					<Field label="HV BIL (kV)" htmlFor="hvBil">
 						<input type="number" id="hvBil" name="hvBil" className={styles.input} />
@@ -421,7 +514,7 @@ export function APIForm() {
 			</Section>
 
 			{/* 6. Mechanical & Transport Limits */}
-			<Section title="Mechanical & Transport" index={6} isOpen={openSections.has(6)} onToggle={() => toggleSection(6)}>
+			<Section title="Mechanical & Transport" index={6} isOpen={openSections.has(6)} onToggle={() => toggleSection(6)} complete={!!completion[6]}>
 				<Field label="Max Shipping Weight (lbs or metric tons)" htmlFor="maxShippingWeight">
 					<input type="text" id="maxShippingWeight" name="maxShippingWeight" className={styles.input} />
 				</Field>
@@ -462,7 +555,7 @@ export function APIForm() {
 			</Section>
 
 			{/* 7. Cooling & Fluid System */}
-			<Section title="Cooling & Fluid System" index={7} isOpen={openSections.has(7)} onToggle={() => toggleSection(7)}>
+			<Section title="Cooling & Fluid System" index={7} isOpen={openSections.has(7)} onToggle={() => toggleSection(7)} complete={!!completion[7]}>
 				<Field label="Cooling Class">
 					<div className={styles.radioRow}>
 						<label className={styles.radioItem}>
@@ -525,7 +618,7 @@ export function APIForm() {
 			</Section>
 
 			{/* 8. Environmental & Special Requirements */}
-			<Section title="Environmental & Special" index={8} isOpen={openSections.has(8)} onToggle={() => toggleSection(8)}>
+			<Section title="Environmental & Special" index={8} isOpen={openSections.has(8)} onToggle={() => toggleSection(8)} complete={!!completion[8]}>
 				<Field label="Corrosion / Paint Class">
 					<div className={styles.radioCol}>
 						<label className={styles.radioItem}>
@@ -579,7 +672,7 @@ export function APIForm() {
 			</Section>
 
 			{/* 9. Testing Requirements */}
-			<Section title="Testing Requirements" index={9} isOpen={openSections.has(9)} onToggle={() => toggleSection(9)}>
+			<Section title="Testing Requirements" index={9} isOpen={openSections.has(9)} onToggle={() => toggleSection(9)} complete={!!completion[9]}>
 				<div className={styles.checkGrid}>
 					<label className={styles.checkItem}>
 						<input type="checkbox" name="testing" value="standardRoutine" />
@@ -643,7 +736,7 @@ export function APIForm() {
 			</Section>
 
 			{/* 10. Compliance */}
-			<Section title="Compliance" index={10} isOpen={openSections.has(10)} onToggle={() => toggleSection(10)}>
+			<Section title="Compliance" index={10} isOpen={openSections.has(10)} onToggle={() => toggleSection(10)} complete={!!completion[10]}>
 				<Field label="Governing Standards">
 					<div className={styles.radioCol}>
 						<label className={styles.radioItem}>
@@ -663,7 +756,7 @@ export function APIForm() {
 			</Section>
 
 			{/* 11. Additional Notes */}
-			<Section title="Additional Notes" index={11} isOpen={openSections.has(11)} onToggle={() => toggleSection(11)}>
+			<Section title="Additional Notes" index={11} isOpen={openSections.has(11)} onToggle={() => toggleSection(11)} complete={!!completion[11]}>
 				<Field label="" htmlFor="additionalNotes">
 					<textarea
 						id="additionalNotes"
