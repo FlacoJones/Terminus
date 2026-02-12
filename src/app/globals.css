@@ -127,7 +127,10 @@ body {
 
   background: #2c3135; /* matches reference (dark track) */
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-  transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease;
+  transition:
+    transform 0.12s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .themeToggle[data-theme="dark"] {
@@ -146,7 +149,9 @@ body {
 
 .themeToggle:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ui-fg) 22%, transparent), 0 6px 18px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--ui-fg) 22%, transparent),
+    0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
 .themeToggleThumb {
@@ -158,7 +163,9 @@ body {
   background: #ffffff;
   color: #0b0d0e;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
 .themeToggle[data-theme="dark"] .themeToggleThumb {

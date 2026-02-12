@@ -414,6 +414,10 @@
   border-top: 1px solid var(--cad-border);
 }
 
+.submitWrapper {
+  position: relative;
+}
+
 .submitBtn {
   width: 100%;
   padding: 0.6rem 1rem;
@@ -430,12 +434,96 @@
   transition: opacity 0.15s ease, transform 0.1s ease;
 }
 
-.submitBtn:hover {
+.submitBtn:hover:not(:disabled) {
   opacity: 0.9;
   transform: translateY(-1px);
 }
 
-.submitBtn:active {
+.submitBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submitBtn:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+/* Tooltip on disabled hover */
+.submitTooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 0.45rem 0.75rem;
+  font-family: var(--ui-font-family);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--cad-text);
+  background: color-mix(in srgb, var(--cad-sidebar-bg) 94%, var(--cad-text) 6%);
+  border: 1px solid var(--cad-border-strong);
+  border-radius: var(--cad-radius);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.submitTooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--cad-border-strong);
+}
+
+.submitWrapper:hover .submitTooltip {
+  display: block;
+}
+
+.submitSuccess {
+  margin-top: 0.6rem;
+  font-family: var(--ui-font-family);
+  font-size: 0.78rem;
+  color: #22c55e;
+  text-align: center;
+}
+
+.submitError {
+  margin-top: 0.6rem;
+  font-family: var(--ui-font-family);
+  font-size: 0.78rem;
+  color: #ef4444;
+  text-align: center;
+}
+
+/* Autofill Button (fixed, below theme toggle) */
+.autofillBtn {
+  position: fixed;
+  top: 4rem;
+  right: 2rem;
+  z-index: 1100;
+  padding: 0.4rem 0.75rem;
+  font-family: var(--ui-font-family);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cad-sidebar-bg);
+  background: var(--cad-text);
+  border: 1px solid var(--cad-border-strong);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.12s ease;
+}
+
+.autofillBtn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.autofillBtn:active {
   transform: translateY(0);
 }
 
@@ -496,5 +584,10 @@
 
   .fieldRow {
     grid-template-columns: 1fr;
+  }
+
+  .autofillBtn {
+    right: 1.25rem;
+    top: 3.5rem;
   }
 }

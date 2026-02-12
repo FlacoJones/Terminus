@@ -1,9 +1,12 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef, type ReactNode } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef, type ReactNode } from 'react';
 import styles from './APIForm.module.css';
+import { submitAPIForm } from '@/actions/email';
+import type { APISubmission } from '@/types/forms';
 
 const HIDE_DEBUG = true;
+const SHOW_AUTOFILL = true;
 
 const DEBUG_DATA = {
 	companyName: 'Acme Power Corp',
@@ -187,6 +190,11 @@ export function APIForm() {
 	const [completion, setCompletion] = useState<Record<number, boolean>>({});
 	const formRef = useRef<HTMLFormElement>(null);
 
+	const allComplete = useMemo(
+		() => Object.keys(SECTION_FIELDS).every((k) => completion[Number(k)]),
+		[completion],
+	);
+
 	const toggleSection = useCallback((index: number) => {
 		setOpenSections((prev) => {
 			const next = new Set(prev);
@@ -285,8 +293,13 @@ export function APIForm() {
 		});
 	}, []);
 
-	const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+	const [submitting, setSubmitting] = useState(false);
+	const [submitResult, setSubmitResult] = useState<{ success: boolean; error?: string } | null>(null);
+
+	const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setSubmitting(true);
+		setSubmitResult(null);
 
 		const form = e.currentTarget;
 		const formData = new FormData(form);
@@ -305,9 +318,32 @@ export function APIForm() {
 			}
 		});
 
-		data.submittedAt = new Date().toISOString();
-		// Intentionally logged for visibility during manual review/debug.
-		console.warn(JSON.stringify(data, null, 2));
+		const now = new Date().toISOString();
+		const submission: APISubmission = {
+			...(data as unknown as APISubmission),
+			id: crypto.randomUUID(),
+			savedAt: now,
+			submittedAt: now,
+		};
+
+		// Log the JSON for visibility
+		console.warn('[API Submission]', JSON.stringify(submission, null, 2));
+
+		try {
+			const result = await submitAPIForm(submission);
+			setSubmitResult(result);
+			if (result.success) {
+				console.warn('[API Submission] Emails sent successfully.');
+			} else {
+				console.error('[API Submission] Email failed:', result.error);
+			}
+		} catch (err) {
+			const msg = err instanceof Error ? err.message : 'Unknown error';
+			console.error('[API Submission] Error:', msg);
+			setSubmitResult({ success: false, error: msg });
+		} finally {
+			setSubmitting(false);
+		}
 	}, []);
 
 	return (
@@ -770,10 +806,39 @@ export function APIForm() {
 
 			{/* Submit */}
 			<div className={styles.submitArea}>
-				<button type="submit" className={styles.submitBtn}>
-					Submit API
-				</button>
+				<div className={styles.submitWrapper}>
+					<button
+						type="submit"
+						className={styles.submitBtn}
+						disabled={!allComplete || submitting}
+					>
+						{submitting ? 'Submitting...' : 'Submit Advance Purchase Indication'}
+					</button>
+					{!allComplete && !submitting && (
+						<span className={styles.submitTooltip}>
+							Please complete all fields above before submitting your order!
+						</span>
+					)}
+				</div>
+				{submitResult && (
+					<p className={submitResult.success ? styles.submitSuccess : styles.submitError}>
+						{submitResult.success
+							? 'Your Advance Purchase Indication has been submitted successfully.'
+							: `Submission failed: ${submitResult.error ?? 'Unknown error'}`}
+					</p>
+				)}
 			</div>
+
+			{/* Autofill Button (fixed, top-right below theme toggle) */}
+			{SHOW_AUTOFILL && (
+				<button
+					type="button"
+					onClick={handleDebugFill}
+					className={styles.autofillBtn}
+				>
+					Autofill Form
+				</button>
+			)}
 
 			{/* Debug Button */}
 			{!HIDE_DEBUG && (
