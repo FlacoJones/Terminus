@@ -213,7 +213,8 @@ export function APIForm() {
 		});
 
 		data.submittedAt = new Date().toISOString();
-		console.log(JSON.stringify(data, null, 2));
+		// Intentionally logged for visibility during manual review/debug.
+		console.warn(JSON.stringify(data, null, 2));
 	}, []);
 
 	return (
@@ -622,9 +623,8 @@ export function APIForm() {
 					<input
 						type="number"
 						name="partialDischargeLimit"
-						className={styles.input}
+						className={`${styles.input} ${styles.stackTight}`}
 						placeholder="Specify pC limit"
-						style={{ marginTop: '0.35rem' }}
 					/>
 				</Field>
 

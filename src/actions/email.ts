@@ -15,7 +15,7 @@ async function sendEmail(
   to: string,
   subject: string,
   body: string,
-  from?: string
+  from: string
 ): Promise<EmailResult> {
   try {
     // Validate Mailgun configuration
@@ -23,9 +23,6 @@ async function sendEmail(
       console.error('Missing Mailgun configuration');
       return { success: false, error: 'Email service not configured' };
     }
-
-    // Default from address if not provided
-    const fromEmail = from ?? `Terminus Industrials <sales@${MAILGUN_DOMAIN}>`;
 
     // Send via Mailgun API
     const response = await fetch(
@@ -37,7 +34,7 @@ async function sendEmail(
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: new URLSearchParams({
-          from: fromEmail,
+          from: from,
           to: to,
           subject: subject,
           text: body,

@@ -8,13 +8,75 @@
 
 :root {
   /* Brand Colors - New Design */
-  --brand-white: #ffffff;
-  --brand-cyan: #ffffff; /* Legacy alias for existing pages */
-  --brand-gray: #999999;
-  --brand-light-gray: #b0b0b0;
-  --brand-bg: #000000;
-  --brand-bg-dark: #000000;
-  --brand-border: rgba(255, 255, 255, 0.3);
+  /*
+    Theme tokens (set via <html data-theme="...">)
+    Keep brand vars as aliases so existing pages continue working.
+  */
+  --ui-font-family: "Terminus", Arial, sans-serif;
+  --ui-radius-sm: 3px;
+  --ui-radius-md: 8px;
+
+  /* Default theme: dark */
+  --ui-bg: #000000;
+  --ui-surface: #111414;
+  --ui-surface-2: rgba(255, 255, 255, 0.02);
+  --ui-fg: #ffffff;
+  --ui-muted: rgba(255, 255, 255, 0.55);
+  --ui-muted-2: rgba(255, 255, 255, 0.35);
+  --ui-border: rgba(255, 255, 255, 0.15);
+  --ui-border-subtle: rgba(255, 255, 255, 0.08);
+  --ui-hover: rgba(255, 255, 255, 0.03);
+  --ui-input-bg: rgba(0, 0, 0, 0.4);
+  --ui-input-placeholder: rgba(255, 255, 255, 0.25);
+  --ui-accent: #ffffff;
+
+  /* Brand aliases (legacy) */
+  --brand-white: var(--ui-fg);
+  --brand-cyan: var(--ui-fg); /* Legacy alias for existing pages */
+  --brand-gray: color-mix(in srgb, var(--ui-fg) 60%, transparent);
+  --brand-light-gray: color-mix(in srgb, var(--ui-fg) 70%, transparent);
+  --brand-bg: var(--ui-bg);
+  --brand-bg-dark: var(--ui-bg);
+  --brand-border: var(--ui-border);
+
+  /* CAD tokens (single place to tweak CAD styling) */
+  --cad-sidebar-bg: var(--ui-surface);
+  --cad-canvas-bg: var(--ui-bg);
+  --cad-border: var(--ui-border-subtle);
+  --cad-border-strong: var(--ui-border);
+  --cad-text: var(--ui-fg);
+  --cad-text-muted: var(--ui-muted);
+  --cad-text-dim: var(--ui-muted-2);
+  --cad-hover: var(--ui-hover);
+  --cad-input-bg: var(--ui-input-bg);
+  --cad-input-placeholder: var(--ui-input-placeholder);
+  --cad-accent: var(--ui-accent);
+  --cad-radius: var(--ui-radius-sm);
+
+  /* CAD typography (make bigger here) */
+  --cad-fs-sidebar-title: 1.05rem;
+  --cad-fs-sidebar-subtitle: 0.85rem;
+  --cad-fs-section-index: 0.8rem;
+  --cad-fs-section-title: 0.92rem;
+  --cad-fs-field-label: 0.82rem;
+  --cad-fs-input: 0.95rem;
+  --cad-fs-option: 0.92rem;
+  --cad-fs-submit: 0.9rem;
+}
+
+[data-theme="light"] {
+  --ui-bg: #f6f7f8;
+  --ui-surface: #ffffff;
+  --ui-surface-2: rgba(0, 0, 0, 0.03);
+  --ui-fg: #0b0d0e;
+  --ui-muted: rgba(11, 13, 14, 0.68);
+  --ui-muted-2: rgba(11, 13, 14, 0.5);
+  --ui-border: rgba(0, 0, 0, 0.12);
+  --ui-border-subtle: rgba(0, 0, 0, 0.08);
+  --ui-hover: rgba(0, 0, 0, 0.03);
+  --ui-input-bg: rgba(0, 0, 0, 0.03);
+  --ui-input-placeholder: rgba(11, 13, 14, 0.35);
+  --ui-accent: #0b0d0e;
 }
 
 * {
@@ -31,11 +93,71 @@ body {
 }
 
 body {
-  font-family: "Terminus", Arial, sans-serif;
+  font-family: var(--ui-font-family);
   background-color: var(--brand-bg);
   min-height: 100vh;
   color: var(--brand-white);
   font-size: 1.3rem;
+}
+
+/* Theme toggle (fixed, top-right) */
+.themeToggle {
+  position: fixed;
+  top: 1.25rem;
+  right: 2rem;
+  z-index: 1100;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--ui-radius-md);
+  border: 1px solid var(--ui-border);
+  background: color-mix(in srgb, var(--ui-surface) 70%, transparent);
+  color: var(--ui-fg);
+  font-family: var(--ui-font-family);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.themeToggle:hover {
+  background: color-mix(in srgb, var(--ui-surface) 82%, transparent);
+  border-color: color-mix(in srgb, var(--ui-border) 70%, var(--ui-fg) 10%);
+  transform: translateY(-1px);
+}
+
+.themeToggle:active {
+  transform: translateY(0);
+}
+
+.themeToggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ui-fg) 20%, transparent);
+}
+
+.themeTogglePill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--ui-border);
+  background: color-mix(in srgb, var(--ui-surface) 92%, transparent);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .themeToggle {
+    right: 1.25rem;
+    top: 1rem;
+  }
 }
 
 /* Page Container */

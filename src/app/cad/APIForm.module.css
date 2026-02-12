@@ -16,31 +16,31 @@
   max-width: 480px;
   display: flex;
   flex-direction: column;
-  background: #111414;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--cad-sidebar-bg);
+  border-right: 1px solid var(--cad-border);
   overflow: hidden;
 }
 
 .sidebarHeader {
   padding: 1.25rem 1.25rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--cad-border);
   flex-shrink: 0;
 }
 
 .sidebarTitle {
-  font-family: "Terminus", Arial, sans-serif;
-  font-size: 0.9rem;
+  font-family: var(--ui-font-family);
+  font-size: var(--cad-fs-sidebar-title);
   font-weight: 700;
-  color: var(--brand-white);
+  color: var(--cad-text);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin: 0;
 }
 
 .sidebarSubtitle {
-  font-family: "Terminus", Arial, sans-serif;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.35);
+  font-family: var(--ui-font-family);
+  font-size: var(--cad-fs-sidebar-subtitle);
+  color: var(--cad-text-dim);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-top: 0.25rem;
@@ -51,7 +51,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+  scrollbar-color: color-mix(in srgb, var(--cad-text) 20%, transparent) transparent;
 }
 
 .sidebarContent::-webkit-scrollbar {
@@ -63,19 +63,19 @@
 }
 
 .sidebarContent::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
+  background: color-mix(in srgb, var(--cad-text) 20%, transparent);
   border-radius: 3px;
 }
 
 .sidebarContent::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: color-mix(in srgb, var(--cad-text) 32%, transparent);
 }
 
 /* ─── Right Canvas ─── */
 
 .canvas {
   flex: 1;
-  background: #000000;
+  background: var(--cad-canvas-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,11 +89,11 @@
 }
 
 .canvasLabel {
-  font-family: "Terminus", Arial, sans-serif;
+  font-family: var(--ui-font-family);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.3em;
-  color: rgba(255, 255, 255, 0.06);
+  color: color-mix(in srgb, var(--cad-text) 10%, transparent);
   text-transform: uppercase;
   user-select: none;
 }
@@ -110,7 +110,7 @@
 /* ─── Section ─── */
 
 .section {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--cad-border);
 }
 
 .section:last-of-type {
@@ -128,30 +128,30 @@
   cursor: pointer;
   text-align: left;
   transition: background 0.15s ease;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--cad-text-muted);
 }
 
 .sectionHeader:hover {
-  background: rgba(255, 255, 255, 0.03);
-  color: rgba(255, 255, 255, 0.8);
+  background: var(--cad-hover);
+  color: color-mix(in srgb, var(--cad-text) 85%, transparent);
 }
 
 .sectionHeaderOpen {
-  color: var(--brand-white);
-  background: rgba(255, 255, 255, 0.03);
+  color: var(--cad-text);
+  background: var(--cad-hover);
 }
 
 .sectionIndex {
-  font-family: "Terminus", Arial, sans-serif;
-  font-size: 0.65rem;
+  font-family: var(--ui-font-family);
+  font-size: var(--cad-fs-section-index);
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.25);
+  color: color-mix(in srgb, var(--cad-text) 35%, transparent);
   min-width: 1.4rem;
 }
 
 .sectionTitle {
-  font-family: "Terminus", Arial, sans-serif;
-  font-size: 0.72rem;
+  font-family: var(--ui-font-family);
+  font-size: var(--cad-fs-section-title);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -201,10 +201,10 @@
 
 .fieldLabel {
   display: block;
-  font-family: "Terminus", Arial, sans-serif;
-  font-size: 0.68rem;
+  font-family: var(--ui-font-family);
+  font-size: var(--cad-fs-field-label);
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--cad-text-dim);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   margin-bottom: 0.3rem;
@@ -226,34 +226,34 @@
 .input {
   width: 100%;
   padding: 0.45rem 0.6rem;
-  font-family: "Terminus", Arial, sans-serif;
-  font-size: 0.8rem;
-  color: var(--brand-white);
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
+  font-family: var(--ui-font-family);
+  font-size: var(--cad-fs-input);
+  color: var(--cad-text);
+  background: var(--cad-input-bg);
+  border: 1px solid var(--cad-border-strong);
+  border-radius: var(--cad-radius);
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .input:focus {
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  border-color: color-mix(in srgb, var(--cad-text) 35%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--cad-text) 14%, transparent);
 }
 
 .input::placeholder {
-  color: rgba(255, 255, 255, 0.2);
+  color: var(--cad-input-placeholder);
 }
 
 .textarea {
   width: 100%;
   padding: 0.45rem 0.6rem;
-  font-family: "Terminus", Arial, sans-serif;
-  font-size: 0.8rem;
-  color: var(--brand-white);
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
+  font-family: var(--ui-font-family);
+  font-size: var(--cad-fs-input);
+  color: var(--cad-text);
+  background: var(--cad-input-bg);
+  border: 1px solid var(--cad-border-strong);
+  border-radius: var(--cad-radius);
   outline: none;
   resize: vertical;
   min-height: 50px;
@@ -261,12 +261,12 @@
 }
 
 .textarea:focus {
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  border-color: color-mix(in srgb, var(--cad-text) 35%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--cad-text) 14%, transparent);
 }
 
 .textarea::placeholder {
-  color: rgba(255, 255, 255, 0.2);
+  color: var(--cad-input-placeholder);
 }
 
 /* ─── Radio & Checkbox ─── */
@@ -289,22 +289,22 @@
   align-items: center;
   gap: 0.35rem;
   cursor: pointer;
-  font-family: "Terminus", Arial, sans-serif;
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--ui-font-family);
+  font-size: var(--cad-fs-option);
+  color: var(--cad-text-muted);
   transition: color 0.15s ease;
 }
 
 .radioItem:hover,
 .checkItem:hover {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--cad-text);
 }
 
 .radioItem input[type='radio'],
 .checkItem input[type='checkbox'] {
   width: 14px;
   height: 14px;
-  accent-color: var(--brand-white);
+  accent-color: var(--cad-accent);
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -321,19 +321,19 @@
 .inlineInput {
   width: 80px;
   padding: 0.2rem 0.4rem;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   margin-left: 0.25rem;
-  font-family: "Terminus", Arial, sans-serif;
-  color: var(--brand-white);
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
+  font-family: var(--ui-font-family);
+  color: var(--cad-text);
+  background: var(--cad-input-bg);
+  border: 1px solid var(--cad-border-strong);
+  border-radius: var(--cad-radius);
   outline: none;
   transition: border-color 0.15s ease;
 }
 
 .inlineInput:focus {
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: color-mix(in srgb, var(--cad-text) 35%, transparent);
 }
 
 .inlineInput:disabled {
@@ -347,21 +347,21 @@
 
 .submitArea {
   padding: 1rem 1.25rem 1.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--cad-border);
 }
 
 .submitBtn {
   width: 100%;
   padding: 0.6rem 1rem;
-  font-family: "Terminus", Arial, sans-serif;
-  font-size: 0.75rem;
+  font-family: var(--ui-font-family);
+  font-size: var(--cad-fs-submit);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #111414;
-  background: var(--brand-white);
+  color: var(--cad-sidebar-bg);
+  background: var(--cad-text);
   border: none;
-  border-radius: 3px;
+  border-radius: var(--cad-radius);
   cursor: pointer;
   transition: opacity 0.15s ease, transform 0.1s ease;
 }
@@ -381,7 +381,7 @@
   top: 5rem;
   left: 0.75rem;
   padding: 0.4rem 0.6rem;
-  font-family: "Terminus", Arial, sans-serif;
+  font-family: var(--ui-font-family);
   font-size: 0.6rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -389,10 +389,15 @@
   color: #000;
   background: #ff6b6b;
   border: none;
-  border-radius: 3px;
+  border-radius: var(--cad-radius);
   cursor: pointer;
   z-index: 9999;
   transition: all 0.15s ease;
+}
+
+/* Utility: spacing tweak previously inline */
+.stackTight {
+  margin-top: 0.35rem;
 }
 
 .debugButton:hover {
@@ -414,7 +419,7 @@
     max-width: unset;
     height: 60vh;
     border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid var(--cad-border);
   }
 
   .canvas {
