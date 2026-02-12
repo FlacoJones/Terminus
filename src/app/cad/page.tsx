@@ -6,8 +6,8 @@ import styles from './APIForm.module.css';
 import { ThemeToggle } from '@/components';
 
 export const metadata: Metadata = generateMetadata({
-	title: 'CAD - Terminus Industrials',
-	description: 'CAD - Terminus Industrials',
+	title: 'Advance Purchase Indication - Terminus Industrials',
+	description: 'Advance Purchase Indication - Terminus Industrials',
 	ogDescription: 'Defense-Grade Advanced Manufacturing',
 });
 

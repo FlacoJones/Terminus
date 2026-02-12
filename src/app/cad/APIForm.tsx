@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef, type ReactNode } from 'react';
 import styles from './APIForm.module.css';
 import { submitAPIForm } from '@/actions/email';
+import { SuccessModal } from '@/components';
 import type { APISubmission } from '@/types/forms';
 
 const HIDE_DEBUG = true;
@@ -35,10 +36,10 @@ const DEBUG_DATA = {
 	hvBil: '550',
 	lvBil: '200',
 	surgeRequirements: 'enhanced',
-	maxShippingWeight: '180 metric tons',
-	maxHeight: '4.5m',
-	maxWidth: '4.0m',
-	maxLength: '8.0m',
+	maxShippingWeight: '180',
+	maxHeight: '4.5',
+	maxWidth: '4.0',
+	maxLength: '8.0',
 	seismicRating: 'zone4',
 	siteFootprint: 'Max pad area 15m x 20m. No overhead obstructions. East-west orientation preferred.',
 	coolingClass: 'ONAF',
@@ -46,7 +47,7 @@ const DEBUG_DATA = {
 	oilType: 'naturalEster',
 	corrosionClass: 'heavyIndustrial',
 	noiseBarriers: 'no',
-	altitude: '350m',
+	altitude: '350',
 	maxAmbient: '45',
 	minAmbient: '-10',
 	testing: ['standardRoutine', 'temperatureRise', 'lightningImpulse', 'FRA'],
@@ -70,6 +71,86 @@ const SECTION_FIELDS: Record<number, string[]> = {
 	9: ['testing', 'partialDischargeLimit'],
 	10: ['governingStandards'],
 	11: ['additionalNotes'],
+};
+
+/* ─── Validation rules ─── */
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^[\d\s+\-().]+$/;
+
+type Validator = (value: string) => string | null;
+
+/** Returns null if valid, or an error message string */
+const FIELD_VALIDATORS: Record<string, Validator> = {
+	// Section 1
+	companyName: (v) => (v.trim() && v.trim().length < 2 ? 'Must be at least 2 characters.' : null),
+	projectName: (v) => (v.trim() && v.trim().length < 2 ? 'Must be at least 2 characters.' : null),
+	siteAddress: (v) => (v.trim() && v.trim().length < 3 ? 'Must be at least 3 characters.' : null),
+	contactName: (v) => (v.trim() && v.trim().length < 2 ? 'Must be at least 2 characters.' : null),
+	contactEmail: (v) => (v.trim() && !EMAIL_RE.test(v.trim()) ? 'Enter a valid email address.' : null),
+	contactPhone: (v) => {
+		if (!v.trim()) return null; // optional, but validated if entered
+		if (!PHONE_RE.test(v.trim())) return 'Only digits, spaces, +, -, (, ) allowed.';
+		const digits = v.replace(/\D/g, '');
+		if (digits.length < 7) return 'Phone number must have at least 7 digits.';
+		if (digits.length > 15) return 'Phone number is too long (max 15 digits).';
+		return null;
+	},
+
+	// Section 2
+	hvRating: (v) => (v && (isNaN(Number(v)) || Number(v) <= 0) ? 'Must be a positive number.' : null),
+	lvRating: (v) => (v && (isNaN(Number(v)) || Number(v) <= 0) ? 'Must be a positive number.' : null),
+	mvaRating: (v) => (v && (isNaN(Number(v)) || Number(v) <= 0) ? 'Must be a positive number.' : null),
+	groundingPreference: () => null,
+
+	// Section 3
+	targetImpedance: (v) => (v && (isNaN(Number(v)) || Number(v) <= 0) ? 'Must be a positive number.' : null),
+	noLoadLoss: (v) => (v && (isNaN(Number(v)) || Number(v) < 0) ? 'Must be a non-negative number.' : null),
+	loadLoss: (v) => (v && (isNaN(Number(v)) || Number(v) < 0) ? 'Must be a non-negative number.' : null),
+	soundLimit: (v) => (v && (isNaN(Number(v)) || Number(v) <= 0) ? 'Must be a positive number.' : null),
+
+	// Section 4
+	tapRange: () => null,
+	tapSteps: (v) => {
+		if (!v.trim()) return null;
+		const n = Number(v);
+		if (isNaN(n) || !Number.isInteger(n) || n <= 0) return 'Must be a positive whole number.';
+		return null;
+	},
+
+	// Section 5
+	hvBil: (v) => (v && (isNaN(Number(v)) || Number(v) <= 0) ? 'Must be a positive number.' : null),
+	lvBil: (v) => (v && (isNaN(Number(v)) || Number(v) <= 0) ? 'Must be a positive number.' : null),
+
+	// Section 6
+	maxShippingWeight: (v) => (v && (isNaN(Number(v)) || Number(v) <= 0) ? 'Must be a positive number.' : null),
+	maxHeight: (v) => (v && (isNaN(Number(v)) || Number(v) <= 0) ? 'Must be a positive number.' : null),
+	maxWidth: (v) => (v && (isNaN(Number(v)) || Number(v) <= 0) ? 'Must be a positive number.' : null),
+	maxLength: (v) => (v && (isNaN(Number(v)) || Number(v) <= 0) ? 'Must be a positive number.' : null),
+	siteFootprint: () => null,
+
+	// Section 8
+	altitude: (v) => (v && (isNaN(Number(v)) || Number(v) < 0) ? 'Must be a non-negative number.' : null),
+	maxAmbient: (v) => {
+		if (!v.trim()) return null;
+		const n = Number(v);
+		if (isNaN(n)) return 'Must be a number.';
+		if (n < -60 || n > 70) return 'Must be between -60°C and 70°C.';
+		return null;
+	},
+	minAmbient: (v) => {
+		if (!v.trim()) return null;
+		const n = Number(v);
+		if (isNaN(n)) return 'Must be a number.';
+		if (n < -60 || n > 70) return 'Must be between -60°C and 70°C.';
+		return null;
+	},
+
+	// Section 9
+	partialDischargeLimit: (v) => (v && (isNaN(Number(v)) || Number(v) <= 0) ? 'Must be a positive number.' : null),
+
+	// Section 11
+	additionalNotes: () => null,
 };
 
 /* ─── Checkmark SVG ─── */
@@ -135,11 +216,12 @@ function Section({
 
 /* ─── Field Components ─── */
 
-function Field({ label, htmlFor, children }: { label: string; htmlFor?: string; children: ReactNode }) {
+function Field({ label, htmlFor, error, children }: { label: string; htmlFor?: string; error?: string; children: ReactNode }) {
 	return (
 		<div className={styles.field}>
 			{label && <label className={styles.fieldLabel} htmlFor={htmlFor}>{label}</label>}
 			{children}
+			{error && <span className={styles.fieldError}>{error}</span>}
 		</div>
 	);
 }
@@ -183,16 +265,51 @@ function computeCompletion(form: HTMLFormElement): Record<number, boolean> {
 	return result;
 }
 
+/* ─── Validation helper ─── */
+
+function validateField(name: string, value: string): string | null {
+	const validator = FIELD_VALIDATORS[name];
+	if (!validator) return null;
+	return validator(value);
+}
+
+function validateAllFields(form: HTMLFormElement): Record<string, string> {
+	const errors: Record<string, string> = {};
+	for (const name of Object.keys(FIELD_VALIDATORS)) {
+		const el = form.elements.namedItem(name);
+		if (!el) continue;
+		let value = '';
+		if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement) {
+			value = el.value;
+		}
+		const err = validateField(name, value);
+		if (err) errors[name] = err;
+	}
+	return errors;
+}
+
+/* ─── Input class helper ─── */
+
+function inputClass(base: string | undefined, fieldName: string, errors: Record<string, string>): string {
+	return errors[fieldName] ? `${base ?? ''} ${styles.inputError}` : (base ?? '');
+}
+
 /* ─── Main Form ─── */
 
 export function APIForm() {
 	const [openSections, setOpenSections] = useState<Set<number>>(new Set([1]));
 	const [completion, setCompletion] = useState<Record<number, boolean>>({});
+	const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 	const formRef = useRef<HTMLFormElement>(null);
 
 	const allComplete = useMemo(
 		() => Object.keys(SECTION_FIELDS).every((k) => completion[Number(k)]),
 		[completion],
+	);
+
+	const hasValidationErrors = useMemo(
+		() => Object.keys(fieldErrors).length > 0,
+		[fieldErrors],
 	);
 
 	const toggleSection = useCallback((index: number) => {
@@ -227,6 +344,43 @@ export function APIForm() {
 			form.removeEventListener('change', refreshCompletion);
 		};
 	}, [refreshCompletion]);
+
+	/* Validate a single field on blur — only if it has content (empty = not started yet) */
+	const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		const { name, value } = e.target;
+		if (!name || !FIELD_VALIDATORS[name]) return;
+		// If the field is empty, don't show an error — assume user hasn't filled it yet
+		if (!value.trim()) {
+			setFieldErrors((prev) => {
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
+				const { [name]: _, ...rest } = prev;
+				return rest;
+			});
+			return;
+		}
+		const err = validateField(name, value);
+		setFieldErrors((prev) => {
+			if (err) return { ...prev, [name]: err };
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+			const { [name]: _, ...rest } = prev;
+			return rest;
+		});
+	}, []);
+
+	/* Clear error on input so user gets immediate feedback */
+	const handleInput = useCallback((e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+		const { name, value } = target;
+		if (!name || !fieldErrors[name]) return;
+		const err = validateField(name, value);
+		if (!err) {
+			setFieldErrors((prev) => {
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
+				const { [name]: _, ...rest } = prev;
+				return rest;
+			});
+		}
+	}, [fieldErrors]);
 
 	const handleDebugFill = useCallback(() => {
 		const form = formRef.current;
@@ -266,6 +420,7 @@ export function APIForm() {
 			}
 		});
 
+		setFieldErrors({});
 		refreshCompletion();
 	}, [refreshCompletion]);
 
@@ -294,14 +449,29 @@ export function APIForm() {
 	}, []);
 
 	const [submitting, setSubmitting] = useState(false);
-	const [submitResult, setSubmitResult] = useState<{ success: boolean; error?: string } | null>(null);
+	const [submitError, setSubmitError] = useState<string | null>(null);
+	const [showSuccess, setShowSuccess] = useState(false);
 
 	const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		setSubmitting(true);
-		setSubmitResult(null);
 
+		// Run full validation before submit
 		const form = e.currentTarget;
+		const errors = validateAllFields(form);
+		setFieldErrors(errors);
+		if (Object.keys(errors).length > 0) {
+			// Open any section that has an error and scroll to first
+			for (const [secKey, fields] of Object.entries(SECTION_FIELDS)) {
+				if (fields.some((f) => errors[f])) {
+					setOpenSections((prev) => new Set([...prev, Number(secKey)]));
+				}
+			}
+			return;
+		}
+
+		setSubmitting(true);
+		setSubmitError(null);
+
 		const formData = new FormData(form);
 		const data: Record<string, string | string[]> = {};
 
@@ -331,16 +501,17 @@ export function APIForm() {
 
 		try {
 			const result = await submitAPIForm(submission);
-			setSubmitResult(result);
 			if (result.success) {
 				console.warn('[API Submission] Emails sent successfully.');
+				setShowSuccess(true);
 			} else {
 				console.error('[API Submission] Email failed:', result.error);
+				setSubmitError(result.error ?? 'Failed to send email');
 			}
 		} catch (err) {
 			const msg = err instanceof Error ? err.message : 'Unknown error';
 			console.error('[API Submission] Error:', msg);
-			setSubmitResult({ success: false, error: msg });
+			setSubmitError(msg);
 		} finally {
 			setSubmitting(false);
 		}
@@ -350,24 +521,39 @@ export function APIForm() {
 		<form id="nbpoForm" ref={formRef} onSubmit={handleSubmit} className={styles.cadForm}>
 			{/* 1. Basic Information */}
 			<Section title="Basic Information" index={1} isOpen={openSections.has(1)} onToggle={() => toggleSection(1)} complete={!!completion[1]}>
-				<Field label="Company Name" htmlFor="companyName">
-					<input type="text" id="companyName" name="companyName" className={styles.input} required />
+				<Field label="Company Name" htmlFor="companyName" error={fieldErrors.companyName}>
+					<input type="text" id="companyName" name="companyName" className={inputClass(styles.input, 'companyName', fieldErrors)} required onBlur={handleBlur} onInput={handleInput} />
 				</Field>
-				<Field label="Project / Site Name" htmlFor="projectName">
-					<input type="text" id="projectName" name="projectName" className={styles.input} />
+				<Field label="Project / Site Name" htmlFor="projectName" error={fieldErrors.projectName}>
+					<input type="text" id="projectName" name="projectName" className={inputClass(styles.input, 'projectName', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 				</Field>
-				<Field label="Site Address or GPS Coordinates" htmlFor="siteAddress">
-					<input type="text" id="siteAddress" name="siteAddress" className={styles.input} />
+				<Field label="Site Address or GPS Coordinates" htmlFor="siteAddress" error={fieldErrors.siteAddress}>
+					<input type="text" id="siteAddress" name="siteAddress" className={inputClass(styles.input, 'siteAddress', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 				</Field>
-				<Field label="Primary Contact Name" htmlFor="contactName">
-					<input type="text" id="contactName" name="contactName" className={styles.input} required />
+				<Field label="Primary Contact Name" htmlFor="contactName" error={fieldErrors.contactName}>
+					<input type="text" id="contactName" name="contactName" className={inputClass(styles.input, 'contactName', fieldErrors)} required onBlur={handleBlur} onInput={handleInput} />
 				</Field>
 				<FieldRow>
-					<Field label="Email" htmlFor="contactEmail">
-						<input type="email" id="contactEmail" name="contactEmail" className={styles.input} required />
+					<Field label="Email" htmlFor="contactEmail" error={fieldErrors.contactEmail}>
+						<input type="text" id="contactEmail" name="contactEmail" className={inputClass(styles.input, 'contactEmail', fieldErrors)} required onBlur={handleBlur} onInput={handleInput} />
 					</Field>
-					<Field label="Phone" htmlFor="contactPhone">
-						<input type="tel" id="contactPhone" name="contactPhone" className={styles.input} />
+					<Field label="Phone" htmlFor="contactPhone" error={fieldErrors.contactPhone}>
+						<input
+							type="tel"
+							id="contactPhone"
+							name="contactPhone"
+							className={inputClass(styles.input, 'contactPhone', fieldErrors)}
+							onBlur={handleBlur}
+							onInput={handleInput}
+							onKeyDown={(e) => {
+								// Allow control keys (backspace, tab, arrows, delete, etc.)
+								if (e.key.length > 1 || e.ctrlKey || e.metaKey || e.altKey) return;
+								// Allow only phone characters: digits 0-9, +, -, (, ), space
+								if (!/[\d+\-() ]/.test(e.key)) {
+									e.preventDefault();
+								}
+							}}
+						/>
 					</Field>
 				</FieldRow>
 			</Section>
@@ -375,15 +561,15 @@ export function APIForm() {
 			{/* 2. Electrical Ratings */}
 			<Section title="Electrical Ratings" index={2} isOpen={openSections.has(2)} onToggle={() => toggleSection(2)} complete={!!completion[2]}>
 				<FieldRow>
-					<Field label="HV Rating (kV)" htmlFor="hvRating">
-						<input type="number" id="hvRating" name="hvRating" step="0.1" className={styles.input} />
+					<Field label="HV Rating (kV)" htmlFor="hvRating" error={fieldErrors.hvRating}>
+						<input type="number" id="hvRating" name="hvRating" step="0.1" className={inputClass(styles.input, 'hvRating', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 					</Field>
-					<Field label="LV Rating (kV)" htmlFor="lvRating">
-						<input type="number" id="lvRating" name="lvRating" step="0.1" className={styles.input} />
+					<Field label="LV Rating (kV)" htmlFor="lvRating" error={fieldErrors.lvRating}>
+						<input type="number" id="lvRating" name="lvRating" step="0.1" className={inputClass(styles.input, 'lvRating', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 					</Field>
 				</FieldRow>
-				<Field label="MVA Rating (continuous)" htmlFor="mvaRating">
-					<input type="number" id="mvaRating" name="mvaRating" step="0.1" className={styles.input} />
+				<Field label="MVA Rating (continuous)" htmlFor="mvaRating" error={fieldErrors.mvaRating}>
+					<input type="number" id="mvaRating" name="mvaRating" step="0.1" className={inputClass(styles.input, 'mvaRating', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 				</Field>
 				<Field label="Frequency">
 					<div className={styles.radioRow}>
@@ -427,15 +613,15 @@ export function APIForm() {
 			{/* 3. Impedance & Performance */}
 			<Section title="Impedance & Performance" index={3} isOpen={openSections.has(3)} onToggle={() => toggleSection(3)} complete={!!completion[3]}>
 				<FieldRow>
-					<Field label="Target Impedance (%Z)" htmlFor="targetImpedance">
-						<input type="number" id="targetImpedance" name="targetImpedance" step="0.01" className={styles.input} />
+					<Field label="Target Impedance (%Z)" htmlFor="targetImpedance" error={fieldErrors.targetImpedance}>
+						<input type="number" id="targetImpedance" name="targetImpedance" step="0.01" className={inputClass(styles.input, 'targetImpedance', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 					</Field>
-					<Field label="No-Load Loss (W)" htmlFor="noLoadLoss">
-						<input type="number" id="noLoadLoss" name="noLoadLoss" className={styles.input} />
+					<Field label="No-Load Loss (W)" htmlFor="noLoadLoss" error={fieldErrors.noLoadLoss}>
+						<input type="number" id="noLoadLoss" name="noLoadLoss" className={inputClass(styles.input, 'noLoadLoss', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 					</Field>
 				</FieldRow>
-				<Field label="Load Loss Guarantee (W)" htmlFor="loadLoss">
-					<input type="number" id="loadLoss" name="loadLoss" className={styles.input} />
+				<Field label="Load Loss Guarantee (W)" htmlFor="loadLoss" error={fieldErrors.loadLoss}>
+					<input type="number" id="loadLoss" name="loadLoss" className={inputClass(styles.input, 'loadLoss', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 				</Field>
 				<Field label="Temperature Rise">
 					<div className={styles.radioRow}>
@@ -451,11 +637,24 @@ export function APIForm() {
 							<input type="radio" name="temperatureRise" value="other" />
 							<span>Other:</span>
 							<input
-								type="text"
+								type="number"
 								name="temperatureRiseOther"
 								className={styles.inlineInput}
-								placeholder="Specify"
+								placeholder="°C"
+								min={0}
+								max={999}
+								step={1}
 								disabled
+								onKeyDown={(e) => {
+									if (e.key.length > 1 || e.ctrlKey || e.metaKey || e.altKey) return;
+									if (!/[\d.]/.test(e.key)) e.preventDefault();
+								}}
+								onBlur={(e) => {
+									const n = Number(e.target.value);
+									if (e.target.value && (isNaN(n) || n < 0 || n > 999)) {
+										e.target.value = String(Math.min(999, Math.max(0, Math.round(n))));
+									}
+								}}
 							/>
 						</label>
 					</div>
@@ -476,8 +675,8 @@ export function APIForm() {
 						</label>
 					</div>
 				</Field>
-				<Field label="Sound Limit dB(A)" htmlFor="soundLimit">
-					<input type="number" id="soundLimit" name="soundLimit" step="0.1" className={styles.input} />
+				<Field label="Sound Limit dB(A)" htmlFor="soundLimit" error={fieldErrors.soundLimit}>
+					<input type="number" id="soundLimit" name="soundLimit" step="0.1" className={inputClass(styles.input, 'soundLimit', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 				</Field>
 			</Section>
 
@@ -499,8 +698,8 @@ export function APIForm() {
 					<Field label="Tap Range (e.g., ±10%)" htmlFor="tapRange">
 						<input type="text" id="tapRange" name="tapRange" className={styles.input} />
 					</Field>
-					<Field label="Tap Steps (e.g., 16, 32)" htmlFor="tapSteps">
-						<input type="text" id="tapSteps" name="tapSteps" className={styles.input} />
+					<Field label="Tap Steps (e.g., 16, 32)" htmlFor="tapSteps" error={fieldErrors.tapSteps}>
+						<input type="text" id="tapSteps" name="tapSteps" className={inputClass(styles.input, 'tapSteps', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 					</Field>
 				</FieldRow>
 				<Field label="Preferred Tap Location">
@@ -524,11 +723,11 @@ export function APIForm() {
 			{/* 5. Dielectric Requirements */}
 			<Section title="Dielectric Requirements" index={5} isOpen={openSections.has(5)} onToggle={() => toggleSection(5)} complete={!!completion[5]}>
 				<FieldRow>
-					<Field label="HV BIL (kV)" htmlFor="hvBil">
-						<input type="number" id="hvBil" name="hvBil" className={styles.input} />
+					<Field label="HV BIL (kV)" htmlFor="hvBil" error={fieldErrors.hvBil}>
+						<input type="number" id="hvBil" name="hvBil" className={inputClass(styles.input, 'hvBil', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 					</Field>
-					<Field label="LV BIL (kV)" htmlFor="lvBil">
-						<input type="number" id="lvBil" name="lvBil" className={styles.input} />
+					<Field label="LV BIL (kV)" htmlFor="lvBil" error={fieldErrors.lvBil}>
+						<input type="number" id="lvBil" name="lvBil" className={inputClass(styles.input, 'lvBil', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 					</Field>
 				</FieldRow>
 				<Field label="Surge / Lightning Requirements">
@@ -551,19 +750,19 @@ export function APIForm() {
 
 			{/* 6. Mechanical & Transport Limits */}
 			<Section title="Mechanical & Transport" index={6} isOpen={openSections.has(6)} onToggle={() => toggleSection(6)} complete={!!completion[6]}>
-				<Field label="Max Shipping Weight (lbs or metric tons)" htmlFor="maxShippingWeight">
-					<input type="text" id="maxShippingWeight" name="maxShippingWeight" className={styles.input} />
+				<Field label="Max Shipping Weight (metric tons)" htmlFor="maxShippingWeight" error={fieldErrors.maxShippingWeight}>
+					<input type="number" id="maxShippingWeight" name="maxShippingWeight" step="0.1" min="0" className={inputClass(styles.input, 'maxShippingWeight', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 				</Field>
 				<FieldRow>
-					<Field label="Max Height" htmlFor="maxHeight">
-						<input type="text" id="maxHeight" name="maxHeight" className={styles.input} />
+					<Field label="Max Height (m)" htmlFor="maxHeight" error={fieldErrors.maxHeight}>
+						<input type="number" id="maxHeight" name="maxHeight" step="0.1" min="0" className={inputClass(styles.input, 'maxHeight', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 					</Field>
-					<Field label="Max Width" htmlFor="maxWidth">
-						<input type="text" id="maxWidth" name="maxWidth" className={styles.input} />
+					<Field label="Max Width (m)" htmlFor="maxWidth" error={fieldErrors.maxWidth}>
+						<input type="number" id="maxWidth" name="maxWidth" step="0.1" min="0" className={inputClass(styles.input, 'maxWidth', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 					</Field>
 				</FieldRow>
-				<Field label="Max Length" htmlFor="maxLength">
-					<input type="text" id="maxLength" name="maxLength" className={styles.input} />
+				<Field label="Max Length (m)" htmlFor="maxLength" error={fieldErrors.maxLength}>
+					<input type="number" id="maxLength" name="maxLength" step="0.1" min="0" className={inputClass(styles.input, 'maxLength', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 				</Field>
 				<Field label="Seismic Rating">
 					<div className={styles.radioCol}>
@@ -694,15 +893,15 @@ export function APIForm() {
 						</label>
 					</div>
 				</Field>
-				<Field label="Altitude Above Sea Level" htmlFor="altitude">
-					<input type="text" id="altitude" name="altitude" className={styles.input} placeholder="If >1000m derating applies" />
+				<Field label="Altitude Above Sea Level (m)" htmlFor="altitude" error={fieldErrors.altitude}>
+					<input type="number" id="altitude" name="altitude" step="1" min="0" className={inputClass(styles.input, 'altitude', fieldErrors)} placeholder="If >1000m derating applies" onBlur={handleBlur} onInput={handleInput} />
 				</Field>
 				<FieldRow>
-					<Field label="Max Ambient Temp (°C)" htmlFor="maxAmbient">
-						<input type="number" id="maxAmbient" name="maxAmbient" className={styles.input} />
+					<Field label="Max Ambient Temp (°C)" htmlFor="maxAmbient" error={fieldErrors.maxAmbient}>
+						<input type="number" id="maxAmbient" name="maxAmbient" className={inputClass(styles.input, 'maxAmbient', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 					</Field>
-					<Field label="Min Ambient Temp (°C)" htmlFor="minAmbient">
-						<input type="number" id="minAmbient" name="minAmbient" className={styles.input} />
+					<Field label="Min Ambient Temp (°C)" htmlFor="minAmbient" error={fieldErrors.minAmbient}>
+						<input type="number" id="minAmbient" name="minAmbient" className={inputClass(styles.input, 'minAmbient', fieldErrors)} onBlur={handleBlur} onInput={handleInput} />
 					</Field>
 				</FieldRow>
 			</Section>
@@ -744,7 +943,7 @@ export function APIForm() {
 					</label>
 				</div>
 
-				<Field label="">
+				<Field label="" error={fieldErrors.partialDischargeLimit}>
 					<label className={styles.checkItem}>
 						<input type="checkbox" name="testing" value="partialDischarge" />
 						<span>Partial Discharge limit</span>
@@ -752,8 +951,10 @@ export function APIForm() {
 					<input
 						type="number"
 						name="partialDischargeLimit"
-						className={`${styles.input} ${styles.stackTight}`}
+						className={`${inputClass(styles.input, 'partialDischargeLimit', fieldErrors)} ${styles.stackTight}`}
 						placeholder="Specify pC limit"
+						onBlur={handleBlur}
+						onInput={handleInput}
 					/>
 				</Field>
 
@@ -810,24 +1011,31 @@ export function APIForm() {
 					<button
 						type="submit"
 						className={styles.submitBtn}
-						disabled={!allComplete || submitting}
+						disabled={!allComplete || submitting || hasValidationErrors}
 					>
 						{submitting ? 'Submitting...' : 'Submit Advance Purchase Indication'}
 					</button>
-					{!allComplete && !submitting && (
+					{(!allComplete || hasValidationErrors) && !submitting && (
 						<span className={styles.submitTooltip}>
-							Please complete all fields above before submitting your order!
+							{hasValidationErrors
+								? 'Please fix the validation errors above before submitting.'
+								: 'Please complete all fields above before submitting your order!'}
 						</span>
 					)}
 				</div>
-				{submitResult && (
-					<p className={submitResult.success ? styles.submitSuccess : styles.submitError}>
-						{submitResult.success
-							? 'Your Advance Purchase Indication has been submitted successfully.'
-							: `Submission failed: ${submitResult.error ?? 'Unknown error'}`}
-					</p>
+				{submitError && (
+					<p className={styles.submitError}>Submission failed: {submitError}</p>
 				)}
 			</div>
+
+			{/* Success Modal */}
+			<SuccessModal
+				isOpen={showSuccess}
+				onClose={() => setShowSuccess(false)}
+				title="Thank You"
+				message="Your Advance Purchase Indication has been submitted successfully."
+				subMessage="Someone from our team will contact you soon."
+			/>
 
 			{/* Autofill Button (fixed, top-right below theme toggle) */}
 			{SHOW_AUTOFILL && (
