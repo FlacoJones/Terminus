@@ -46,7 +46,7 @@ export function Footer({ fixed = false }: FooterProps) {
 						&copy; 2026 TERMINUS INDUSTRIALS, INC.
 					</span>
 					<span className={styles.tagline}>
-						RELIABLE POWER STARTS WITH HOW IT&apos;S BUILT.
+						DEFENSE-GRADE ADVANCED MANUFACTURING
 					</span>
 				</div>
 			</div>
