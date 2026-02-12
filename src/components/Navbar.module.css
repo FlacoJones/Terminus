@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 2rem;
+  padding: 1.5rem 2rem;
   z-index: 100;
 }
 
@@ -21,8 +21,9 @@
 }
 
 .logo {
-  width: 48px;
+  width: 62px;
   height: auto;
+  margin: 0.25rem;
   transition: opacity 0.3s ease;
 }
 
@@ -37,15 +38,16 @@
 }
 
 .navLink {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 13px;
-  font-weight: 600;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
   color: var(--brand-white);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   padding: 0.5rem 1.2rem;
   border: 1px solid var(--brand-white);
+  border-radius: 6px;
   transition: all 0.3s ease;
 }
 
@@ -142,15 +144,16 @@
 }
 
 .mobileMenuLink {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 14px;
-  font-weight: 600;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
   color: var(--brand-white);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   padding: 0.85rem 1rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
   transition: all 0.3s ease;
   text-align: center;
 }
@@ -167,7 +170,7 @@
   }
 
   .logo {
-    width: 40px;
+    width: 52px;
   }
 
   .navLinks {
@@ -193,7 +196,7 @@
   }
 
   .logo {
-    width: 36px;
+    width: 47px;
   }
 
   .hamburger {

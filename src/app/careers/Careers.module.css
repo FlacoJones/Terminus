@@ -3,8 +3,8 @@
 }
 
 .title {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: clamp(2.34rem, 5.2vw, 3.25rem);
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -14,8 +14,8 @@
 }
 
 .intro {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 1.1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.43rem;
   color: var(--brand-gray);
   line-height: 1.7;
   text-align: center;
@@ -23,8 +23,8 @@
 }
 
 .sectionTitle {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 1.3rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.69rem;
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -43,7 +43,7 @@
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
+  border-radius: 8px;
   text-decoration: none;
   transition: all 0.3s ease;
 }
@@ -55,8 +55,8 @@
 }
 
 .positionTitle {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 1.1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.43rem;
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -65,23 +65,23 @@
 }
 
 .positionLocation {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 0.9rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.17rem;
   color: var(--brand-gray);
   margin-bottom: 1rem;
 }
 
 .positionDescription {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 0.95rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.24rem;
   color: var(--brand-gray);
   line-height: 1.6;
   margin-bottom: 1rem;
 }
 
 .viewDetails {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 0.85rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -94,11 +94,11 @@
 
 @media (max-width: 768px) {
   .title {
-    font-size: 1.5rem;
+    font-size: 1.95rem;
   }
 
   .sectionTitle {
-    font-size: 1.1rem;
+    font-size: 1.43rem;
   }
 
   .positionCard {
@@ -106,6 +106,6 @@
   }
 
   .positionTitle {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 }

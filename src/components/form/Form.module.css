@@ -1,15 +1,15 @@
 /* Form Fieldsets */
 .formFieldset {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 1.75rem;
+  margin-bottom: 1.75rem;
+  background: rgba(20, 20, 20, 0.5);
 }
 
 .formFieldset legend {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -18,15 +18,15 @@
 }
 
 .fieldsetNote {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 0.85rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.1rem;
   color: var(--brand-light-gray);
   margin-bottom: 1rem;
 }
 
 /* Form Groups */
 .formGroup {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .formGroup:last-child {
@@ -35,11 +35,11 @@
 
 .formGroup > label {
   display: block;
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--brand-gray);
-  margin-bottom: 0.5rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.17rem;
+  font-weight: 700;
+  color: var(--brand-white);
+  margin-bottom: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -48,7 +48,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 /* Input Styles */
@@ -59,13 +59,13 @@
 .formGroup textarea,
 .formGroup select {
   width: 100%;
-  padding: 0.75rem 1rem;
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 1rem;
+  padding: 0.9rem 1.2rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.3rem;
   color: var(--brand-white);
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
   transition: border-color 0.3s ease;
 }
 
@@ -76,30 +76,30 @@
 .formGroup textarea:focus,
 .formGroup select:focus {
   outline: none;
-  border-color: var(--brand-white);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .formGroup input::placeholder,
 .formGroup textarea::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.25);
 }
 
 .formGroup textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 100px;
 }
 
 /* Inline inputs (for "Other" options) */
 .inlineInput {
   width: 150px;
-  padding: 0.4rem 0.6rem;
-  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.17rem;
   margin-left: 0.5rem;
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-family: "Terminus", Arial, sans-serif;
   color: var(--brand-white);
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
   transition: border-color 0.3s ease;
 }
 
@@ -110,8 +110,8 @@
 
 .inlineInputWide {
   width: 200px;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.9rem;
+  padding: 0.6rem 0.9rem;
+  font-size: 1.17rem;
   margin-top: 0.5rem;
   display: block;
 }
@@ -135,8 +135,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 0.95rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.24rem;
   color: var(--brand-light-gray);
   cursor: pointer;
   transition: color 0.2s ease;
@@ -149,8 +149,8 @@
 
 .radioLabel input[type='radio'],
 .checkboxLabel input[type='checkbox'] {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   accent-color: var(--brand-white);
   cursor: pointer;
 }
@@ -165,12 +165,12 @@
   background: transparent;
   border: 1px solid var(--brand-white);
   color: var(--brand-white);
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 1.1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.43rem;
   font-weight: 600;
   letter-spacing: 0.15em;
   padding: 1rem 3rem;
-  border-radius: 0;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;

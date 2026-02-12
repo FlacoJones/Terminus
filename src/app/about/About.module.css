@@ -3,8 +3,8 @@
 }
 
 .title {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: clamp(2.34rem, 5.2vw, 3.25rem);
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -22,8 +22,8 @@
 }
 
 .sectionTitle {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 1.3rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.69rem;
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -32,16 +32,16 @@
 }
 
 .lead {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 1.2rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.56rem;
   color: var(--brand-white);
   line-height: 1.8;
   text-align: center;
 }
 
 .text {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.3rem;
   color: var(--brand-gray);
   line-height: 1.7;
 }
@@ -57,8 +57,8 @@
   position: relative;
   padding-left: 1.5rem;
   margin-bottom: 1rem;
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.3rem;
   color: var(--brand-gray);
   line-height: 1.6;
 }
@@ -68,7 +68,7 @@
   position: absolute;
   left: 0;
   color: var(--brand-white);
-  font-size: 0.6rem;
+  font-size: 0.78rem;
   top: 0.4rem;
 }
 
@@ -88,12 +88,12 @@
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 2px;
+  border-radius: 8px;
 }
 
 .approachTitle {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -102,8 +102,8 @@
 }
 
 .approachText {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 0.9rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.17rem;
   color: var(--brand-gray);
   line-height: 1.6;
 }
@@ -120,20 +120,20 @@
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 2px;
+  border-radius: 8px;
 }
 
 .teamName {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 1.1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.43rem;
   font-weight: 700;
   color: var(--brand-white);
   margin-bottom: 0.25rem;
 }
 
 .teamRole {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 0.85rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.1rem;
   color: var(--brand-gray);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -141,8 +141,8 @@
 }
 
 .teamBio {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 0.9rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.17rem;
   color: var(--brand-gray);
   line-height: 1.6;
 }
@@ -157,16 +157,16 @@
 }
 
 .visionText {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.3rem;
   color: var(--brand-gray);
   line-height: 1.7;
   margin-bottom: 1rem;
 }
 
 .visionQuote {
-  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
-  font-size: 1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.3rem;
   color: var(--brand-white);
   line-height: 1.8;
   font-style: italic;
@@ -181,15 +181,15 @@
 
 @media (max-width: 768px) {
   .title {
-    font-size: 1.5rem;
+    font-size: 1.95rem;
   }
 
   .sectionTitle {
-    font-size: 1.1rem;
+    font-size: 1.43rem;
   }
 
   .lead {
-    font-size: 1.1rem;
+    font-size: 1.43rem;
   }
 
   .approachGrid {

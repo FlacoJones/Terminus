@@ -6,13 +6,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 2rem;
+  padding: 1.25rem 2rem 2rem;
   z-index: 100;
 }
 
 .copyright {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 12px;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 16px;
   font-weight: 500;
   color: var(--brand-gray);
   text-transform: uppercase;
@@ -20,8 +20,8 @@
 }
 
 .tagline {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 12px;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 16px;
   font-weight: 500;
   color: var(--brand-gray);
   text-transform: uppercase;
@@ -34,12 +34,12 @@
   }
 
   .copyright {
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 0.1em;
   }
 
   .tagline {
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 0.1em;
   }
 }
@@ -53,10 +53,10 @@
   }
 
   .copyright {
-    font-size: 9px;
+    font-size: 12px;
   }
 
   .tagline {
-    font-size: 9px;
+    font-size: 12px;
   }
 }

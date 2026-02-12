@@ -13,9 +13,9 @@
 }
 
 .content {
-  background: rgba(0, 0, 0, 0.98);
-  border: 1px solid var(--brand-border);
-  border-radius: 2px;
+  background: rgba(10, 10, 10, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
   padding: 3rem;
   max-width: 600px;
   width: 100%;
@@ -28,7 +28,7 @@
   right: 1.5rem;
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: 2.6rem;
   color: var(--brand-gray);
   cursor: pointer;
   transition: color 0.3s ease;
@@ -40,8 +40,8 @@
 }
 
 .title {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 1.8rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 2.34rem;
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -56,8 +56,8 @@
 }
 
 .thankYouTitle {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 2rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 2.6rem;
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -66,18 +66,18 @@
 }
 
 .thankYouMessage {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.3rem;
   color: var(--brand-gray);
   line-height: 1.7;
   margin-bottom: 1rem;
 }
 
 .thankYouHighlight {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-family: "Terminus", Arial, sans-serif;
   color: var(--brand-white);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.43rem;
   margin-top: 1.5rem;
 }
 
@@ -86,12 +86,12 @@
   background: var(--brand-white);
   border: 1px solid var(--brand-white);
   color: #000000;
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 0.9rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.17rem;
   font-weight: 600;
   letter-spacing: 0.15em;
   padding: 0.75rem 1.5rem;
-  border-radius: 0;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
@@ -109,10 +109,10 @@
   }
 
   .title {
-    font-size: 1.5rem;
+    font-size: 1.95rem;
   }
 
   .thankYouTitle {
-    font-size: 1.5rem;
+    font-size: 1.95rem;
   }
 }

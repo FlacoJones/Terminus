@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Terminus";
+  src: url("/terminus.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Brand Colors - New Design */
   --brand-white: #ffffff;
@@ -23,10 +31,11 @@ body {
 }
 
 body {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-family: "Terminus", Arial, sans-serif;
   background-color: var(--brand-bg);
   min-height: 100vh;
   color: var(--brand-white);
+  font-size: 1.3rem;
 }
 
 /* Page Container */
@@ -40,8 +49,8 @@ body {
 }
 
 .page-heading {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: clamp(3.25rem, 10vw, 6.5rem);
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -60,9 +69,9 @@ body {
 .form-wrapper {
   max-width: 900px;
   margin: 0 auto;
-  background: rgba(0, 0, 0, 0.85);
-  border: 1px solid var(--brand-border);
-  border-radius: 4px;
+  background: rgba(10, 10, 10, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
   padding: 3rem;
   backdrop-filter: blur(10px);
 }
@@ -72,12 +81,12 @@ body {
   text-align: center;
   margin-bottom: 3rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--brand-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .document-title {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: clamp(1.95rem, 5.2vw, 2.86rem);
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -86,15 +95,15 @@ body {
 }
 
 .document-subtitle {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.3rem;
   color: var(--brand-gray);
   margin-bottom: 1.5rem;
 }
 
 .document-parties {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 1.1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.43rem;
   color: var(--brand-light-gray);
   line-height: 1.8;
 }
@@ -112,15 +121,15 @@ body {
 
 .text-section p,
 .text-section-inner p {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 1rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.3rem;
   color: var(--brand-gray);
   line-height: 1.7;
 }
 
 .text-section p.small-text,
 .text-section-inner p.small-text {
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   line-height: 1.6;
 }
 
@@ -128,13 +137,13 @@ body {
   margin: 2.5rem 0;
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 4px;
+  border-radius: 8px;
   border-left: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .section-title {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 1.3rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.69rem;
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -143,8 +152,8 @@ body {
 }
 
 .section-note {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 0.9rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.17rem;
   color: var(--brand-light-gray);
   font-style: italic;
   margin-bottom: 2rem;
@@ -158,8 +167,8 @@ body {
 
 /* Contact Modal styles (reused in contact page) */
 .contact-modal h2 {
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 1.8rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 2.34rem;
   font-weight: 700;
   color: var(--brand-white);
   text-transform: uppercase;
@@ -169,16 +178,16 @@ body {
 }
 
 .contact-form-modal .form-group-modal {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .contact-form-modal .form-group-modal label {
   display: block;
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--brand-gray);
-  margin-bottom: 0.5rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.17rem;
+  font-weight: 700;
+  color: var(--brand-white);
+  margin-bottom: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -186,30 +195,30 @@ body {
 .contact-form-modal input,
 .contact-form-modal textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
-  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 1rem;
+  padding: 0.9rem 1.2rem;
+  font-family: "Terminus", Arial, sans-serif;
+  font-size: 1.3rem;
   color: var(--brand-white);
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid var(--brand-border);
-  border-radius: 2px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
   transition: border-color 0.3s ease;
 }
 
 .contact-form-modal input:focus,
 .contact-form-modal textarea:focus {
   outline: none;
-  border-color: var(--brand-white);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .contact-form-modal textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 130px;
 }
 
 .modal-submit-btn {
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 }
 
 /* Form Page Responsive */
@@ -223,6 +232,6 @@ body {
   }
 
   .document-title {
-    font-size: 1.3rem;
+    font-size: 1.69rem;
   }
 }

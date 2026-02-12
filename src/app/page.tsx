@@ -1,4 +1,5 @@
 import { Navbar, Footer } from '@/components';
+import { HeroVideo } from '@/components/HeroVideo';
 import styles from './page.module.css';
 
 export default function HomePage() {
@@ -8,16 +9,7 @@ export default function HomePage() {
 
 			{/* Hero Section with Centered Video */}
 			<div className={styles.heroContainer}>
-				<video
-					className={styles.heroVideo}
-					autoPlay
-					muted
-					loop
-					playsInline
-					preload="auto"
-				>
-					<source src="/transformer.mp4" type="video/mp4" />
-				</video>
+				<HeroVideo />
 			</div>
 
 			<Footer />
