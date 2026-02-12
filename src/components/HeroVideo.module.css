@@ -3,6 +3,6 @@
   top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
-  object-fit: contain;
+  object-fit: cover;
   z-index: 1;
 }

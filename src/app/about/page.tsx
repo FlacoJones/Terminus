@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Navbar, Footer } from '@/components';
+import { Navbar } from '@/components';
 import styles from './About.module.css';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://cad.terminusindustrials.com';
@@ -136,7 +136,6 @@ export default function AboutPage() {
 				</div>
 			</div>
 
-			<Footer />
 		</>
 	);
 }

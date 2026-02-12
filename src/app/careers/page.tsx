@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Navbar, Footer } from '@/components';
+import { Navbar } from '@/components';
 import styles from './Careers.module.css';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://cad.terminusindustrials.com';
@@ -93,7 +93,6 @@ export default function CareersPage() {
 				</div>
 			</div>
 
-			<Footer />
 		</>
 	);
 }
