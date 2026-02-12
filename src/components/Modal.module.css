@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(10, 15, 14, 0.95);
+  background: rgba(0, 0, 0, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,14 +13,13 @@
 }
 
 .content {
-  background: rgba(10, 15, 14, 0.98);
-  border: 2px solid var(--brand-cyan);
-  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.98);
+  border: 1px solid var(--brand-border);
+  border-radius: 2px;
   padding: 3rem;
   max-width: 600px;
   width: 100%;
   position: relative;
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
 }
 
 .closeX {
@@ -37,16 +36,16 @@
 }
 
 .closeX:hover {
-  color: var(--brand-cyan);
+  color: var(--brand-white);
 }
 
 .title {
-  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--brand-cyan);
+  color: var(--brand-white);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -57,17 +56,17 @@
 }
 
 .thankYouTitle {
-  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--brand-cyan);
+  color: var(--brand-white);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   margin-bottom: 1.5rem;
 }
 
 .thankYouMessage {
-  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 1rem;
   color: var(--brand-gray);
   line-height: 1.7;
@@ -75,7 +74,7 @@
 }
 
 .thankYouHighlight {
-  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   color: var(--brand-white);
   font-weight: 700;
   font-size: 1.1rem;
@@ -84,23 +83,23 @@
 
 .closeBtn {
   margin-top: 2rem;
-  background: var(--brand-cyan);
-  border: 2px solid var(--brand-cyan);
-  color: #0a0f0e;
-  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  background: var(--brand-white);
+  border: 1px solid var(--brand-white);
+  color: #000000;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-weight: 600;
+  letter-spacing: 0.15em;
   padding: 0.75rem 1.5rem;
-  border-radius: 6px;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
 .closeBtn:hover {
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+  background: transparent;
+  color: var(--brand-white);
 }
 
 @media (max-width: 768px) {

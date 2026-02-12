@@ -1,26 +1,14 @@
-/* eslint-disable @next/next/no-img-element */
 import styles from './Footer.module.css';
 
-interface FooterProps {
-	showMadeInUSA?: boolean;
-}
-
-export function Footer({ showMadeInUSA = false }: FooterProps) {
+export function Footer() {
 	return (
 		<footer className={styles.footer}>
-			{showMadeInUSA && <span className={styles.madeInUsa}>100% Made in USA</span>}
-			<a
-				href="https://x.com/TerminusIndstrl"
-				target="_blank"
-				rel="noopener noreferrer"
-				className={styles.socialLink}
-			>
-				<img
-					src="/x.png"
-					alt="X (Twitter)"
-					className={styles.xLogo}
-				/>
-			</a>
+			<span className={styles.copyright}>
+				&copy; 2026 TERMINUS INDUSTRIALS, INC.
+			</span>
+			<span className={styles.tagline}>
+				RELIABLE POWER STARTS WITH HOW IT&apos;S BUILT.
+			</span>
 		</footer>
 	);
 }

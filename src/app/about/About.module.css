@@ -3,12 +3,12 @@
 }
 
 .title {
-  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 700;
-  color: var(--brand-cyan);
+  color: var(--brand-white);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.15em;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -22,17 +22,17 @@
 }
 
 .sectionTitle {
-  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--brand-cyan);
+  color: var(--brand-white);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.15em;
   margin-bottom: 1rem;
 }
 
 .lead {
-  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
   font-size: 1.2rem;
   color: var(--brand-white);
   line-height: 1.8;
@@ -40,7 +40,7 @@
 }
 
 .text {
-  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
   font-size: 1rem;
   color: var(--brand-gray);
   line-height: 1.7;
@@ -57,7 +57,7 @@
   position: relative;
   padding-left: 1.5rem;
   margin-bottom: 1rem;
-  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
   font-size: 1rem;
   color: var(--brand-gray);
   line-height: 1.6;
@@ -67,7 +67,7 @@
   content: "●";
   position: absolute;
   left: 0;
-  color: var(--brand-cyan);
+  color: var(--brand-white);
   font-size: 0.6rem;
   top: 0.4rem;
 }
@@ -86,21 +86,23 @@
 
 .approachCard {
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
 }
 
 .approachTitle {
-  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
   font-size: 1rem;
   font-weight: 700;
   color: var(--brand-white);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   margin-bottom: 0.75rem;
 }
 
 .approachText {
-  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
   font-size: 0.9rem;
   color: var(--brand-gray);
   line-height: 1.6;
@@ -116,13 +118,13 @@
 
 .teamCard {
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
 }
 
 .teamName {
-  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--brand-white);
@@ -130,16 +132,16 @@
 }
 
 .teamRole {
-  font-family: var(--font-roboto-mono), "Roboto Mono", monospace;
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
   font-size: 0.85rem;
-  color: var(--brand-cyan);
+  color: var(--brand-gray);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   margin-bottom: 1rem;
 }
 
 .teamBio {
-  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
   font-size: 0.9rem;
   color: var(--brand-gray);
   line-height: 1.6;
@@ -149,13 +151,13 @@
 .visionSection {
   margin-top: 3rem;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.03);
-  border-left: 3px solid var(--brand-cyan);
-  border-radius: 0 8px 8px 0;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 2px solid var(--brand-white);
+  border-radius: 0;
 }
 
 .visionText {
-  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
   font-size: 1rem;
   color: var(--brand-gray);
   line-height: 1.7;
@@ -163,7 +165,7 @@
 }
 
 .visionQuote {
-  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
   font-size: 1rem;
   color: var(--brand-white);
   line-height: 1.8;

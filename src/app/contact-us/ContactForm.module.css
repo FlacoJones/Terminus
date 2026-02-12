@@ -8,31 +8,32 @@
 
 .formGroup label {
   display: block;
-  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--brand-gray);
   margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .formGroup input,
 .formGroup textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 1rem;
   color: var(--brand-white);
-  background: rgba(10, 15, 14, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  transition: border-color 0.3s ease;
 }
 
 .formGroup input:focus,
 .formGroup textarea:focus {
   outline: none;
-  border-color: var(--brand-cyan);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  border-color: var(--brand-white);
 }
 
 .formGroup textarea {

@@ -1,10 +1,12 @@
 :root {
-  /* Brand Colors */
-  --brand-gray: #cfd9d6; /* CMYK: 19, 15, 16, 0 */
-  --brand-white: #ffffff; /* CMYK: 0, 0, 0, 0 */
-  --brand-light-gray: #b0c7c7; /* CMYK: 31, 22, 22, 0 */
-  --brand-cyan: #ffffff; /* Changed from green to white */
-  --brand-blue: #0c81e8;
+  /* Brand Colors - New Design */
+  --brand-white: #ffffff;
+  --brand-cyan: #ffffff; /* Legacy alias for existing pages */
+  --brand-gray: #999999;
+  --brand-light-gray: #b0b0b0;
+  --brand-bg: #000000;
+  --brand-bg-dark: #000000;
+  --brand-border: rgba(255, 255, 255, 0.3);
 }
 
 * {
@@ -15,19 +17,16 @@
 
 html,
 body {
-  background-color: #0a0f0e;
+  background-color: var(--brand-bg);
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: var(--font-roboto), 'Roboto', sans-serif;
-  background-image: url('/background.svg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  background-color: var(--brand-bg);
   min-height: 100vh;
+  color: var(--brand-white);
 }
 
 /* Page Container */
@@ -41,14 +40,13 @@ body {
 }
 
 .page-heading {
-  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 700;
-  color: var(--brand-cyan);
+  color: var(--brand-white);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-align: center;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
 }
 
 /* ===== FORM PAGE STYLES ===== */
@@ -62,9 +60,9 @@ body {
 .form-wrapper {
   max-width: 900px;
   margin: 0 auto;
-  background: rgba(10, 15, 14, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid var(--brand-border);
+  border-radius: 4px;
   padding: 3rem;
   backdrop-filter: blur(10px);
 }
@@ -74,28 +72,28 @@ body {
   text-align: center;
   margin-bottom: 3rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid var(--brand-border);
 }
 
 .document-title {
-  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: clamp(1.5rem, 4vw, 2.2rem);
   font-weight: 700;
-  color: var(--brand-cyan);
+  color: var(--brand-white);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
 }
 
 .document-subtitle {
-  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 1rem;
   color: var(--brand-gray);
   margin-bottom: 1.5rem;
 }
 
 .document-parties {
-  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 1.1rem;
   color: var(--brand-light-gray);
   line-height: 1.8;
@@ -109,12 +107,12 @@ body {
 .text-section {
   margin-bottom: 2.5rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .text-section p,
 .text-section-inner p {
-  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 1rem;
   color: var(--brand-gray);
   line-height: 1.7;
@@ -129,23 +127,23 @@ body {
 .text-section-inner {
   margin: 2.5rem 0;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 8px;
-  border-left: 3px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .section-title {
-  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--brand-cyan);
+  color: var(--brand-white);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   margin-bottom: 1rem;
 }
 
 .section-note {
-  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 0.9rem;
   color: var(--brand-light-gray);
   font-style: italic;
@@ -160,12 +158,12 @@ body {
 
 /* Contact Modal styles (reused in contact page) */
 .contact-modal h2 {
-  font-family: var(--font-roboto-mono), 'Roboto Mono', monospace;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--brand-cyan);
+  color: var(--brand-white);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -176,31 +174,32 @@ body {
 
 .contact-form-modal .form-group-modal label {
   display: block;
-  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--brand-gray);
   margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .contact-form-modal input,
 .contact-form-modal textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  font-family: var(--font-roboto), 'Roboto', sans-serif;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 1rem;
   color: var(--brand-white);
-  background: rgba(10, 15, 14, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--brand-border);
+  border-radius: 2px;
+  transition: border-color 0.3s ease;
 }
 
 .contact-form-modal input:focus,
 .contact-form-modal textarea:focus {
   outline: none;
-  border-color: var(--brand-cyan);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  border-color: var(--brand-white);
 }
 
 .contact-form-modal textarea {

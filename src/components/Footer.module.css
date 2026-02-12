@@ -4,80 +4,59 @@
   left: 0;
   right: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
-  white-space: nowrap;
+  padding: 1.25rem 2rem;
   z-index: 100;
 }
 
-.madeInUsa {
-  font-family: var(--font-roboto), 'Roboto', sans-serif;
-  font-size: 36px;
-  font-weight: 700;
+.copyright {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
   color: var(--brand-gray);
-  letter-spacing: 0.15em;
   text-transform: uppercase;
-  transform: translateY(-1rem);
+  letter-spacing: 0.15em;
 }
 
-.socialLink {
-  position: absolute;
-  right: 2rem;
-  bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.socialLink:hover {
-  opacity: 0.8;
-  transform: scale(1.1);
-}
-
-.xLogo {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
+.tagline {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--brand-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
 }
 
 @media (max-width: 768px) {
   .footer {
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.25rem;
   }
 
-  .madeInUsa {
-    font-size: 28px;
+  .copyright {
+    font-size: 10px;
+    letter-spacing: 0.1em;
   }
 
-  .socialLink {
-    right: 1.5rem;
-    bottom: 1rem;
-  }
-
-  .xLogo {
-    width: 20px;
-    height: 20px;
+  .tagline {
+    font-size: 10px;
+    letter-spacing: 0.1em;
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 480px) {
   .footer {
-    padding: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    text-align: center;
   }
 
-  .madeInUsa {
-    font-size: 24px;
+  .copyright {
+    font-size: 9px;
   }
 
-  .socialLink {
-    right: 1rem;
-    bottom: 1rem;
-  }
-
-  .xLogo {
-    width: 18px;
-    height: 18px;
+  .tagline {
+    font-size: 9px;
   }
 }
