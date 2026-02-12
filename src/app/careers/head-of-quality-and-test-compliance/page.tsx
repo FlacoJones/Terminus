@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 		description: 'Join Terminus Industrials as Head of Quality and Test Compliance - Lead laboratory accreditation, testing procedures, and compliance systems',
 		images: [
 			{
-				url: `${baseUrl}/og-image.png`,
+				url: `${baseUrl}/terminus_logo_og.png`,
 				width: 1200,
 				height: 630,
 				alt: 'Head of Quality and Test Compliance - Terminus Industrials',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 		description: 'Join Terminus Industrials as Head of Quality and Test Compliance - Lead laboratory accreditation, testing procedures, and compliance systems',
 		images: [
 			{
-				url: `${baseUrl}/og-image.png`,
+				url: `${baseUrl}/terminus_logo_og.png`,
 				width: 1200,
 				height: 630,
 				alt: 'Head of Quality and Test Compliance - Terminus Industrials',

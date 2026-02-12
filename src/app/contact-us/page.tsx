@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 		description: 'Contact Terminus Industrials - Defense-Grade Advanced Manufacturing',
 		images: [
 			{
-				url: `${baseUrl}/og-image.png`,
+				url: `${baseUrl}/terminus_logo_og.png`,
 				width: 1200,
 				height: 630,
 				alt: 'Contact Us - Terminus Industrials',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 		description: 'Contact Terminus Industrials - Defense-Grade Advanced Manufacturing',
 		images: [
 			{
-				url: `${baseUrl}/og-image.png`,
+				url: `${baseUrl}/terminus_logo_og.png`,
 				width: 1200,
 				height: 630,
 				alt: 'Contact Us - Terminus Industrials',

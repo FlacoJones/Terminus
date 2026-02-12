@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 		description: 'Join Terminus Industrials as Chief Technology Officer - Define and own the full technology stack for defense-grade advanced manufacturing',
 		images: [
 			{
-				url: `${baseUrl}/og-image.png`,
+				url: `${baseUrl}/terminus_logo_og.png`,
 				width: 1200,
 				height: 630,
 				alt: 'Chief Technology Officer - Terminus Industrials',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 		description: 'Join Terminus Industrials as Chief Technology Officer - Define and own the full technology stack for defense-grade advanced manufacturing',
 		images: [
 			{
-				url: `${baseUrl}/og-image.png`,
+				url: `${baseUrl}/terminus_logo_og.png`,
 				width: 1200,
 				height: 630,
 				alt: 'Chief Technology Officer - Terminus Industrials',

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 		description: 'Defense-Grade Advanced Manufacturing',
 		images: [
 			{
-				url: `${baseUrl}/og-image.png`,
+				url: `${baseUrl}/terminus_logo_og.png`,
 				width: 1200,
 				height: 630,
 				alt: 'CAD - Terminus Industrials',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 		description: 'Defense-Grade Advanced Manufacturing',
 		images: [
 			{
-				url: `${baseUrl}/og-image.png`,
+				url: `${baseUrl}/terminus_logo_og.png`,
 				width: 1200,
 				height: 630,
 				alt: 'CAD - Terminus Industrials',

@@ -16,11 +16,10 @@ export const metadata: Metadata = {
 		siteName: 'Terminus Industrials',
 		images: [
 			{
-				url: `${baseUrl}/og-image.png`,
+				url: `${baseUrl}/terminus_logo_og.png`,
 				width: 1200,
 				height: 630,
 				alt: 'Terminus Industrials Logo',
-				type: 'image/png',
 			},
 		],
 		type: 'website',
@@ -34,7 +33,7 @@ export const metadata: Metadata = {
 		description: 'Defense-Grade Advanced Manufacturing',
 		images: [
 			{
-				url: `${baseUrl}/og-image.png`,
+				url: `${baseUrl}/terminus_logo_og.png`,
 				width: 1200,
 				height: 630,
 				alt: 'Terminus Industrials Logo',

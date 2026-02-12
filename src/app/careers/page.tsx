@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 		description: 'Join Terminus Industrials - Career opportunities in defense-grade advanced manufacturing',
 		images: [
 			{
-				url: `${baseUrl}/og-image.png`,
+				url: `${baseUrl}/terminus_logo_og.png`,
 				width: 1200,
 				height: 630,
 				alt: 'Careers - Terminus Industrials',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 		description: 'Join Terminus Industrials - Career opportunities in defense-grade advanced manufacturing',
 		images: [
 			{
-				url: `${baseUrl}/og-image.png`,
+				url: `${baseUrl}/terminus_logo_og.png`,
 				width: 1200,
 				height: 630,
 				alt: 'Careers - Terminus Industrials',
