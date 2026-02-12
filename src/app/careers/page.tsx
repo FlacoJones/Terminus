@@ -1,41 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar, Footer } from '@/components';
+import { generateMetadata } from '@/lib/metadata';
 import styles from './Careers.module.css';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://cad.terminusindustrials.com';
-
-export const metadata: Metadata = {
+export const metadata: Metadata = generateMetadata({
 	title: 'Careers | Terminus Industrials',
 	description: 'Join Terminus Industrials - Career opportunities in defense-grade advanced manufacturing',
-	openGraph: {
-		title: 'Careers | Terminus Industrials',
-		description: 'Join Terminus Industrials - Career opportunities in defense-grade advanced manufacturing',
-		images: [
-			{
-				url: `${baseUrl}/terminus_logo_og.png`,
-				width: 1200,
-				height: 630,
-				alt: 'Careers - Terminus Industrials',
-			},
-		],
-		type: 'website',
-	},
-	twitter: {
-		card: 'summary_large_image',
-		site: '@TerminusIndstrl',
-		title: 'Careers | Terminus Industrials',
-		description: 'Join Terminus Industrials - Career opportunities in defense-grade advanced manufacturing',
-		images: [
-			{
-				url: `${baseUrl}/terminus_logo_og.png`,
-				width: 1200,
-				height: 630,
-				alt: 'Careers - Terminus Industrials',
-			},
-		],
-	},
-};
+});
 
 const openPositions = [
 	{

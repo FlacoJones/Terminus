@@ -1,42 +1,15 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { Footer } from '@/components';
+import { generateMetadata } from '@/lib/metadata';
 import { APIForm } from './APIForm';
 import styles from './APIForm.module.css';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://cad.terminusindustrials.com';
-
-export const metadata: Metadata = {
+export const metadata: Metadata = generateMetadata({
 	title: 'CAD - Terminus Industrials',
 	description: 'CAD - Terminus Industrials',
-	openGraph: {
-		title: 'CAD - Terminus Industrials',
-		description: 'Defense-Grade Advanced Manufacturing',
-		images: [
-			{
-				url: `${baseUrl}/terminus_logo_og.png`,
-				width: 1200,
-				height: 630,
-				alt: 'CAD - Terminus Industrials',
-			},
-		],
-		type: 'website',
-	},
-	twitter: {
-		card: 'summary_large_image',
-		site: '@TerminusIndstrl',
-		title: 'CAD - Terminus Industrials',
-		description: 'Defense-Grade Advanced Manufacturing',
-		images: [
-			{
-				url: `${baseUrl}/terminus_logo_og.png`,
-				width: 1200,
-				height: 630,
-				alt: 'CAD - Terminus Industrials',
-			},
-		],
-	},
-};
+	ogDescription: 'Defense-Grade Advanced Manufacturing',
+});
 
 function FormLoadingFallback() {
 	return (

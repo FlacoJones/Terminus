@@ -1,41 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar, Footer } from '@/components';
+import { generateMetadata } from '@/lib/metadata';
 import styles from '../[slug]/CareerDetail.module.css';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://cad.terminusindustrials.com';
-
-export const metadata: Metadata = {
+export const metadata: Metadata = generateMetadata({
 	title: 'Head of Quality and Test Compliance | Careers | Terminus Industrials',
 	description: 'Join Terminus Industrials as Head of Quality and Test Compliance - Lead laboratory accreditation, testing procedures, and compliance systems',
-	openGraph: {
-		title: 'Head of Quality and Test Compliance | Careers | Terminus Industrials',
-		description: 'Join Terminus Industrials as Head of Quality and Test Compliance - Lead laboratory accreditation, testing procedures, and compliance systems',
-		images: [
-			{
-				url: `${baseUrl}/terminus_logo_og.png`,
-				width: 1200,
-				height: 630,
-				alt: 'Head of Quality and Test Compliance - Terminus Industrials',
-			},
-		],
-		type: 'website',
-	},
-	twitter: {
-		card: 'summary_large_image',
-		site: '@TerminusIndstrl',
-		title: 'Head of Quality and Test Compliance | Careers | Terminus Industrials',
-		description: 'Join Terminus Industrials as Head of Quality and Test Compliance - Lead laboratory accreditation, testing procedures, and compliance systems',
-		images: [
-			{
-				url: `${baseUrl}/terminus_logo_og.png`,
-				width: 1200,
-				height: 630,
-				alt: 'Head of Quality and Test Compliance - Terminus Industrials',
-			},
-		],
-	},
-};
+});
 
 export default function HeadOfQualityPage() {
 	return (
