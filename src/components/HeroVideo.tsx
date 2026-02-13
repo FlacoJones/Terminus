@@ -9,6 +9,7 @@ export function HeroVideo() {
 			loop
 			playsInline
 			preload="auto"
+			poster="/transformer_first_frame.png"
 		>
 			<source src="/transformer.mp4" type="video/mp4" />
 		</video>
