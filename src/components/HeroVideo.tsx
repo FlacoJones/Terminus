@@ -1,11 +1,29 @@
 "use client";
 
+import { useLayoutEffect, useState } from "react";
 import Image from "next/image";
 import { getAssetTier, pickHeroAssets } from "@/lib/assetTier";
 import styles from "./HeroVideo.module.css";
 
+/**
+ * SSR renders an empty placeholder (no asset URLs in the HTML).
+ * The blocking <head> probe script has already determined the tier by the
+ * time React hydrates. useLayoutEffect reads the cached result and renders
+ * the correct assets before the browser ever paints — zero wasted downloads.
+ */
 export function HeroVideo() {
-	const assets = pickHeroAssets(getAssetTier());
+	const [assets, setAssets] = useState(() => {
+		if (typeof window === "undefined") return null;
+		return pickHeroAssets(getAssetTier());
+	});
+
+	useLayoutEffect(() => {
+		setAssets(pickHeroAssets(getAssetTier()));
+	}, []);
+
+	if (!assets) {
+		return <div className={styles.heroVideo} aria-hidden />;
+	}
 
 	if (!assets.videoSrc) {
 		return (
