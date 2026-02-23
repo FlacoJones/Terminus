@@ -117,13 +117,13 @@ export function getAssetTier(): AssetTier {
       window.__assetTier = stored;
       return stored;
     }
-  } catch {}
+  } catch { /* sessionStorage unavailable */ }
 
   const tier = probeTier();
   window.__assetTier = tier;
   try {
     sessionStorage.setItem(SESSION_KEY, tier);
-  } catch {}
+  } catch { /* sessionStorage unavailable */ }
   return tier;
 }
 
