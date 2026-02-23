@@ -1,15 +1,17 @@
 export type AssetTier = "small" | "medium" | "large";
 
+interface NavigatorWithDeviceMemory extends Navigator {
+  deviceMemory?: number;
+}
+
 export function getAssetTier(): AssetTier {
   const ua = navigator.userAgent || "";
   const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
 
-  const deviceMemoryGB = (navigator as any).deviceMemory ?? null;
+  const deviceMemoryGB =
+    (navigator as NavigatorWithDeviceMemory).deviceMemory ?? null;
   const cores = navigator.hardwareConcurrency ?? null;
-  const dpr = window.devicePixelRatio ?? 1;
   const w = Math.min(window.innerWidth || 0, screen.width || 0);
-  const h = Math.min(window.innerHeight || 0, screen.height || 0);
-  const pixels = w * h * dpr * dpr;
 
   if (isMobile) {
     const lowMem = deviceMemoryGB !== null && deviceMemoryGB <= 2;

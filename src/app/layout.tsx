@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import { defaultMetadata } from '@/lib/metadata';
 
@@ -13,6 +14,7 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<body suppressHydrationWarning>
 				{children}
+				<SpeedInsights />
 			</body>
 		</html>
 	);

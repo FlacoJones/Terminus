@@ -74,10 +74,18 @@ export function Navbar({ logoOnly = false, logoHref = '/' }: NavbarProps) {
 				<Link href="/careers" className={styles.navLink}>
 					Careers
 				</Link>
-		<Link href="/contact-us" className={`${styles.navLink} ${styles.contactNavBtn}`}>
-			Contact Us
-		</Link>
-	</div>}
+				<a
+					href="https://cad.terminusindustrials.com"
+					className={styles.navLink}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Advance Purchase Indication
+				</a>
+				<Link href="/contact-us" className={`${styles.navLink} ${styles.contactNavBtn}`}>
+					Contact Us
+				</Link>
+			</div>}
 
 			{/* Hamburger Menu for Mobile */}
 			{!logoOnly && (
@@ -109,6 +117,15 @@ export function Navbar({ logoOnly = false, logoHref = '/' }: NavbarProps) {
 					<Link href="/careers" className={styles.mobileMenuLink} onClick={closeMenu}>
 						Careers
 					</Link>
+					<a
+						href="https://cad.terminusindustrials.com"
+						className={styles.mobileMenuLink}
+						onClick={closeMenu}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Advance Purchase Indication
+					</a>
 					<Link href="/contact-us" className={styles.mobileMenuLink} onClick={closeMenu}>
 						Contact Us
 					</Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { getAssetTier, pickHeroAssets } from "@/lib/assetTier";
 import type { AssetTier } from "@/lib/assetTier";
 import styles from "./HeroVideo.module.css";
@@ -17,12 +18,16 @@ export function HeroVideo() {
 
 	if (!assets.videoSrc) {
 		return (
-			<img
-				className={styles.heroVideo}
-				src={assets.poster}
-				alt=""
-				draggable={false}
-			/>
+			<div className={styles.heroImageWrapper}>
+				<Image
+					className={styles.heroVideo}
+					src={assets.poster}
+					alt=""
+					fill
+					sizes="100vw"
+					draggable={false}
+				/>
+			</div>
 		);
 	}
 
