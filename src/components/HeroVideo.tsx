@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { getAssetTier, pickHeroAssets } from "@/lib/assetTier";
 import type { AssetTier } from "@/lib/assetTier";
 import styles from "./HeroVideo.module.css";
@@ -17,10 +18,14 @@ export function HeroVideo() {
 
 	if (!assets.videoSrc) {
 		return (
-			<img
+			<Image
 				className={styles.heroVideo}
 				src={assets.poster}
 				alt=""
+				width={1920}
+				height={1080}
+				sizes="100vw"
+				priority
 				draggable={false}
 			/>
 		);
