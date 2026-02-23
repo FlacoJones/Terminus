@@ -15,10 +15,10 @@ export function getAssetTier(): AssetTier {
 
   if (isMobile) {
     const lowMem = deviceMemoryGB !== null && deviceMemoryGB <= 2;
-    const lowCores = cores !== null && cores <= 4;
-    const smallScreen = w <= 390;
+    const lowCores = cores !== null && cores <= 2;
+    const smallScreen = w < 360;
 
-    if (lowMem || lowCores || smallScreen) return "small";
+    if (lowMem || (lowCores && smallScreen)) return "small";
     return "medium";
   }
 
@@ -37,10 +37,9 @@ export function pickHeroAssets(tier: AssetTier) {
     typeof window !== "undefined" &&
     (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false);
 
-  const videoSrc =
-    prefersReducedMotion || tier === "small"
-      ? null
-      : `/hero/${tier}/transformer.mp4`;
+  const videoSrc = prefersReducedMotion
+    ? null
+    : `/hero/${tier}/transformer.mp4`;
 
   return { tier, poster, videoSrc, prefersReducedMotion };
 }
