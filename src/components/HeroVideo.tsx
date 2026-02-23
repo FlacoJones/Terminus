@@ -33,6 +33,7 @@ export function HeroVideo() {
 
 	return (
 		<video
+			key={assets.tier}
 			className={styles.heroVideo}
 			autoPlay
 			muted
