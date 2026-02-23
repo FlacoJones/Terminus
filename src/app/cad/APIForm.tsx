@@ -265,6 +265,49 @@ function computeCompletion(form: HTMLFormElement): Record<number, boolean> {
 	return result;
 }
 
+/* ─── Extract all form values as a plain object ─── */
+
+function extractFormValues(form: HTMLFormElement): Record<string, string | string[]> {
+	const values: Record<string, string | string[]> = {};
+	const seen = new Set<string>();
+
+	for (let i = 0; i < form.elements.length; i++) {
+		const el = form.elements[i];
+		if (!(el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement)) continue;
+		const { name } = el;
+		if (!name || seen.has(name)) continue;
+		seen.add(name);
+
+		const elements = form.elements.namedItem(name);
+		if (!elements) continue;
+
+		if (elements instanceof RadioNodeList) {
+			const firstEl = elements[0];
+			if (firstEl instanceof HTMLInputElement && firstEl.type === 'radio') {
+				const checked = Array.from(elements).find(
+					(r): r is HTMLInputElement => r instanceof HTMLInputElement && r.checked,
+				);
+				if (checked) values[name] = checked.value;
+			} else if (firstEl instanceof HTMLInputElement && firstEl.type === 'checkbox') {
+				const checked = Array.from(elements)
+					.filter((r): r is HTMLInputElement => r instanceof HTMLInputElement && r.checked)
+					.map((r) => r.value);
+				if (checked.length === 1) values[name] = checked[0]!;
+				else if (checked.length > 1) values[name] = checked;
+			}
+		} else if (elements instanceof HTMLInputElement) {
+			if (elements.type === 'checkbox') {
+				if (elements.checked) values[name] = elements.value;
+			} else if (elements.value.trim()) {
+				values[name] = elements.value;
+			}
+		} else if (elements instanceof HTMLTextAreaElement || elements instanceof HTMLSelectElement) {
+			if (elements.value.trim()) values[name] = elements.value;
+		}
+	}
+	return values;
+}
+
 /* ─── Validation helper ─── */
 
 function validateField(name: string, value: string): string | null {
@@ -296,10 +339,23 @@ function inputClass(base: string | undefined, fieldName: string, errors: Record<
 
 /* ─── Main Form ─── */
 
-export function APIForm() {
+export interface FormReadyState {
+	allComplete: boolean;
+	hasValidationErrors: boolean;
+	submitting: boolean;
+	submitError: string | null;
+}
+
+export function APIForm({ onFormChange, onReadyStateChange }: {
+	onFormChange?: (values: Record<string, string | string[]>) => void;
+	onReadyStateChange?: (state: FormReadyState) => void;
+}) {
 	const [openSections, setOpenSections] = useState<Set<number>>(new Set([1]));
 	const [completion, setCompletion] = useState<Record<number, boolean>>({});
 	const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+	const [submitting, setSubmitting] = useState(false);
+	const [submitError, setSubmitError] = useState<string | null>(null);
+	const [showSuccess, setShowSuccess] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
 
 	const allComplete = useMemo(
@@ -311,6 +367,10 @@ export function APIForm() {
 		() => Object.keys(fieldErrors).length > 0,
 		[fieldErrors],
 	);
+
+	useEffect(() => {
+		onReadyStateChange?.({ allComplete, hasValidationErrors, submitting, submitError });
+	}, [allComplete, hasValidationErrors, submitting, submitError, onReadyStateChange]);
 
 	const toggleSection = useCallback((index: number) => {
 		setOpenSections((prev) => {
@@ -324,11 +384,12 @@ export function APIForm() {
 		});
 	}, []);
 
-	/* Track form changes for completion indicators */
+	/* Track form changes for completion indicators + notify parent */
 	const refreshCompletion = useCallback(() => {
 		if (!formRef.current) return;
 		setCompletion(computeCompletion(formRef.current));
-	}, []);
+		onFormChange?.(extractFormValues(formRef.current));
+	}, [onFormChange]);
 
 	useEffect(() => {
 		const form = formRef.current;
@@ -447,10 +508,6 @@ export function APIForm() {
 			});
 		});
 	}, []);
-
-	const [submitting, setSubmitting] = useState(false);
-	const [submitError, setSubmitError] = useState<string | null>(null);
-	const [showSuccess, setShowSuccess] = useState(false);
 
 	const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -1004,29 +1061,6 @@ export function APIForm() {
 					/>
 				</Field>
 			</Section>
-
-			{/* Submit */}
-			<div className={styles.submitArea}>
-				<div className={styles.submitWrapper}>
-					<button
-						type="submit"
-						className={styles.submitBtn}
-						disabled={!allComplete || submitting || hasValidationErrors}
-					>
-						{submitting ? 'Submitting...' : 'Submit Advance Purchase Indication'}
-					</button>
-					{(!allComplete || hasValidationErrors) && !submitting && (
-						<span className={styles.submitTooltip}>
-							{hasValidationErrors
-								? 'Please fix the validation errors above before submitting.'
-								: 'Please complete all fields above before submitting your order!'}
-						</span>
-					)}
-				</div>
-				{submitError && (
-					<p className={styles.submitError}>Submission failed: {submitError}</p>
-				)}
-			</div>
 
 			{/* Success Modal */}
 			<SuccessModal
