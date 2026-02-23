@@ -23,8 +23,8 @@ export function getAssetTier(): AssetTier {
   }
 
   const weakDesktop =
-    (deviceMemoryGB !== null && deviceMemoryGB <= 4) ||
-    (cores !== null && cores <= 4);
+    (deviceMemoryGB !== null && deviceMemoryGB <= 2) ||
+    (cores !== null && cores <= 2);
 
   if (weakDesktop) return "medium";
   return "large";
