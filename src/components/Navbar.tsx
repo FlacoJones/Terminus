@@ -5,6 +5,9 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import styles from './Navbar.module.css';
 
+const CAD_URL =
+	process.env.NEXT_PUBLIC_CAD_URL ?? 'https://cad.terminusindustrials.com';
+
 interface NavbarProps {
 	logoOnly?: boolean;
 	logoHref?: string;
@@ -75,7 +78,7 @@ export function Navbar({ logoOnly = false, logoHref = '/' }: NavbarProps) {
 					Careers
 				</Link>
 				<a
-					href="https://cad.terminusindustrials.com"
+					href={CAD_URL}
 					className={styles.navLink}
 					target="_blank"
 					rel="noopener noreferrer"
@@ -118,7 +121,7 @@ export function Navbar({ logoOnly = false, logoHref = '/' }: NavbarProps) {
 						Careers
 					</Link>
 					<a
-						href="https://cad.terminusindustrials.com"
+						href={CAD_URL}
 						className={styles.mobileMenuLink}
 						onClick={closeMenu}
 						target="_blank"
