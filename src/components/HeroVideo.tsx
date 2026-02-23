@@ -12,10 +12,8 @@ import styles from "./HeroVideo.module.css";
  * the correct assets before the browser ever paints — zero wasted downloads.
  */
 export function HeroVideo() {
-	const [assets, setAssets] = useState(() => {
-		if (typeof window === "undefined") return null;
-		return pickHeroAssets(getAssetTier());
-	});
+	const [assets, setAssets] =
+		useState<ReturnType<typeof pickHeroAssets> | null>(null);
 
 	useLayoutEffect(() => {
 		setAssets(pickHeroAssets(getAssetTier()));
