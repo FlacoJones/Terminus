@@ -127,8 +127,6 @@ export function getAssetTier(): AssetTier {
   return tier;
 }
 
-const VIDEO_DOWNLINK_GATE = 4;
-
 export function pickHeroAssets(tier: AssetTier) {
   const poster = `/hero/${tier}/transformer_poster.png`;
 
@@ -136,17 +134,9 @@ export function pickHeroAssets(tier: AssetTier) {
     typeof window !== "undefined" &&
     (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false);
 
-  const conn = getConnection();
-  const networkBlocksVideo =
-    tier === "small" ||
-    (conn?.downlink != null &&
-      conn.downlink > 0 &&
-      conn.downlink < VIDEO_DOWNLINK_GATE);
-
-  const videoSrc =
-    prefersReducedMotion || networkBlocksVideo
-      ? null
-      : `/hero/${tier}/transformer.mp4`;
+  const videoSrc = prefersReducedMotion
+    ? null
+    : `/hero/${tier}/transformer.mp4`;
 
   return { tier, poster, videoSrc, prefersReducedMotion };
 }
