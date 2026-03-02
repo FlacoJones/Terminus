@@ -46,6 +46,9 @@ yarn-error.log*
 # Package manager lock files (using yarn)
 package-lock.json
 
+# Python virtual environments
+venv/
+
 # OS generated files
 Thumbs.db
 ehthumbs.db
